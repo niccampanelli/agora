@@ -1,15 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const AppStack = createStackNavigator();
 
 export default function Routes(){
     return(
         <NavigationContainer>
-            <AppStack.Navigator screenOptions={{ headerShown: false }}>
+            <AppStack.Navigator 
+                screenOptions={{ 
+                    headerShown: false,
+                    gestureEnabled: true,
+                    gestureDirection: 'horizontal',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS 
+                }}    
+            >
                 <AppStack.Screen name='Home' component={Home}/>
+                <AppStack.Screen name='Profile' component={Profile}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );
