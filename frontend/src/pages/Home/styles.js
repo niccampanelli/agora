@@ -74,8 +74,15 @@ export default StyleSheet.create({
     },
 
     listAreaTxt: {
-        fontSize: 20,
+        fontSize: 24,
         color: '#555',
         fontWeight: 'bold'
+    }, 
+    consultasMarcadas:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        borderBottomWidth:1,
+        marginTop:10
     }
+
 });

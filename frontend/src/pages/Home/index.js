@@ -47,6 +47,17 @@ export default function Home(){
         date: '30/05'
     }];
 
+
+    function BtnHome( props){
+        return(
+            <View style={styles.button1}>
+            <TouchableHighlight activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+                <Text style={styles.button1tx}>{props.nome}</Text>
+            </TouchableHighlight>
+        </View>
+        )
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -58,37 +69,24 @@ export default function Home(){
                 </TouchableHighlight>
             </View>
             <View style={styles.topButtons}>
-                <View style={styles.button1}>
-                    <TouchableHighlight activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Consultas</Text>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Postos</Text>
-                    </TouchableHighlight>
-                </View>
+               <BtnHome nome = 'Consulta'/>
+                <BtnHome nome = 'Postos'/>
             </View>
             <View style={styles.topButtons2}>
-                <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Consultas</Text>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Postos</Text>
-                    </TouchableHighlight>
-                </View>
+                <BtnHome nome =  'Hospitais'/>
+                <BtnHome nome = 'Exames'/>
             </View>
             <View style={styles.carouselArea}>
                 <Carousel
                     items={[{
-                        label: 'Paracetamol'
+                        label: 'Paracetamol',
+                        qtd:'2 capsulas por dia'
                     }, {
-                        label: 'Ibuprofeno'
+                        label: 'Ibuprofeno',
+                        qtd:'2 capsulas por dia'
                     }, {
-                        label: 'Dipirona'
+                        label: 'Dipirona',
+                        qtd:'2 capsulas por dia'
                     }]}
                 />
             </View>
@@ -97,10 +95,11 @@ export default function Home(){
                 <FlatList
                     data={consultas}
                     showsVerticalScrollIndicator={false}
+                    
                     renderItem={({item: consulta}) => (
-                        <View>
-                            <Text>{consulta.title}</Text>
-                            <Text>{consulta.date}</Text>
+                        <View style={styles.consultasMarcadas}>
+                            <Text style={{fontSize:22}}>{consulta.title}</Text>
+                            <Text  style={{fontSize:20}}>{consulta.date}</Text>
                         </View>
                     )
                     }
