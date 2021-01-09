@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView, Button } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Button } from 'react-native';
 import styles from './styles';
 import Carousel from '../Components/Carousel';
 import { useNavigation } from '@react-navigation/native';
@@ -30,55 +30,41 @@ export default function Home(){
     }, {
         title: 'Oculista',
         date: '30/05'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
     }];
 
     return(
-        <View style={styles.container}>
-            <View style={styles.header}>
+    <View style={styles.container}>
+        <View style={styles.header}>
                 <Text style={styles.headerText}>Olá, Nicholas</Text>
-                <TouchableHighlight onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
                     <View>
                         <Feather size={26} name='user'/>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
+        <ScrollView pagingEnabled={true} scrollEventThrottle={200} style={styles.subContainer}>
             <View style={styles.topButtons}>
                 <View style={styles.button1}>
-                    <TouchableHighlight activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Consultas</Text>
-                    </TouchableHighlight>
+                    <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+                        <Text style={styles.button1tx}>Postos</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Postos</Text>
-                    </TouchableHighlight>
+                    <TouchableOpacity style={styles.button1bt} onPress={() => {}}>
+                        <Text style={styles.button1tx}>Hospitais</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.topButtons2}>
                 <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button1bt} onPress={() => {}}>
                         <Text style={styles.button1tx}>Consultas</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.button1}>
-                    <TouchableHighlight style={styles.button1bt} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button1bt} onPress={() => {}}>
                         <Text style={styles.button1tx}>Postos</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.carouselArea}>
@@ -93,19 +79,23 @@ export default function Home(){
                 />
             </View>
             <View style={styles.listArea}>
-                <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                <FlatList
-                    data={consultas}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({item: consulta}) => (
-                        <View>
-                            <Text>{consulta.title}</Text>
-                            <Text>{consulta.date}</Text>
+                <View style={styles.sheetGrab}>
+                    <View style={styles.sheetGrabInner}/>
+                </View>
+                <View style={styles.listAreaHeader}>
+                    <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
+                    <TouchableOpacity><Text>Ver todas</Text></TouchableOpacity>
+                </View>
+                <View style={styles.consultasList}>
+                    {consultas.map((consulta) => (
+                        <View style={styles.consultasListItem}>
+                            <Text style={styles.consultasTitle}>{consulta.title}</Text>
+                            <Text style={styles.consultasDate}>{consulta.date}</Text>
                         </View>
-                    )
-                    }
-                />
+                    ))}
+                </View>
             </View>
-        </View>
+        </ScrollView>
+    </View>
     );
 }
