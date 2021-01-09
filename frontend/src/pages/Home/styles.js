@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
+const mainAppColor = '#fff000';
+const mainTextColor = '#555';
+
 export default StyleSheet.create({
     sheetGrab: {
         justifyContent: 'center',
@@ -16,12 +19,6 @@ export default StyleSheet.create({
         borderRadius: 100
     },
 
-    container: {
-        height: '100%',
-        backgroundColor: '#fafafa',
-        paddingTop: Constants.statusBarHeight + 40,
-    },
-
     header: {
         flexDirection: 'row',
         paddingHorizontal: 20,
@@ -34,7 +31,9 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 30,
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: mainTextColor
     },
 
     topButtons: {
@@ -49,6 +48,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 10,
+        marginBottom: 20,
         height: 50
     },
 
@@ -59,7 +59,7 @@ export default StyleSheet.create({
 
     button1bt: {
         flex: 1,
-        backgroundColor: '#ffff00',
+        backgroundColor: mainAppColor,
         borderRadius: 8
     },
 
@@ -67,14 +67,22 @@ export default StyleSheet.create({
         flex: 1,
         fontWeight: 'bold',
         fontSize: 19,
-        color: '#555',
+        color: mainTextColor,
         textAlign: 'center',
         textAlignVertical: 'center',
     },
 
     carouselArea: {
-        width: '100%',
-        height: 400
+        paddingHorizontal: 20,
+        height: 160,
+        marginBottom: 220
+    },
+
+    receitasTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: mainTextColor
     },
 
     listArea: {
@@ -90,7 +98,7 @@ export default StyleSheet.create({
         paddingTop: 15,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        backgroundColor: '#ffff00',
+        backgroundColor: mainAppColor,
         height: 650
     },
 
@@ -103,7 +111,7 @@ export default StyleSheet.create({
 
     listAreaTxt: {
         fontSize: 25,
-        color: '#555',
+        color: mainTextColor,
         fontWeight: 'bold',
     },
 

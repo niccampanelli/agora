@@ -2,6 +2,7 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, ScrollView, Button } from 'react-native';
 import styles from './styles';
+import gstyles from '../../gstyles';
 import Carousel from '../Components/Carousel';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -33,16 +34,16 @@ export default function Home(){
     }];
 
     return(
-    <View style={styles.container}>
+    <View style={gstyles.container}>
         <View style={styles.header}>
-                <Text style={styles.headerText}>Olá, Nicholas</Text>
+                <Text style={styles.headerText}>Olá, Nicholas!</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
                     <View>
                         <Feather size={26} name='user'/>
                     </View>
                 </TouchableOpacity>
             </View>
-        <ScrollView pagingEnabled={true} scrollEventThrottle={200} style={styles.subContainer}>
+        <ScrollView pagingEnabled={true} showsVerticalScrollIndicator={false} style={styles.subContainer}>
             <View style={styles.topButtons}>
                 <View style={styles.button1}>
                     <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
@@ -58,25 +59,13 @@ export default function Home(){
             <View style={styles.topButtons2}>
                 <View style={styles.button1}>
                     <TouchableOpacity style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Consultas</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.button1}>
-                    <TouchableOpacity style={styles.button1bt} onPress={() => {}}>
-                        <Text style={styles.button1tx}>Postos</Text>
+                        <Text style={styles.button1tx}>Vacinas</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.carouselArea}>
-                <Carousel
-                    items={[{
-                        label: 'Paracetamol'
-                    }, {
-                        label: 'Ibuprofeno'
-                    }, {
-                        label: 'Dipirona'
-                    }]}
-                />
+                <Text style={styles.receitasTitle}>Receitas</Text>
+                <Carousel/>
             </View>
             <View style={styles.listArea}>
                 <View style={styles.sheetGrab}>
@@ -84,7 +73,7 @@ export default function Home(){
                 </View>
                 <View style={styles.listAreaHeader}>
                     <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                    <TouchableOpacity><Text>Ver todas</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Consultas')}><Text>Ver todas</Text></TouchableOpacity>
                 </View>
                 <View style={styles.consultasList}>
                     {consultas.map((consulta) => (
