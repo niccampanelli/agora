@@ -33,6 +33,17 @@ export default function Home(){
         date: '30/05'
     }];
 
+
+    function BtnHome( props){
+        return(
+            <View style={styles.button1}>
+            <TouchableHighlight activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+                <Text style={styles.button1tx}>{props.nome}</Text>
+            </TouchableHighlight>
+        </View>
+        )
+    }
+
     return(
     <View style={gstyles.container}>
         <View style={styles.header}>
@@ -45,6 +56,37 @@ export default function Home(){
             </View>
         <ScrollView pagingEnabled={true} showsVerticalScrollIndicator={false} style={styles.subContainer}>
             <View style={styles.topButtons}>
+               <BtnHome nome = 'Consulta'/>
+                <BtnHome nome = 'Postos'/>
+            </View>
+            <View style={styles.topButtons2}>
+                <BtnHome nome =  'Hospitais'/>
+                <BtnHome nome = 'Exames'/>
+            </View>
+            <View style={styles.carouselArea}>
+                <Carousel
+                    items={[{
+                        label: 'Paracetamol',
+                        qtd:'2 capsulas por dia'
+                    }, {
+                        label: 'Ibuprofeno',
+                        qtd:'2 capsulas por dia'
+                    }, {
+                        label: 'Dipirona',
+                        qtd:'2 capsulas por dia'
+                    }]}
+                />
+            </View>
+            <View style={styles.listArea}>
+                <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
+                <FlatList
+                    data={consultas}
+                    showsVerticalScrollIndicator={false}
+                    
+                    renderItem={({item: consulta}) => (
+                        <View style={styles.consultasMarcadas}>
+                            <Text style={{fontSize:22}}>{consulta.title}</Text>
+                            <Text  style={{fontSize:20}}>{consulta.date}</Text>
                 <View style={styles.button1}>
                     <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
                         <Text style={styles.button1tx}>Postos</Text>
