@@ -74,8 +74,9 @@ export default StyleSheet.create({
 
     carouselArea: {
         paddingHorizontal: 20,
-        height: 160,
-        marginBottom: 220
+        height: 280,
+        marginBottom: 30,
+        
     },
 
     receitasTitle: {
@@ -99,7 +100,8 @@ export default StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         backgroundColor: mainAppColor,
-        height: 650
+        height: 650,
+        borderWidth:0.5
     },
 
     listAreaHeader: {
@@ -129,10 +131,12 @@ export default StyleSheet.create({
     },
 
     consultasListItem: {
-        height: 55,
+        height:35,
         borderBottomColor: '#000',
         borderBottomWidth: 1,
-        marginBottom: 20
+        marginBottom: 2,
+        flexDirection:'row',
+        justifyContent:'space-between'
     },
 
     consultasTitle: {

@@ -25,7 +25,9 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0,
     shadowRadius: 10.0,
-    
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'red',
     elevation: 3,
   }
 
