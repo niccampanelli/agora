@@ -110,6 +110,15 @@ export default StyleSheet.create({
     },
 
     listAreaTxt: {
+        fontSize: 24,
+        color: '#555',
+        fontWeight: 'bold'
+    }, 
+    consultasMarcadas:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        borderBottomWidth:1,
+        marginTop:10
         fontSize: 25,
         color: mainTextColor,
         fontWeight: 'bold',
@@ -129,4 +138,5 @@ export default StyleSheet.create({
     consultasTitle: {
         fontSize: 20,
     }
+
 });
