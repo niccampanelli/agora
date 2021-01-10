@@ -1,100 +1,35 @@
-import * as React from 'react';
-import {
-  Text, 
-  View,
-  SafeAreaView } from 'react-native';
-
+import React, { useState } from 'react';
+import { Text, View, SafeAreaView, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import styles from '../../Home/styles';
+import style from './styles';
 
-export default class App extends React.Component {
+export default function Caroussel(props){
+    
+    const [activeIndex, setIndex] = useState(0);
+    const [carouselItems, setItems] = useState(props.items);
 
- 
-    constructor(props){
-        super(props);
-        this.state = {
-          activeIndex:0,
-          carouselItems: this.props.items
-      }
-    }
+    const screenWidth = Dimensions.get('window').width;
 
-    _renderItem({item,index}){
+    const _renderItem = ({ item , index }) => {
         return (
-          <View style={{
-            justifyContent:'space-around',
-              backgroundColor:'#ddd',
-              borderRadius: 50,
-              height: 190,
-              padding: 50,
-              marginLeft: 25,
-              marginRight: 25, }}>
-            <Text style={{fontSize: 24,marginBottom:20}}>{item.label}</Text>
-            <Text>{item.qtd}</Text>
-           
-          </View>
-
-        )
-    }
-
-    render() {
-        return (
-          <SafeAreaView style={{ backgroundColor:'#fff',  }}>
-           
-                <Carousel
-                  layout={"default"}
-                  ref={ref => this.carousel = ref}
-                  data={this.state.carouselItems}
-                  sliderWidth={300}
-                  itemWidth={300}
-                  renderItem={this._renderItem}
-                  onSnapToItem = { index => this.setState({activeIndex:index}) } />
-           
-          </SafeAreaView>
-        );
-    }
-}
-
-export default class App extends React.Component {
-
- 
-    constructor(props){
-        super(props);
-        this.state = {
-          activeIndex:0,
-          carouselItems: this.props.items
-      }
-    }
-
-    _renderItem({item,index}){
-        return (
-          <View style={{
-            justifyContent:'space-between',
-              backgroundColor:'#ddd',
-              borderRadius: 5,
-              height: 130,
-              padding: 40,
-              marginLeft: 25,
-              marginRight: 25, }}>
-            <Text style={{fontSize: 24}}>{item.label}</Text>
+          <View style={style.itemCard}>
+            <Text style={{ fontSize: 24, marginBottom:20 }}>{item.label}</Text>
             <Text>{item.qtd}</Text>
           </View>
-
         )
     }
-
-    render() {
-        return (
-          <SafeAreaView style={{flex: 1, backgroundColor:'#fff', paddingTop: 40, }}>
-            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
-                <Carousel
-                  layout={"default"}
-                  ref={ref => this.carousel = ref}
-                  data={this.state.carouselItems}
-                  sliderWidth={300}
-                  itemWidth={300}
-                  renderItem={this._renderItem}
-                  onSnapToItem = { index => this.setState({activeIndex:index}) } />
-            </View>
-          </SafeAreaView>
-        );
-    }
+    
+    return(
+        <SafeAreaView>
+          <Carousel
+            style={styles.carousel}
+            layout={"default"}
+            data={carouselItems}
+            sliderWidth={screenWidth - 40}
+            itemWidth={screenWidth - 40}
+            renderItem={_renderItem}
+            onSnapToItem={index => setIndex(index)}/>
+        </SafeAreaView>
+    );
 }

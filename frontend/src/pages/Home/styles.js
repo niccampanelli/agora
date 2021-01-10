@@ -76,7 +76,6 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         height: 280,
         marginBottom: 30,
-        
     },
 
     receitasTitle: {
@@ -120,7 +119,7 @@ export default StyleSheet.create({
         flexDirection:'row', 
         justifyContent:'space-between',
         borderBottomWidth:1,
-        marginTop:10
+        marginTop: 10,
         fontSize: 25,
         color: mainTextColor,
         fontWeight: 'bold',

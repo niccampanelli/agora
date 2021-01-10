@@ -6,29 +6,17 @@ export const styles = StyleSheet.create({
   
   carousel: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    width: '100%'
   },
-
-  item: {
-    width: screenWidth - 40,
-    padding: 10
-  },
-
+  
   itemCard: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0,
-    shadowRadius: 10.0,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'red',
-    elevation: 3,
+    justifyContent:'space-around',
+    backgroundColor:'#ddd',
+    borderRadius: 50,
+    padding: 50,
+    marginLeft: 25,
+    marginRight: 25
   }
 
 });
