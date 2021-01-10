@@ -1,12 +1,22 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import Carousel from '../Components/Carousel';
+
+const mainAppColor = '#fff000';
+const mainTextColor = '#555';
 
 export default StyleSheet.create({
-    container: {
-        height: '100%',
-        backgroundColor: '#fff',
-        paddingTop: Constants.statusBarHeight + 40,
+    sheetGrab: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 15
+    },
+
+    sheetGrabInner: {
+        backgroundColor: '#aaa',
+        opacity: 0.3,
+        height: 6,
+        width: 160,
+        borderRadius: 100
     },
 
     header: {
@@ -21,7 +31,9 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 30
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: mainTextColor
     },
 
     topButtons: {
@@ -36,6 +48,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 10,
+        marginBottom: 20,
         height: 50
     },
 
@@ -46,7 +59,7 @@ export default StyleSheet.create({
 
     button1bt: {
         flex: 1,
-        backgroundColor: '#ffff00',
+        backgroundColor: mainAppColor,
         borderRadius: 8
     },
 
@@ -54,23 +67,46 @@ export default StyleSheet.create({
         flex: 1,
         fontWeight: 'bold',
         fontSize: 19,
-        color: '#555',
+        color: mainTextColor,
         textAlign: 'center',
         textAlignVertical: 'center',
     },
 
     carouselArea: {
-        width: '100%',
-        height: 200
+        paddingHorizontal: 20,
+        height: 160,
+        marginBottom: 220
+    },
+
+    receitasTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: mainTextColor
     },
 
     listArea: {
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 1,
+        },
+        shadowOpacity: 0.90,
+        shadowRadius: 10.30,
+        elevation: 25,
         paddingHorizontal: 40,
-        paddingTop: 20,
+        paddingTop: 15,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        backgroundColor: '#ffff00',
-        height: 1000
+        backgroundColor: mainAppColor,
+        height: 650
+    },
+
+    listAreaHeader: {
+        marginBottom: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
 
     listAreaTxt: {
@@ -83,6 +119,24 @@ export default StyleSheet.create({
         justifyContent:'space-between',
         borderBottomWidth:1,
         marginTop:10
+        fontSize: 25,
+        color: mainTextColor,
+        fontWeight: 'bold',
+    },
+
+    consultasList: {
+
+    },
+
+    consultasListItem: {
+        height: 55,
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        marginBottom: 20
+    },
+
+    consultasTitle: {
+        fontSize: 20,
     }
 
 });

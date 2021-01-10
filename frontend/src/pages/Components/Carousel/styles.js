@@ -1,43 +1,34 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
-  statsHead: {
-    paddingTop: 10,
-    paddingHorizontal: 12,
+  
+  carousel: {
+    flex: 1,
+    flexDirection: 'row'
   },
-  container: {
+
+  item: {
+    width: screenWidth - 40,
+    padding: 10
+  },
+
+  itemCard: {
     width: '100%',
-    backgroundColor: '#fbfbfb',
-    borderColor: '#ebebeb',
-    borderWidth: 1,
-    borderRadius: 8,
-    shadowColor: '#fcfcfc',
-    shadowOpacity: 1,
-    marginTop: 10,
+    height: '100%',
+    borderRadius: 10,
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 5
+      height: 5,
     },
-  },
-  scrollView: {
-    display: 'flex',
-    flexDirection: 'row',
-    overflow: 'hidden',
-  },
-  bullets: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingTop: 5,
-  },
-  bullet: {
-    paddingHorizontal: 5,
-    fontSize: 20,
+    shadowOpacity: 0,
+    shadowRadius: 10.0,
+    
+    elevation: 3,
   }
+
 });
 
 export default styles;
