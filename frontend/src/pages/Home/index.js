@@ -65,7 +65,16 @@ export default function Home(){
             </View>
             <View style={styles.carouselArea}>
                 <Text style={styles.receitasTitle}>Receitas</Text>
-                <Carousel/>
+                <Carousel  items={[{
+                        label: 'Paracetamol',
+                        qtd:'2 capsulas por dia'
+                    }, {
+                        label: 'Ibuprofeno',
+                        qtd:'2 capsulas por dia'
+                    }, {
+                        label: 'Dipirona',
+                        qtd:'2 capsulas por dia'
+                    }]}/>
             </View>
             <View style={styles.listArea}>
                 <View style={styles.sheetGrab}>
