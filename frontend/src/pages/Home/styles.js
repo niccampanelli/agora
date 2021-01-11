@@ -21,6 +21,7 @@ export default StyleSheet.create({
 
     header: {
         flexDirection: 'row',
+        paddingTop: 50,
         paddingHorizontal: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -31,7 +32,7 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 25,
+        fontSize: 28,
         fontWeight: 'bold',
         color: mainTextColor
     },

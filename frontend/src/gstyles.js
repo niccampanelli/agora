@@ -5,7 +5,7 @@ export default StyleSheet.create({
     container: {
         height: '100%',
         backgroundColor: '#fafafa',
-        paddingTop: Constants.statusBarHeight + 40,
+        paddingTop: Constants.statusBarHeight + 20,
     },
 
     header: {
