@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import styles from '../../Home/styles';
-import style from './styles';
+import styles from './styles';
 
 export default function Caroussel(props){
     
@@ -13,9 +12,9 @@ export default function Caroussel(props){
 
     const _renderItem = ({ item , index }) => {
         return (
-          <View style={style.itemCard}>
-            <Text style={{ fontSize: 24, marginBottom:20 }}>{item.label}</Text>
-            <Text>{item.qtd}</Text>
+          <View style={styles.itemCard}>
+            <Text style={styles.itemTitle}>{item.label}</Text>
+            <Text style={styles.itemQtd}>{item.qtd}</Text>
           </View>
         )
     }

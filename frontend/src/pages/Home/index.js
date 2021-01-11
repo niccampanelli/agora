@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import styles from './styles';
 import gstyles from '../../gstyles';
 import Carousel from '../Components/Carousel';
@@ -53,43 +53,48 @@ export default function Home(){
                 </View>
             </TouchableOpacity>
         </View>
-        <View style={styles.topButtons}>
-            <BtnHome nome={'Hospitais'}/>
-            <BtnHome nome={'Postos'}/>
-        </View>
-        <View style={styles.topButtons2}>
-            <BtnHome nome={'Vacinas'}/>
-        </View>
-        <View style={styles.carouselArea}>
-            <Text style={styles.receitasTitle}>Receitas</Text>
-            <Carousel items={[{
-                        label: 'Paracetamol',
-                        qtd:'2 capsulas por dia'
-                    }, {
-                        label: 'Ibuprofeno',
-                        qtd:'2 capsulas por dia'
-                    }, {
-                        label: 'Dipirona',
-                        qtd:'2 capsulas por dia'
-                    }]}/>
-        </View>
-        <View style={styles.listArea}>
-            <View style={styles.sheetGrab}>
-                <View style={styles.sheetGrabInner}/>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            pagingEnabled
+        >
+            <View style={styles.topButtons}>
+                <BtnHome nome={'Hospitais'}/>
+                <BtnHome nome={'Postos'}/>
             </View>
-            <View style={styles.listAreaHeader}>
-                <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Consultas')}><Text>Ver todas</Text></TouchableOpacity>
+            <View style={styles.topButtons2}>
+                <BtnHome nome={'Vacinas'}/>
             </View>
-            <View style={styles.consultasList}>
-                {consultas.map((consulta) => (
-                    <View style={styles.consultasListItem}>
-                        <Text style={styles.consultasTitle}>{consulta.title}</Text>
-                        <Text style={styles.consultasDate}>{consulta.date}</Text>
-                    </View>
-                ))}
+            <View style={styles.carouselArea}>
+                <Text style={styles.receitasTitle}>Receitas</Text>
+                <Carousel items={[{
+                            label: 'Paracetamol',
+                            qtd:'2 capsulas por dia'
+                        }, {
+                            label: 'Ibuprofeno',
+                            qtd:'2 capsulas por dia'
+                        }, {
+                            label: 'Dipirona',
+                            qtd:'2 capsulas por dia'
+                        }]}/>
             </View>
-        </View>
+            <View style={styles.listArea}>
+                <View style={styles.sheetGrab}>
+                    <View style={styles.sheetGrabInner}/>
+                </View>
+                <View style={styles.listAreaHeader}>
+                    <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Consultas')}><Text>Ver todas</Text></TouchableOpacity>
+                </View>
+                <View style={styles.consultasList}>
+                    {consultas.map((consulta) => (
+                        <View style={styles.consultasListItem}>
+                            <Text style={styles.consultasTitle}>{consulta.title}</Text>
+                            <Text style={styles.consultasDate}>{consulta.date}</Text>
+                        </View>
+                    ))}
+                </View>
+            </View>
+        </ScrollView>
     </View>
     );
 }

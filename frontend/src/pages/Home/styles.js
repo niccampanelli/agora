@@ -48,7 +48,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 10,
-        marginBottom: 20,
+        marginBottom: 30,
         height: 50
     },
 
@@ -75,7 +75,7 @@ export default StyleSheet.create({
     carouselArea: {
         paddingHorizontal: 20,
         height: 120,
-        marginBottom: 280,
+        marginBottom: 240,
     },
 
     receitasTitle: {
@@ -100,7 +100,6 @@ export default StyleSheet.create({
         borderTopRightRadius: 30,
         backgroundColor: mainAppColor,
         height: 650,
-        borderWidth:0.5
     },
 
     listAreaHeader: {
@@ -115,10 +114,10 @@ export default StyleSheet.create({
         color: '#555',
         fontWeight: 'bold'
     }, 
-    consultasMarcadas:{
-        flexDirection:'row', 
-        justifyContent:'space-between',
-        borderBottomWidth:1,
+    consultasMarcadas: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        borderBottomWidth: 1,
         marginTop: 10,
         fontSize: 25,
         color: mainTextColor,
@@ -130,12 +129,13 @@ export default StyleSheet.create({
     },
 
     consultasListItem: {
-        height:35,
+        height: 40,
         borderBottomColor: '#000',
         borderBottomWidth: 1,
         marginBottom: 2,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginBottom: 20
     },
 
     consultasTitle: {

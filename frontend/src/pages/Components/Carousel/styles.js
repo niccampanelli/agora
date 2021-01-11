@@ -11,10 +11,18 @@ export const styles = StyleSheet.create({
   },
 
   itemCard: {
-    justifyContent:'space-around',
-    backgroundColor:'#ddd',
+    justifyContent: 'space-around',
+    backgroundColor: '#eee',
     borderRadius: 20,
-    padding: 50,
+    padding: 30,
+  },
+
+  itemTitle: {
+    fontSize: 24,
+  },
+
+  itemQtd: {
+    color: '#888'
   }
 
 });
