@@ -36,9 +36,9 @@ export default function Home(){
     function BtnHome(props){
         return(
             <View style={styles.button1}>
-            <TouchableHighlight activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+            <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
                 <Text style={styles.button1tx}>{props.nome}</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
         )
     }
@@ -52,6 +52,13 @@ export default function Home(){
                     <Feather size={26} name='user'/>
                 </View>
             </TouchableOpacity>
+        </View>
+        <View style={styles.topButtons}>
+            <BtnHome nome={'Hospitais'}/>
+            <BtnHome nome={'Postos'}/>
+        </View>
+        <View style={styles.topButtons2}>
+            <BtnHome nome={'Vacinas'}/>
         </View>
         <View style={styles.carouselArea}>
             <Text style={styles.receitasTitle}>Receitas</Text>

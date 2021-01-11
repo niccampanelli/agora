@@ -74,8 +74,8 @@ export default StyleSheet.create({
 
     carouselArea: {
         paddingHorizontal: 20,
-        height: 280,
-        marginBottom: 30,
+        height: 120,
+        marginBottom: 280,
     },
 
     receitasTitle: {

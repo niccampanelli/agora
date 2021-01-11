@@ -9,14 +9,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%'
   },
-  
+
   itemCard: {
     justifyContent:'space-around',
     backgroundColor:'#ddd',
-    borderRadius: 50,
+    borderRadius: 20,
     padding: 50,
-    marginLeft: 25,
-    marginRight: 25
   }
 
 });
