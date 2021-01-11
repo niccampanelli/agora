@@ -4,10 +4,11 @@ import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Consultas from './pages/Consultas';
+import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
 
 const AppStack = createStackNavigator();
 
-export default function Routes(){
+export default function Routes({route}){
     return(
         <NavigationContainer>
             <AppStack.Navigator 
@@ -21,6 +22,7 @@ export default function Routes(){
                 <AppStack.Screen name='Home' component={Home}/>
                 <AppStack.Screen name='Consultas' component={Consultas}/>
                 <AppStack.Screen name='Profile' component={Profile}/>
+                <AppStack.Screen name='Consultas Marcadas' component={ConsultasMarcadas} />
             </AppStack.Navigator>
         </NavigationContainer>
     );
