@@ -15,6 +15,15 @@ export default function Home(){
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>Configurações</Text>
             </View>
+            <View style={styles.listButton}>
+                <Text style={styles.listButtonTxt}>Configurações da Conta</Text>
+            </View>
+            <View style={styles.listButton}>
+                <Text style={styles.listButtonTxt}>Configurações da Conta</Text>
+            </View>
+            <View style={styles.listButton}>
+                <Text style={styles.listButtonTxt}>Configurações da Conta</Text>
+            </View>
         </View>
     );
 }

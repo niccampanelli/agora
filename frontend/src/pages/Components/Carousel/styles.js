@@ -11,10 +11,15 @@ export const styles = StyleSheet.create({
   },
 
   itemCard: {
-    justifyContent: 'space-around',
+    flexDirection: 'row',
     backgroundColor: '#eee',
     borderRadius: 20,
     padding: 30,
+  },
+
+  pillIcon: {
+    paddingTop: 5,
+    marginRight: 10
   },
 
   itemTitle: {
