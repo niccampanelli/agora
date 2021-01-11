@@ -16,19 +16,19 @@ export default function Home(){
         title: 'Oculista',
         date: '30/05'
     }, {
-        title: 'Oculista',
+        title: 'Dentista',
         date: '30/05'
     }, {
-        title: 'Oculista',
+        title: 'Ortodontista',
         date: '30/05'
     }, {
-        title: 'Oculista',
+        title: 'Otorrinolaringologista',
         date: '30/05'
     }, {
-        title: 'Oculista',
+        title: 'Lista',
         date: '30/05'
     }, {
-        title: 'Oculista',
+        title: 'Ista',
         date: '30/05'
     }];
 
@@ -65,7 +65,13 @@ export default function Home(){
                 <BtnHome nome={'Vacinas'}/>
             </View>
             <View style={styles.carouselArea}>
-                <Text style={styles.receitasTitle}>Receitas</Text>
+                <View style={styles.receitasTitle}>
+                    <Text style={styles.receitasTitleText}>Receitas</Text>
+                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'baseline'}} onPress={() => navigation.navigate('Consultas')}>
+                        <Text style={{opacity: 0.4}}>Ver todas</Text>
+                        <Feather size={16} style={{opacity: 0.4}} name='chevron-right'/>
+                    </TouchableOpacity>
+                </View>
                 <Carousel items={[{
                             label: 'Paracetamol',
                             qtd:'2 capsulas por dia'
@@ -83,11 +89,14 @@ export default function Home(){
                 </View>
                 <View style={styles.listAreaHeader}>
                     <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Consultas')}><Text>Ver todas</Text></TouchableOpacity>
+                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'baseline'}} onPress={() => navigation.navigate('Consultas')}>
+                        <Text style={{opacity: 0.4}}>Ver todas</Text>
+                        <Feather size={16} style={{opacity: 0.4}} name='chevron-right'/>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.consultasList}>
-                    {consultas.map((consulta) => (
-                        <View style={styles.consultasListItem}>
+                    {consultas.map((consulta, index) => (
+                        <View key={consulta.title} style={styles.consultasListItem}>
                             <Text style={styles.consultasTitle}>{consulta.title}</Text>
                             <Text style={styles.consultasDate}>{consulta.date}</Text>
                         </View>

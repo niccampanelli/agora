@@ -80,6 +80,12 @@ export default StyleSheet.create({
     },
 
     receitasTitle: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    receitasTitleText: {
         fontSize: 25,
         fontWeight: 'bold',
         marginBottom: 20,
@@ -100,7 +106,7 @@ export default StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         backgroundColor: mainAppColor,
-        height: 650,
+        height: 620,
     },
 
     listAreaHeader: {
