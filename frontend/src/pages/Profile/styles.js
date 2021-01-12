@@ -2,8 +2,14 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from '../Components/Carousel';
 
+const mainAppColor = '#fff000';
+
 export default StyleSheet.create({
     
+    subContainer: {
+        paddingHorizontal: 20
+    },
+
     backbutton: {
         marginLeft: -10,
         marginBottom: 10,
@@ -14,7 +20,7 @@ export default StyleSheet.create({
     header: {
         height: 50,
         paddingHorizontal: 20,
-        marginBottom: 50
+        marginBottom: 65
     },
 
     headerTitle: {
@@ -24,11 +30,31 @@ export default StyleSheet.create({
     },
 
     listButton: {
-        height: 50,
-        paddingHorizontal: 20
+        padding: 10,
+        flexDirection: 'row',
+        height: 60,
+        marginBottom: 10,
+        backgroundColor: '#f1f1f1',
+        borderRadius: 10
+    },
+
+    listButtonIcon: {
+        marginRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: mainAppColor,
+        borderRadius: 15,
+        width: 40
     },
 
     listButtonTxt: {
-        fontSize: 20,
+        width: '80%',
+        justifyContent: 'center',
+    },
+
+    listButtonTitle: {
+        fontSize: 22,
+        color: '#555',
+        fontWeight: 'bold'
     }
 });
