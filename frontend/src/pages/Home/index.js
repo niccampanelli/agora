@@ -1,36 +1,16 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-native';
 import styles from './styles';
 import gstyles from '../../gstyles';
 import Carousel from '../Components/Carousel';
+import Consultas from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Home(){
 
     const navigation = useNavigation();
-    const consultas = [{
-        title: 'Dermatologista',
-        date: '14/10'
-    }, {
-        title: 'Oculista',
-        date: '30/05'
-    }, {
-        title: 'Dentista',
-        date: '30/05'
-    }, {
-        title: 'Ortodontista',
-        date: '30/05'
-    }, {
-        title: 'Otorrinolaringologista',
-        date: '30/05'
-    }, {
-        title: 'Lista',
-        date: '30/05'
-    }, {
-        title: 'Ista',
-        date: '30/05'
-    }];
+   
 
 
     function BtnHome(props){
@@ -46,7 +26,11 @@ export default function Home(){
     return(
     <View style={gstyles.container}>
         <View style={styles.header}>
-            <Text style={styles.headerText}>Olá, Nicholas!</Text>
+        <StatusBar
+                barStyle='dark-content'
+                backgroundColor={'#fafafa'}
+                />
+            <Text style={styles.headerText}>Olá, Rafael!</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
                 <View>
                     <Feather size={26} name='user'/>
@@ -95,7 +79,7 @@ export default function Home(){
                     </TouchableOpacity>
                 </View>
                 <View style={styles.consultasList}>
-                    {consultas.map((consulta, index) => (
+                    {Consultas.map((consulta, index) => (
                         <View key={consulta.title} style={styles.consultasListItem}>
                             <Text style={styles.consultasTitle}>{consulta.title}</Text>
                             <Text style={styles.consultasDate}>{consulta.date}</Text>

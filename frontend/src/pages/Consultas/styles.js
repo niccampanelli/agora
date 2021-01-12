@@ -13,14 +13,34 @@ export default StyleSheet.create({
 
     header: {
         height: 50,
-        paddingHorizontal: 20,
-        marginBottom: 50
+        paddingHorizontal:5,
+        marginBottom: 50,
     },
 
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#555'
+        color: '#555',
+        marginStart:'5%'
     },
+    listaConsultasMarcadas:{
+        marginTop:"10%",
+    },
+    consultasList:{
+        
+        height: 40,
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        marginBottom: 2,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginBottom: 20,
 
+    },
+    consultasTitle: {
+        fontSize: 24,
+    },
+    consultasDate:{
+        fontSize:20
+    }
 });
