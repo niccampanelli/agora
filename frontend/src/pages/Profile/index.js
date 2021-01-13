@@ -4,11 +4,12 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import gstyles from '../../gstyles';
 import { useNavigation } from '@react-navigation/native';
+import ConfigButton from './Components/ConfigButton';
 
 export default function Home(){
 
     const navigation = useNavigation();
-
+    
     return(
         <View style={gstyles.container}>
             <View style={styles.header}>
@@ -16,38 +17,10 @@ export default function Home(){
                 <Text style={styles.headerTitle}>Configurações</Text>
             </View>
             <View style={styles.subContainer}>
-                <TouchableOpacity style={styles.listButton}>
-                    <View style={styles.listButtonIcon}>
-                        <Feather size={24} name={'user'}/>
-                    </View>
-                    <View style={styles.listButtonTxt}>
-                        <Text style={styles.listButtonTitle}>Configurações da Conta</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.listButton}>
-                    <View style={styles.listButtonIcon}>
-                        <Feather size={24} name={'settings'}/>
-                    </View>
-                    <View style={styles.listButtonTxt}>
-                        <Text style={styles.listButtonTitle}>Configurações do Aplicativo</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.listButton}>
-                    <View style={styles.listButtonIcon}>
-                        <Feather size={24} name={'lock'}/>
-                    </View>
-                    <View style={styles.listButtonTxt}>
-                        <Text style={styles.listButtonTitle}>Privacidade</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.listButton}>
-                    <View style={styles.listButtonIcon}>
-                        <Feather size={24} name={'info'}/>
-                    </View>
-                    <View style={styles.listButtonTxt}>
-                        <Text style={styles.listButtonTitle}>Sobre</Text>
-                    </View>
-                </TouchableOpacity>
+                <ConfigButton iconName={'user'} name={'Configurações da Conta'} destination={'SettingScreen'} args={{title: 'Configurações da Conta'}} />
+                <ConfigButton iconName={'settings'} name={'Configurações do Aplicativo'} destination={'SettingScreen'} args={{title: 'Configurações do Aplicativo'}} />
+                <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade'}} />
+                <ConfigButton iconName={'info'} name={'Sobre'} destination={'SettingScreen'} args={{title: 'Sobre'}} />
             </View>
         </View>
     );
