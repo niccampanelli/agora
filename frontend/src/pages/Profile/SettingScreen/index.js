@@ -12,6 +12,18 @@ export default function Home(){
     const navigation = useNavigation();
 
     const title = route.params.title;
+    const pageName = route.params.page;
+
+    const Sobre = () => (
+        <View style={styles.subContainer}>
+            <ConfigButton iconName={'user'} name={'Configurações deu certo'} destination={''} />
+            <ConfigButton iconName={'user'} name={'aeeeeeeee'} destination={''} />
+        </View>
+    );      
+
+    const pages = {
+        sobre: <Sobre/>
+    };
 
     return(
         <View style={gstyles.container}>
@@ -19,9 +31,7 @@ export default function Home(){
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>{title}</Text>
             </View>
-            <View style={styles.subContainer}>
-                <ConfigButton iconName={'user'} name={'Configurações da Conta'} destination={''} />
-            </View>
+            {pages[pageName]}
         </View>
     );
 }
