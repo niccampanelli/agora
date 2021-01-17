@@ -38,6 +38,16 @@ export default StyleSheet.create({
         borderRadius: 10
     },
 
+    listTextButton: {
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        height: 80,
+        marginBottom: 10,
+        backgroundColor: '#f1f1f1',
+        borderRadius: 10
+    },
+
     listButtonIcon: {
         marginRight: 20,
         alignItems: 'center',
@@ -56,5 +66,11 @@ export default StyleSheet.create({
         fontSize: 22,
         color: '#555',
         fontWeight: 'bold'
+    },
+    
+    listButtonDesc: {
+        fontSize: 16,
+        color: '#888',
     }
+
 });

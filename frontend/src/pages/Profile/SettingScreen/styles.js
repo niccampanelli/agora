@@ -27,33 +27,4 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         color: '#555'
     },
-
-    listButton: {
-        padding: 10,
-        flexDirection: 'row',
-        height: 60,
-        marginBottom: 10,
-        backgroundColor: '#f1f1f1',
-        borderRadius: 10
-    },
-
-    listButtonIcon: {
-        marginRight: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: mainAppColor,
-        borderRadius: 15,
-        width: 40
-    },
-
-    listButtonTxt: {
-        width: '80%',
-        justifyContent: 'center',
-    },
-
-    listButtonTitle: {
-        fontSize: 22,
-        color: '#555',
-        fontWeight: 'bold'
-    }
 });

@@ -5,6 +5,7 @@ import styles from './styles';
 import gstyles from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
+import ConfigTextButton from '../Components/ConfigTextButton';
 
 export default function Home(){
 
@@ -16,8 +17,9 @@ export default function Home(){
 
     const Sobre = () => (
         <View style={styles.subContainer}>
-            <ConfigButton iconName={'user'} name={'Configurações deu certo'} destination={''} />
-            <ConfigButton iconName={'user'} name={'aeeeeeeee'} destination={''} />
+            <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'} destination={''} />
+            <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'} destination={''} args={''}/>
+            <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'} destination={''} args={''}/>
         </View>
     );      
 
