@@ -19,9 +19,9 @@ export default function Home(){
                 <Text style={styles.headerTitle}>Configurações</Text>
             </View>
             <View style={styles.subContainer}>
-                <ConfigButton iconName={'user'} name={'Configurações da Conta'} destination={'SettingScreen'} args={{title: 'Configurações da Conta', page: 'accountconf'}} />
+                <ConfigButton iconName={'user'} name={'Dados da Conta'} destination={'SettingScreen'} args={{title: 'Dados da Conta', page: 'conta'}} />
                 <ConfigButton iconName={'settings'} name={'Configurações do Aplicativo'} destination={'SettingScreen'} args={{title: 'Configurações do Aplicativo', page: 'appconf'}} />
-                <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade', page: 'priv'}} />
+                <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade', page: 'privacidade'}} />
                 <ConfigButton iconName={'info'} name={'Sobre'} destination={'SettingScreen'} args={{title: 'Sobre', page: 'sobre'}} />
             </View>
         </View>

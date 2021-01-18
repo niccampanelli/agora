@@ -15,6 +15,29 @@ export default function Home(){
     const title = route.params.title;
     const pageName = route.params.page;
 
+    const Conta = () => (
+        <View style={styles.subContainer}>
+            <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={''} args={''}/>
+            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
+            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
+            <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
+            <TouchableOpacity style={styles.listButtonRed} onPress={() => {}}>
+                <View style={styles.listButtonIconRed}>
+                    <Feather size={24} name={'trash-2'} color={'#fff'}/>
+                </View>
+                <View style={styles.listButtonTxt}>
+                    <Text style={styles.listButtonTitle}>Excluir Cadastro</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+    );
+
+    const Privacidade = () => (
+        <View style={styles.subContainer}>
+            <ConfigButton iconName={'file-text'} name={'Uso de dados'} destination={''} />
+        </View>
+    );
+
     const Sobre = () => (
         <View style={styles.subContainer}>
             <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'} destination={''} />
@@ -24,6 +47,8 @@ export default function Home(){
     );      
 
     const pages = {
+        conta: <Conta/>,
+        privacidade: <Privacidade/>,
         sobre: <Sobre/>
     };
 
