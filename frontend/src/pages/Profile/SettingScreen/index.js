@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
@@ -6,9 +6,11 @@ import gstyles from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
 import ConfigTextButton from '../Components/ConfigTextButton';
+import BottomSheet from '../../Components/BottomSheet';
 
 export default function Home(){
 
+    const [showBottomSheet, setBottomSheet] = useState(false);
     const route = useRoute();
     const navigation = useNavigation();
 
@@ -21,7 +23,7 @@ export default function Home(){
             <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
             <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
             <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
-            <TouchableOpacity style={styles.listButtonRed} onPress={() => {}}>
+            <TouchableOpacity style={styles.listButtonRed} onPress={() => setBottomSheet(true)}>
                 <View style={styles.listButtonIconRed}>
                     <Feather size={24} name={'trash-2'} color={'#fff'}/>
                 </View>
@@ -59,6 +61,11 @@ export default function Home(){
                 <Text style={styles.headerTitle}>{title}</Text>
             </View>
             {pages[pageName]}
+            {showBottomSheet ? 
+                <BottomSheet>
+                    <Text>Eaeas</Text>
+                </BottomSheet> 
+            : <Text/>}
         </View>
     );
 }

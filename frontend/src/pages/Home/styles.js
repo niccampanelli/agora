@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
 
 const mainAppColor = '#fff000';
 const mainTextColor = '#555';

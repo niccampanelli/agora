@@ -1,17 +1,20 @@
 import React, { useRef, useEffect } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Animated, Text, View, Dimensions } from 'react-native';
 import styles from './styles';
 
 const FadeInView = (props) => {
 
-  const fadeAnim = useRef(new Animated.Value(0)).current
+  const screenHeight = Dimensions.get('window').height;
+  const fadeAnim = useRef(new Animated.Value(screenHeight)).current;
+  const fadeOut = useRef(new Animated.Value(screenHeight - 400)).current;
 
   useEffect(() => {
     Animated.timing(
       fadeAnim,
       {
-        toValue: -100,
-        duration: 1000,
+        toValue: screenHeight - 400,
+        duration: 200,
+        useNativeDriver: true,
       }
     ).start();
   }, [fadeAnim])
@@ -20,7 +23,7 @@ const FadeInView = (props) => {
     <Animated.View                 // Special animatable View
       style={{
         ...props.style,
-        top: fadeAnim,         // Bind opacity to animated value
+        translateY: fadeAnim,         // Bind opacity to animated value
       }}
     >
       {props.children}
@@ -28,11 +31,11 @@ const FadeInView = (props) => {
   );
 }
 
-export default () => {
+export default (props) => {
   return (
     <View style={styles.sheetBackground}>
       <FadeInView style={styles.sheet}>
-        <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>Fading in</Text>
+        {props.children}
       </FadeInView>
     </View>
   )

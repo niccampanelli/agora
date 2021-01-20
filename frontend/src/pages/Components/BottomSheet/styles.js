@@ -5,14 +5,22 @@ const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
   
   sheetBackground: {
+    flex: 1,
+    position: 'absolute',
+    zIndex: 10,
     width: '100%',
     height: '100%',
-    backgroundColor: '#000',
+    backgroundColor: '#00000055',
   },
 
   sheet: {
-    backgroundColor: '#ff0',
-    width: '100%'
+    position: 'absolute',
+    zIndex: 11,
+    backgroundColor: '#fafafa',
+    width: '100%',
+    height: 400,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30
   },
 
 });
