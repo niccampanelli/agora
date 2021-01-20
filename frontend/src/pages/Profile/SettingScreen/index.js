@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import styles from './styles';
 import gstyles from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
+import ConfigInputButton from '../Components/ConfigInputButton';
 import ConfigTextButton from '../Components/ConfigTextButton';
 import BottomSheet from '../../Components/BottomSheet';
 
 export default function Home(){
+
+    const [isEditingInfo, setInfoEditing] = useState(false);
+
+    const [emailValue, setEmail] = useState('nicholascampanelli@outlook.com');
+    const [passValue, setPass] = useState('************');
 
     const [isBottomSheetEnabled, setBottomSheetEnabled] = useState(false);
     const [bottomSheetTitle, setBottomSheetTitle] = useState('');
@@ -27,10 +33,22 @@ export default function Home(){
 
     const Conta = () => (
         <View style={styles.subContainer}>
+            <TouchableOpacity style={styles.infoEdit} onPress={() => setInfoEditing(!isEditingInfo)}>
+                {isEditingInfo ? <Feather name={'x'} color={'#888'} size={28}/> : <Feather name={'edit'} color={'#888'} size={26}/>}
+            </TouchableOpacity>
             <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={''} args={''}/>
             <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
+            { isEditingInfo ?
+                <View>
+                    <ConfigInputButton iconName={'mail'} name={'Endereço de Email'} input={<TextInput value={emailValue} onChange={e => {setEmail(e.target.value)}}/>} destination={''} args={''}/>
+                    <ConfigInputButton iconName={'key'} name={'Senha'} input={<TextInput autoCompleteType={'password'} secureTextEntry value={passValue} onChange={e => {setPass(e.target.value)}}/>} destination={''} args={''}/>
+                </View>
+            :
+                <View>
+                    <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
+                    <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
+                </View>
+            }
             <TouchableOpacity style={styles.listButtonRed} onPress={() => showBottomSheet('Tem certeza?', 'confDelete')}>
                 <View style={styles.listButtonIconRed}>
                     <Feather size={24} name={'trash-2'} color={'#fff'}/>

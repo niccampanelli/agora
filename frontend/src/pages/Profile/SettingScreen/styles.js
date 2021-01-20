@@ -28,6 +28,12 @@ export default StyleSheet.create({
         color: '#555'
     },
 
+    infoEdit: {
+        position: 'absolute',
+        top: -55,
+        right: 20
+    },
+
     listButton: {
         padding: 10,
         flexDirection: 'row',

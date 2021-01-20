@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function ConfigTextButton(props){
+export default function ConfigInputButton(props){
 
     const navigation = useNavigation();
     
@@ -15,7 +15,7 @@ export default function ConfigTextButton(props){
             </View>
             <View style={styles.listButtonTxt}>
                 <Text style={styles.listButtonTitle}>{props.name}</Text>
-                <Text style={styles.listButtonDesc}>{props.desc}</Text>
+                {props.input}
             </View>
         </TouchableOpacity>
     );
