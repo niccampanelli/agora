@@ -19,5 +19,25 @@ export default StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         color: '#555'
-    }
+    },
+
+    sheetTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#555',
+        marginBottom: 10
+    },
+
+    sheetBottomOptions: {
+        position: 'absolute',
+        bottom: 70,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%'
+    },
+
+    sheetBottomOptionsTxt: {
+        color: '#0af',
+        fontSize: 20
+    },
 });

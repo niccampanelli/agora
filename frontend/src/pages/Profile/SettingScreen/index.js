@@ -10,12 +10,20 @@ import BottomSheet from '../../Components/BottomSheet';
 
 export default function Home(){
 
-    const [showBottomSheet, setBottomSheet] = useState(false);
+    const [isBottomSheetEnabled, setBottomSheetEnabled] = useState(false);
+    const [bottomSheetTitle, setBottomSheetTitle] = useState('');
+    const [bottomSheetPage, setBottomSheetPage] = useState('');
     const route = useRoute();
     const navigation = useNavigation();
 
     const title = route.params.title;
     const pageName = route.params.page;
+
+    const showBottomSheet = (title, page) => {
+        setBottomSheetEnabled(true);
+        setBottomSheetTitle(title);
+        setBottomSheetPage(page);
+    }
 
     const Conta = () => (
         <View style={styles.subContainer}>
@@ -23,7 +31,7 @@ export default function Home(){
             <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
             <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
             <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
-            <TouchableOpacity style={styles.listButtonRed} onPress={() => setBottomSheet(true)}>
+            <TouchableOpacity style={styles.listButtonRed} onPress={() => showBottomSheet('Tem certeza?', 'confDelete')}>
                 <View style={styles.listButtonIconRed}>
                     <Feather size={24} name={'trash-2'} color={'#fff'}/>
                 </View>
@@ -46,12 +54,28 @@ export default function Home(){
             <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'} destination={''} args={''}/>
             <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'} destination={''} args={''}/>
         </View>
-    );      
+    ); 
+
+    const Delete = () => (
+        <View style={{height: '100%'}}>
+            <Text style={styles.listButtonDesc}>A exclusão do cadastro na plataforma "AGORA" apaga todos os dados do usuário no banco de dados.</Text>
+            <Text style={styles.listButtonDesc}>Esta exclusão é permanente e não pode ser desfeita.</Text>
+            <View style={gstyles.sheetBottomOptions}>
+                <TouchableOpacity onPress={() => setBottomSheetEnabled(false)}>
+                    <Text style={gstyles.sheetBottomOptionsTxt}>Cancelar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={gstyles.sheetBottomOptionsTxt}>Excluir Dados</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
 
     const pages = {
         conta: <Conta/>,
         privacidade: <Privacidade/>,
-        sobre: <Sobre/>
+        sobre: <Sobre/>,
+        confDelete: <Delete/>
     };
 
     return(
@@ -61,10 +85,11 @@ export default function Home(){
                 <Text style={styles.headerTitle}>{title}</Text>
             </View>
             {pages[pageName]}
-            {showBottomSheet ? 
+            {isBottomSheetEnabled ? 
                 <BottomSheet>
-                    <Text>Eaeas</Text>
-                </BottomSheet> 
+                    <Text style={gstyles.sheetTitle}>{bottomSheetTitle}</Text>
+                    {pages[bottomSheetPage]}
+                </BottomSheet>
             : <Text/>}
         </View>
     );

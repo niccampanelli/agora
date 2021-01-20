@@ -14,13 +14,14 @@ export const styles = StyleSheet.create({
   },
 
   sheet: {
-    position: 'absolute',
+    position: 'relative',
     zIndex: 11,
     backgroundColor: '#fafafa',
     width: '100%',
     height: 400,
     borderTopLeftRadius: 30,
-    borderTopRightRadius: 30
+    borderTopRightRadius: 30,
+    padding: 20
   },
 
 });
