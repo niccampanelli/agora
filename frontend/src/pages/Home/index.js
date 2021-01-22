@@ -1,6 +1,6 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import gstyles from '../../gstyles';
 import Carousel from '../Components/Carousel';

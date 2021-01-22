@@ -1,12 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import { Animated, Text, View, Dimensions } from 'react-native';
+import { Animated, View, Dimensions } from 'react-native';
 import styles from './styles';
 
 const FadeInView = (props) => {
 
   const screenHeight = Dimensions.get('window').height;
   const fadeAnim = useRef(new Animated.Value(screenHeight)).current;
-  const fadeOut = useRef(new Animated.Value(screenHeight - 400)).current;
 
   useEffect(() => {
     Animated.timing(

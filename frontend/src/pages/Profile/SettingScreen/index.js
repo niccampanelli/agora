@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import styles from './styles';
 import gstyles from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
-import ConfigInputButton from '../Components/ConfigInputButton';
 import ConfigTextButton from '../Components/ConfigTextButton';
 import BottomSheet from '../../Components/BottomSheet';
 
@@ -16,8 +15,8 @@ export default function Home(){
     const [emailValue, setEmail] = useState('nicholascampanelli@outlook.com');
     const [passValue, setPass] = useState('************');
 
-    const emailRef = useRef('email');
-    const passRef = useRef('pass');
+    const emailRef = useRef();
+    const passRef = useRef();
 
     const [isBottomSheetEnabled, setBottomSheetEnabled] = useState(false);
     const [bottomSheetTitle, setBottomSheetTitle] = useState('');
@@ -35,16 +34,42 @@ export default function Home(){
     }
 
     const Conta = () => (
-        <View style={styles.subContainer}>
-            <TouchableOpacity style={styles.infoEdit} onPress={() => setInfoEditing(!isEditingInfo)}>
-                {isEditingInfo ? <Feather name={'x'} color={'#888'} size={28}/> : <Feather name={'edit'} color={'#888'} size={26}/>}
-            </TouchableOpacity>
+        <ScrollView style={styles.subContainer}>
             <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={''} args={''}/>
             <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
             { isEditingInfo ?
                 <View>
-                    <ConfigInputButton iconName={'mail'} name={'Novo Email'} input={<TextInput style={styles.listButtonInput} autoCompleteType={'email'} value={emailValue} onChange={e => {setEmail(e.target.value)}} ref={emailRef}/>} reference={emailRef} args={''}/>
-                    <ConfigInputButton iconName={'key'} name={'Nova Senha'} input={} reference={passRef} args={''}/>
+                    <TouchableOpacity style={styles.listInputButton} onPress={() => {emailRef.current.focus()}}>
+                        <View style={styles.listButtonIcon}>
+                            <Feather size={24} name={'mail'}/>
+                        </View>
+                        <View style={styles.listButtonTxt}>
+                            <Text style={styles.listButtonTitle}>Novo Email</Text>
+                                <TextInput 
+                                    ref={emailRef}
+                                    style={styles.listButtonInput}
+                                    autoCompleteType={'email'}
+                                    value={emailValue}
+                                    onChange={e => {setEmail(e.target.value)}}
+                                />
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.listInputButton} onPress={() => {passRef.current.focus()}}>
+                        <View style={styles.listButtonIcon}>
+                            <Feather size={24} name={'key'}/>
+                        </View>
+                        <View style={styles.listButtonTxt}>
+                            <Text style={styles.listButtonTitle}>Nova Senha</Text>
+                                <TextInput 
+                                    ref={passRef}
+                                    style={styles.listButtonInput}
+                                    autoCompleteType={'password'}
+                                    secureTextEntry
+                                    value={passValue}
+                                    onChange={e => {setPass(e.target.value)}}
+                                />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             :
                 <View>
@@ -60,7 +85,7 @@ export default function Home(){
                     <Text style={styles.listButtonTitle}>Excluir Cadastro</Text>
                 </View>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 
     const Privacidade = () => (
@@ -101,9 +126,12 @@ export default function Home(){
 
     return(
         <View style={gstyles.container}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>{title}</Text>
+                <TouchableOpacity style={styles.infoEdit} onPress={() => setInfoEditing(!isEditingInfo)}>
+                    {isEditingInfo ? <Feather name={'x'} color={'#888'} size={30}/> : <Feather name={'edit'} color={'#888'} size={30}/>}
+                </TouchableOpacity>
             </View>
             {pages[pageName]}
             {isBottomSheetEnabled ? 

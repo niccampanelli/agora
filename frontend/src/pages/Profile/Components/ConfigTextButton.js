@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../styles';
 import { Feather } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ConfigTextButton(props){
 

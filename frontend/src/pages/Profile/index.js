@@ -10,8 +10,6 @@ export default function Home(){
 
     const navigation = useNavigation();
 
-
-
     return(
         <View style={gstyles.container}>
             <View style={styles.header}>
