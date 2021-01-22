@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import styles from './styles';
@@ -15,6 +15,9 @@ export default function Home(){
 
     const [emailValue, setEmail] = useState('nicholascampanelli@outlook.com');
     const [passValue, setPass] = useState('************');
+
+    const emailRef = useRef('email');
+    const passRef = useRef('pass');
 
     const [isBottomSheetEnabled, setBottomSheetEnabled] = useState(false);
     const [bottomSheetTitle, setBottomSheetTitle] = useState('');
@@ -40,8 +43,8 @@ export default function Home(){
             <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
             { isEditingInfo ?
                 <View>
-                    <ConfigInputButton iconName={'mail'} name={'Endereço de Email'} input={<TextInput value={emailValue} onChange={e => {setEmail(e.target.value)}}/>} destination={''} args={''}/>
-                    <ConfigInputButton iconName={'key'} name={'Senha'} input={<TextInput autoCompleteType={'password'} secureTextEntry value={passValue} onChange={e => {setPass(e.target.value)}}/>} destination={''} args={''}/>
+                    <ConfigInputButton iconName={'mail'} name={'Novo Email'} input={<TextInput style={styles.listButtonInput} autoCompleteType={'email'} value={emailValue} onChange={e => {setEmail(e.target.value)}} ref={emailRef}/>} reference={emailRef} args={''}/>
+                    <ConfigInputButton iconName={'key'} name={'Nova Senha'} input={} reference={passRef} args={''}/>
                 </View>
             :
                 <View>

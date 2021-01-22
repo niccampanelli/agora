@@ -38,6 +38,16 @@ export default StyleSheet.create({
         borderRadius: 10
     },
 
+    listInputButton: {
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        height: 80,
+        marginBottom: 10,
+        backgroundColor: '#fffaaa',
+        borderRadius: 10
+    },
+
     listTextButton: {
         paddingVertical: 20,
         paddingHorizontal: 10,
@@ -49,6 +59,15 @@ export default StyleSheet.create({
     },
 
     listButtonIcon: {
+        marginRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: mainAppColor,
+        borderRadius: 15,
+        width: 40
+    },
+
+    listInputButtonIcon: {
         marginRight: 20,
         alignItems: 'center',
         justifyContent: 'center',

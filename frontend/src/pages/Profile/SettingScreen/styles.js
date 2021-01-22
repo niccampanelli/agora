@@ -43,6 +43,13 @@ export default StyleSheet.create({
         borderRadius: 10
     },
 
+    listButtonInput: {
+        height: 21,
+        borderBottomColor: '#ccc000',
+        borderBottomWidth: 1,
+        fontSize: 16
+    },
+
     listButtonRed: {
         padding: 10,
         flexDirection: 'row',
