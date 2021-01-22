@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-nativ
 import styles from './styles';
 import gstyles from '../../gstyles';
 import Carousel from '../Components/Carousel';
-import Consultas from '../Consultas/Dados'
+import consultas from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Home(){
@@ -74,14 +74,14 @@ export default function Home(){
                 <View style={styles.listAreaHeader}>
                     <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
                     <TouchableOpacity style={{flexDirection: 'row', alignItems: 'baseline'}} onPress={() => navigation.navigate('Consultas')}>
-                        <Text style={{opacity: 0.4}}>Ver todas</Text>
+                        <Text style={{opacity: 0.4,marginStart:"15%"}}>Ver todas</Text>
                         <Feather size={16} style={{opacity: 0.4}} name='chevron-right'/>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.consultasList}>
-                    {Consultas.map((consulta, index) => (
-                        <View key={consulta.title} style={styles.consultasListItem}>
-                            <Text style={styles.consultasTitle}>{consulta.title}</Text>
+                    {consultas.map((consulta, index) => (
+                        <View key={consulta.id} style={styles.consultasListItem}>
+                            <Text style={styles.consultasTitle}>{consulta.especialidade}</Text>
                             <Text style={styles.consultasDate}>{consulta.date}</Text>
                         </View>
                     ))}

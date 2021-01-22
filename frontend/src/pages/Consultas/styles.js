@@ -55,5 +55,19 @@ export default StyleSheet.create({
         height:75,width:75,
         justifyContent:'center',
         alignItems:'center'
+    },
+    containerModal:{
+        marginTop:"5%",
+        flexDirection:'row',
+        borderBottomColor: '#000',
+        borderWidth:1,
+
+        marginBottom: 1,
+        marginStart:"2%",
+        marginEnd:"2%",
+        borderRadius:10,
+        height:80,
+        alignItems:'center',
+        
     }
 });

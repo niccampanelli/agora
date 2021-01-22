@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import SettingScreen from './pages/Profile/SettingScreen';
 import Consultas from './pages/Consultas';
 import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
+import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
 
 const AppStack = createStackNavigator();
 
@@ -25,6 +26,7 @@ export default function Routes({route}){
                 <AppStack.Screen name='Profile' component={Profile}/>
                 <AppStack.Screen name='SettingScreen' component={SettingScreen}/>
                 <AppStack.Screen name='Consultas Marcadas' component={ConsultasMarcadas} />
+                <AppStack.Screen name='InfoSobreNovaConsulta' component={InfoSobreNovaConsulta} />
             </AppStack.Navigator>
         </NavigationContainer>
     );

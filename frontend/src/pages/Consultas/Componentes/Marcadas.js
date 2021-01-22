@@ -14,13 +14,13 @@ export default function ({item}){
         <View style={styles.listaConsultasMarcadas}>
                 <TouchableOpacity
                 style={{marginStart:"5%"}}
-                    onPress={() => navigation.navigate('Consultas Marcadas', { nome: item.title })}>
-                    <Text style={styles.consultasTitle}>{item.title}</Text>
+                    onPress={() => navigation.navigate('Consultas Marcadas', { nome: item.especialidade })}>
+                    <Text style={styles.consultasTitle}>{item.especialidade}</Text>
                 </TouchableOpacity>
-                <View  style={{backgroundColor:'yellow',marginEnd:3,borderRadius:10}}>
+                <View  style={{backgroundColor:'yellow',marginEnd:0,borderRadius:10,width:"20%",alignItems:'center'}}>
                 <TouchableOpacity
-                    style={{height:78,justifyContent:'center',padding:7}}
-                    onPress={() => navigation.navigate('Consultas Marcadas', { nome:item.title})} >
+                    style={{height:78,justifyContent:'center',padding:0}}
+                    onPress={() => navigation.navigate('Consultas Marcadas', { nome:item.especialidade})} >
                     <Text style={styles.consultasDate}>{item.date}</Text>
                 </TouchableOpacity>
                 </View>

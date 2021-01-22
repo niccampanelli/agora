@@ -1,41 +1,44 @@
 import React from 'react'
+import { NativeModules } from 'react-native';
 
 const consultas = [{
-    title: 'Dermatologista',
-    date: '14/10'
-}, {
-    title: 'Oculista',
-    date: '30/05'
-}, {
-    title: 'Dentista',
-    date: '30/05'
-}, {
-    title: 'Ortodontista',
-    date: '30/05'
-}, {
-    title: 'Otorrinolaringologista',
-    date: '30/05'
-}, {
-    title: 'Lista',
-    date: '30/05'
-}, {
-    title: 'Ista',
-    date: '30/05'
+    id:1,
+    especialidade: 'Dermatologista',
+    date: '18/10',
+    hora: '11:30',
+    local:'rua 123 do abc São Paulo-SP',
+    hospital:'sus da vida',
+    tipo:'retorno',
+    nomeMedico:'Doutor Rafael'
 },{
-    title: 'Dentistas',
-    date: '30/05'
-}, {
-    title: 'Ortodontistas',
-    date: '30/05'
-}, {
-    title: 'Otorrinolaringologistas',
-    date: '30/05'
-}, {
-    title: 'Listas',
-    date: '30/05'
-}, {
-    title: 'Istas',
-    date: '30/05'
-}];
+    id:2,
+    especialidade: 'Oculista',
+    date: '14/10',
+    hora: '10:30',
+    local:'rua 123 do abc São Paulo-SP',
+    hospital:'sus da vida',
+    tipo:'retorno',
+    nomeMedico:'Doutor Rafael'
+},{
+    id:3,
+    especialidade: 'Clinico Geral',
+    date: '14/10',
+    hora: '10:30',
+    local:'rua 123 do abc São Paulo-SP',
+    hospital:'sus da vida',
+    tipo:'retorno',
+    nomeMedico:'Doutor Rafael'
+},{
+    id:4,
+    especialidade: 'Pediatra',
+    date: '14/10',
+    hora: '10:30',
+    local:'rua 123 do abc São Paulo-SP',
+    hospital:'sus da vida',
+    tipo:'retorno',
+    nomeMedico:'Doutor Rafael'
+},];
+
+const hosp = [{id_Hosp:1}]
 
 export default consultas

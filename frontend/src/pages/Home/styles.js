@@ -21,7 +21,7 @@ export default StyleSheet.create({
 
     header: {
         flexDirection: 'row',
-        paddingTop: 50,
+        paddingTop: 30,
         paddingHorizontal: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -76,7 +76,7 @@ export default StyleSheet.create({
     carouselArea: {
         paddingHorizontal: 20,
         height: 120,
-        marginBottom: 240,
+        marginBottom: 120,
     },
 
     receitasTitle: {
@@ -102,7 +102,7 @@ export default StyleSheet.create({
         shadowRadius: 10.30,
         elevation: 25,
         paddingHorizontal: 40,
-        paddingTop: 15,
+        paddingTop: 20,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         backgroundColor: mainAppColor,
@@ -136,7 +136,7 @@ export default StyleSheet.create({
     },
 
     consultasListItem: {
-        height: 40,
+        height: 31,
         borderBottomColor: '#000',
         borderBottomWidth: 1,
         marginBottom: 2,
