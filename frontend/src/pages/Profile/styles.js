@@ -1,13 +1,10 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-import Carousel from '../Components/Carousel';
-
-const mainAppColor = '#fff000';
+import { mainAppColor, mainTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
     
     subContainer: {
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
     },
 
     backbutton: {
@@ -49,6 +46,15 @@ export default StyleSheet.create({
     },
 
     listButtonIcon: {
+        marginRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: mainAppColor,
+        borderRadius: 15,
+        width: 40
+    },
+
+    listInputButtonIcon: {
         marginRight: 20,
         alignItems: 'center',
         justifyContent: 'center',

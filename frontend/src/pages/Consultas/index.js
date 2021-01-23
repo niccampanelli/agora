@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
+
 import { View, Text, TouchableOpacity, Alert, TouchableHighlight, Button, StatusBar, FlatList, Image, Modal } from 'react-native';
+
+
 import styles from './styles';
 import gstyles from '../../gstyles';
 import { useNavigation } from '@react-navigation/native';

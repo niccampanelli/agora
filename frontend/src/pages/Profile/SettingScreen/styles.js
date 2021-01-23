@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-
-const mainAppColor = '#fff000';
+import { mainAppColor, mainTextColor } from '../../../gstyles';
 
 export default StyleSheet.create({
     
@@ -10,22 +8,27 @@ export default StyleSheet.create({
     },
 
     backbutton: {
-        marginLeft: -10,
+        marginLeft: 10,
         marginBottom: 10,
         width: 50,
         height: 40
     },
 
     header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         height: 50,
         paddingHorizontal: 20,
-        marginBottom: 65
+        marginBottom: 10
     },
 
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
         color: '#555'
+    },
+
+    infoEdit: {
     },
 
     listButton: {
@@ -37,6 +40,16 @@ export default StyleSheet.create({
         borderRadius: 10
     },
 
+    listButtonInput: {
+        height: 30,
+        borderColor: '#ddd',
+        backgroundColor: '#fff',
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderRadius: 5,
+        fontSize: 16
+    },
+
     listButtonRed: {
         padding: 10,
         flexDirection: 'row',
@@ -44,6 +57,16 @@ export default StyleSheet.create({
         marginTop: 20,
         marginBottom: 10,
         backgroundColor: '#ffdddd',
+        borderRadius: 10
+    },
+
+    listInputButton: {
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        height: 80,
+        marginBottom: 10,
+        backgroundColor: '#f1f1f1',
         borderRadius: 10
     },
 

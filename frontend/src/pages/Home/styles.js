@@ -1,8 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-
-const mainAppColor = '#fff000';
-const mainTextColor = '#555';
+import { mainAppColor, mainTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
     sheetGrab: {
@@ -118,7 +115,7 @@ export default StyleSheet.create({
 
     listAreaTxt: {
         fontSize: 24,
-        color: '#555',
+        color: mainTextColor,
         fontWeight: 'bold'
     }, 
     consultasMarcadas: {
