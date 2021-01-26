@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
-
 import { View, Text, TouchableOpacity, Alert, TouchableHighlight, Button, StatusBar, FlatList, Image, Modal } from 'react-native';
-
-
 import styles from './styles';
-import gstyles from '../../gstyles';
+import gstyles, { lightTextColor, mainTextColor } from '../../gstyles';
 import { useNavigation } from '@react-navigation/native';
 import consultas from '../Consultas/Dados';
 import Marcadas from './Componentes/Marcadas'
@@ -30,7 +27,7 @@ export default function Consultas() {
                 <View  HeaderModal style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 
                     <TouchableOpacity onPress={()=>setVisivel(!visivel)}>
-                        <Feather color={'#bbb'} size={60} name={"chevron-down"} />
+                        <Feather color={lightTextColor} size={60} name={"chevron-down"} />
                     </TouchableOpacity>
 
                     <View style={{ alignItems: 'flex-start', width: "70%", justifyContent: 'center', }}>
@@ -55,7 +52,7 @@ export default function Consultas() {
                 <ModalAdd />
 
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"} /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"} /></TouchableOpacity>
                     <Text style={styles.headerTitle}>Consultas Marcadas</Text>
                 </View>
             </View>
@@ -68,11 +65,8 @@ export default function Consultas() {
             </View>
 
             <View style={styles.btnAdd}>
-                <TouchableOpacity
-                    onPress={() => setVisivel(!visivel)}>
-                    <Image
-                        source={require('./img/mais.png')}
-                        resizeMode='contain' />
+                <TouchableOpacity onPress={() => setVisivel(!visivel)}>
+                    <Feather color={mainTextColor} name={'plus'} size={86}/>
                 </TouchableOpacity>
             </View>
 

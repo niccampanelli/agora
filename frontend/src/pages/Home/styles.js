@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { mainAppColor, mainTextColor } from '../../gstyles';
+import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
     sheetGrab: {
@@ -118,6 +118,7 @@ export default StyleSheet.create({
         color: mainTextColor,
         fontWeight: 'bold'
     }, 
+
     consultasMarcadas: {
         flexDirection: 'row', 
         justifyContent: 'space-between',
@@ -126,10 +127,6 @@ export default StyleSheet.create({
         fontSize: 25,
         color: mainTextColor,
         fontWeight: 'bold',
-    },
-
-    consultasList: {
-
     },
 
     consultasListItem: {

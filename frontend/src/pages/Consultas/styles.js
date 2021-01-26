@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { mainAppColor, mainTextColor, lightTextColor, layer0Color } from '../../gstyles';
 
 export default StyleSheet.create({
 
@@ -19,7 +20,7 @@ export default StyleSheet.create({
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#555',
+        color: mainTextColor,
         marginStart:'5%',
         marginTop:"10%"
     },

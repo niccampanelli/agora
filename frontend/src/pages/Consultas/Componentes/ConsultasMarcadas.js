@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, StatusBar } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
+import { lightTextColor } from '../../../gstyles';
 
 
 
@@ -20,7 +21,7 @@ export default function Marcadas({ route, navigation }) {
                     barStyle='dark-content' />
 
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.voltar}
-                ><Feather color={'#bbb'} size={40} name={"chevron-left"} />
+                ><Feather color={lightTextColor} size={40} name={"chevron-left"} />
                 </TouchableOpacity>
 
                 <View style={styles.headerTexto}>

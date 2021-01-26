@@ -2,7 +2,7 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import gstyles from '../../gstyles';
+import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import { useNavigation } from '@react-navigation/native';
 import ConfigButton from './Components/ConfigButton';
 
@@ -13,7 +13,7 @@ export default function Home(){
     return(
         <View style={gstyles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>Configurações</Text>
             </View>
             <View style={styles.subContainer}>

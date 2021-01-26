@@ -1,12 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const mainAppColor = '#ffea00';
-const mainTextColor = '#555';
+const layer0Color = '#fafafa';
+const mainTextColor = '#666';
+const lightTextColor = '#aaa';
 
 const gstyles = StyleSheet.create({
     container: {
         height: '100%',
-        backgroundColor: '#fafafa',
+        backgroundColor: layer0Color,
         paddingTop: 10
     },
 
@@ -18,7 +20,14 @@ const gstyles = StyleSheet.create({
     headerTitle: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#555'
+        color: mainTextColor
+    },
+
+    seeMore: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
+        opacity: 0.4
     },
 
     bottomSheetBackground: {
@@ -35,7 +44,7 @@ const gstyles = StyleSheet.create({
         borderTopRightRadius: 30,
         paddingTop: 20,
         paddingBottom: 100,
-        backgroundColor: '#fff'
+        backgroundColor: layer0Color
     },
 
     bottomSheetInfo: {
@@ -45,7 +54,7 @@ const gstyles = StyleSheet.create({
     bottomSheetTitle: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#555',
+        color: mainTextColor,
         marginBottom: 10
     },
 
@@ -70,4 +79,4 @@ const gstyles = StyleSheet.create({
 });
 
 export default gstyles;
-export { mainAppColor, mainTextColor };
+export { mainAppColor, mainTextColor, layer0Color, lightTextColor };

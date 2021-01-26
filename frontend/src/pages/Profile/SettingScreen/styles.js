@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { mainAppColor, mainTextColor } from '../../../gstyles';
+import {  mainAppColor, mainTextColor, lightTextColor } from '../../../gstyles';
 
 export default StyleSheet.create({
     
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#555'
+        color: mainTextColor
     },
 
     infoEdit: {
@@ -105,12 +105,12 @@ export default StyleSheet.create({
 
     listButtonTitle: {
         fontSize: 22,
-        color: '#555',
+        color: mainTextColor,
         fontWeight: 'bold'
     },
     
     listButtonDesc: {
         fontSize: 16,
-        color: '#888',
+        color: lightTextColor,
     }
 });

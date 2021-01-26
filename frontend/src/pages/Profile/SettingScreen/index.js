@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Modal } from 'react-native';
 import styles from './styles';
-import gstyles from '../../../gstyles';
+import gstyles, { mainAppColor, mainTextColor, lightTextColor, layer0Color } from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
 import ConfigTextButton from '../Components/ConfigTextButton';
@@ -142,13 +142,13 @@ export default function Home(){
 
     return(
         <View style={gstyles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>{title}</Text>
                 {
                     pageName == 'conta' ? 
                     <TouchableOpacity style={styles.infoEdit} onPress={() => {setModalVisible(true); setModalPage('datachange')}}>
-                        <Feather name={'edit'} color={'#888'} size={30}/>
+                        <Feather name={'edit'} color={lightTextColor} size={30}/>
                     </TouchableOpacity>
                     :
                     <Text/>

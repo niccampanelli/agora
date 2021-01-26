@@ -7,6 +7,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import InfoSobreNovaConsulta from '../InfoSobreNovaConsulta';
+import { lightTextColor } from '../../../gstyles';
 
 export default function (props) {
 
@@ -51,7 +52,7 @@ export default function (props) {
                 <View >
                     <TouchableOpacity
                         onPress={() => navigation.navigate('InfoSobreNovaConsulta')}>
-                        <Feather color={'#bbb'} size={40} name={"chevron-right"} />
+                        <Feather color={lightTextColor} size={40} name={"chevron-right"} />
                     </TouchableOpacity>
                 </View>
 
