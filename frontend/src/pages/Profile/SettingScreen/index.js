@@ -34,10 +34,10 @@ export default function Home(){
 
     const Conta = () => (
         <ScrollView style={styles.subContainer}>
-            <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={''} args={''}/>
+            <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={'SettingScreen'} args={''}/>
             <TouchableOpacity style={styles.listButtonRed} onPress={() => {setModalVisible(true); setModalPage('delete')}}>
                 <View style={styles.listButtonIconRed}>
                     <Feather size={24} name={'trash-2'} color={'#fff'}/>
@@ -51,15 +51,15 @@ export default function Home(){
 
     const Privacidade = () => (
         <View style={styles.subContainer}>
-            <ConfigButton iconName={'file-text'} name={'Uso de dados'} destination={''} />
+            <ConfigButton iconName={'file-text'} name={'Uso de dados'} destination={'SettingScreen'} />
         </View>
     );
 
     const Sobre = () => (
         <View style={styles.subContainer}>
-            <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'} destination={''} />
-            <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'} destination={''} args={''}/>
-            <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'} destination={''} args={''}/>
+            <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'} destination={'SettingScreen'} />
+            <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'} destination={'SettingScreen'} args={''}/>
         </View>
     );
 
@@ -145,9 +145,14 @@ export default function Home(){
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={'#bbb'} size={40} name={"chevron-left"}/></TouchableOpacity>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>{title}</Text>
-                <TouchableOpacity style={styles.infoEdit} onPress={() => {setModalVisible(true); setModalPage('datachange')}}>
-                    {isEditingInfo ? <Feather name={'x'} color={'#888'} size={30}/> : <Feather name={'edit'} color={'#888'} size={30}/>}
-                </TouchableOpacity>
+                {
+                    pageName == 'conta' ? 
+                    <TouchableOpacity style={styles.infoEdit} onPress={() => {setModalVisible(true); setModalPage('datachange')}}>
+                        <Feather name={'edit'} color={'#888'} size={30}/>
+                    </TouchableOpacity>
+                    :
+                    <Text/>
+                }
             </View>
             {pages[pageName]}
             

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const mainAppColor = '#ffde00';
+const mainAppColor = '#ffea00';
 const mainTextColor = '#555';
 
 const gstyles = StyleSheet.create({
