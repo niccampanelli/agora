@@ -51,7 +51,7 @@ export default function Home(){
             <View style={styles.carouselArea}>
                 <View style={styles.receitasTitle}>
                     <Text style={styles.receitasTitleText}>Receitas</Text>
-                    <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Consultas')}>
+                    <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Receitas')}>
                         <Text style={gstyles.seeMoreTxt}>Ver todas</Text>
                         <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right'/>
                     </TouchableOpacity>

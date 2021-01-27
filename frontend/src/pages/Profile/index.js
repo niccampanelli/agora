@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import { useNavigation } from '@react-navigation/native';
-import ConfigButton from './Components/ConfigButton';
+import ConfigButton from '../Components/ConfigButton';
 
 export default function Home(){
 

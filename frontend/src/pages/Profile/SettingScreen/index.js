@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Modal } from 'reac
 import styles from './styles';
 import gstyles, { mainAppColor, mainTextColor, lightTextColor, layer0Color } from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import ConfigButton from '../Components/ConfigButton';
-import ConfigTextButton from '../Components/ConfigTextButton';
+import ConfigButton from '../../Components/ConfigButton';
+import ConfigTextButton from '../../Components/ConfigTextButton';
 
 export default function Home(){
 
