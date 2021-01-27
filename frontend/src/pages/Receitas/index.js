@@ -16,7 +16,7 @@ export default function Receitas(){
                 <Text style={styles.headerTitle}>Receitas</Text>
             </View>
             <View style={styles.subContainer}>
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => {}}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Paracetamol'})}>
                     <View style={gstyles.listButtonIcon}>
                         <MaterialCommunityIcons size={24} name={'pill'}/>
                     </View>
@@ -25,7 +25,7 @@ export default function Receitas(){
                         <Text style={gstyles.listButtonDesc}>Duas capsulas por dia</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => {}}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Ibuprofeno'})}>
                     <View style={gstyles.listButtonIcon}>
                         <MaterialCommunityIcons size={24} name={'pill'}/>
                     </View>
@@ -34,7 +34,7 @@ export default function Receitas(){
                         <Text style={gstyles.listButtonDesc}>Duas capsulas por dia</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => {}}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Dipirona'})}>
                     <View style={gstyles.listButtonIcon}>
                         <MaterialCommunityIcons size={24} name={'pill'}/>
                     </View>
@@ -43,7 +43,7 @@ export default function Receitas(){
                         <Text style={gstyles.listButtonDesc}>Duas capsulas por dia</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => {}}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Cloroquina'})}>
                     <View style={gstyles.listButtonIcon}>
                         <MaterialCommunityIcons size={24} name={'pill'}/>
                     </View>
@@ -52,7 +52,7 @@ export default function Receitas(){
                         <Text style={gstyles.listButtonDesc}>Duas capsulas por dia</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => {}}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Sei lá'})}>
                     <View style={gstyles.listButtonIcon}>
                         <MaterialCommunityIcons size={24} name={'pill'}/>
                     </View>
