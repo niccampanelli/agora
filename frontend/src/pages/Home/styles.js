@@ -103,7 +103,7 @@ export default StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         backgroundColor: mainAppColor,
-        height: 620,
+        height: 650,
     },
 
     listAreaHeader: {

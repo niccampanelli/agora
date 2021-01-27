@@ -65,6 +65,15 @@ export default function Home(){
                         }, {
                             label: 'Dipirona',
                             qtd:'2 capsulas por dia'
+                        }, {
+                            label: 'Cloroquina',
+                            qtd:'2 capsulas por dia'
+                        }, {
+                            label: 'Hidroxocloroquina',
+                            qtd:'2 capsulas por dia'
+                        }, {
+                            label: 'Sei la',
+                            qtd:'2 capsulas por dia'
                         }]}/>
             </View>
             <View style={styles.listArea}>
