@@ -15,17 +15,25 @@ export default StyleSheet.create({
     },
 
     header: {
+        paddingHorizontal: 20,
+        marginBottom: 30
+    },
+
+    headerWithOption: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: 50,
-        paddingHorizontal: 20,
-        marginBottom: 10
     },
 
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: mainTextColor
+        marginBottom: 10,
+        color: mainTextColor,
+    },
+
+    headerSubTitle: {
+        fontSize: 16,
+        color: lightTextColor
     },
 
     infoEdit: {

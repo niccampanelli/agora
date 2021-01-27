@@ -54,8 +54,8 @@ const gstyles = StyleSheet.create({
     bottomSheetTitle: {
         fontSize: 25,
         fontWeight: 'bold',
+        marginBottom: 10,
         color: mainTextColor,
-        marginBottom: 10
     },
 
     bottomSheetPage: {

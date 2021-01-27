@@ -14,6 +14,7 @@ export default function Receitas(){
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>Receitas</Text>
+                <Text style={styles.headerSubTitle}>Suas receitas prescritas por um médico. Toque em uma receita para ver mais detalhes sobre ela</Text>
             </View>
             <View style={styles.subContainer}>
                 <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('DetalheReceitas', {title: 'Paracetamol'})}>

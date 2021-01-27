@@ -15,12 +15,13 @@ export default function Home(){
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
                 <Text style={styles.headerTitle}>Configurações</Text>
+                <Text style={styles.headerSubTitle}>Aqui você pode definir suas preferências em relação ao aplicativo. Toque em uma categoria</Text>
             </View>
             <View style={styles.subContainer}>
-                <ConfigButton iconName={'user'} name={'Dados da Conta'} destination={'SettingScreen'} args={{title: 'Dados da Conta', page: 'conta'}} />
-                <ConfigButton iconName={'settings'} name={'Configurações do Aplicativo'} destination={'SettingScreen'} args={{title: 'Configurações do Aplicativo', page: 'appconf'}} />
-                <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade', page: 'privacidade'}} />
-                <ConfigButton iconName={'info'} name={'Sobre'} destination={'SettingScreen'} args={{title: 'Sobre', page: 'sobre'}} />
+                <ConfigButton iconName={'user'} name={'Dados da Conta'} destination={'SettingScreen'} args={{title: 'Dados da Conta', subTitle: 'Seus dados de cadastro na plataforma. Toque no lapis acima se desejar editar alguma informação.', page: 'conta'}} />
+                <ConfigButton iconName={'settings'} name={'Configurações do Aplicativo'} destination={'SettingScreen'} args={{title: 'Configurações do Aplicativo', subTitle: 'Configurações relacionadas ao aplicativo e suas funções.', page: 'appconf'}} />
+                <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade', subTitle: 'Informações sobre a privacidade dos seus dados na plataforma.', page: 'privacidade'}} />
+                <ConfigButton iconName={'info'} name={'Sobre'} destination={'SettingScreen'} args={{title: 'Sobre', subTitle: 'Informações sobre o aplicativo.', page: 'sobre'}} />
             </View>
         </View>
     );

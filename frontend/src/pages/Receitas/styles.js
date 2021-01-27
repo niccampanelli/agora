@@ -15,15 +15,20 @@ export default StyleSheet.create({
     },
 
     header: {
-        height: 50,
         paddingHorizontal: 20,
-        marginBottom: 65
+        marginBottom: 30
     },
 
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: mainTextColor
+        marginBottom: 10,
+        color: mainTextColor,
+    },
+
+    headerSubTitle: {
+        fontSize: 16,
+        color: lightTextColor
     },
 
     listButton: {

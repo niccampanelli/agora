@@ -24,6 +24,7 @@ export default function Home(){
     const navigation = useNavigation();
 
     const title = route.params.title;
+    const subTitle = route.params.subTitle;
     const pageName = route.params.page;
 
     const showBottomSheet = (title, page) => {
@@ -144,15 +145,20 @@ export default function Home(){
         <View style={gstyles.container}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>{title}</Text>
                 {
-                    pageName == 'conta' ? 
-                    <TouchableOpacity style={styles.infoEdit} onPress={() => {setModalVisible(true); setModalPage('datachange')}}>
-                        <Feather name={'edit'} color={lightTextColor} size={30}/>
-                    </TouchableOpacity>
+                    pageName == 'conta' ?
+                    <View style={styles.headerWithOption}>
+                        <Text style={styles.headerTitle}>{title}</Text>
+                        <TouchableOpacity style={styles.infoEdit} onPress={() => {setModalVisible(true); setModalPage('datachange')}}>
+                            <Feather name={'edit'} color={lightTextColor} size={30}/>
+                        </TouchableOpacity>
+                    </View>
                     :
-                    <Text/>
+                    <View>
+                        <Text style={styles.headerTitle}>{title}</Text>
+                    </View>
                 }
+                <Text style={styles.headerSubTitle}>{subTitle}</Text>
             </View>
             {pages[pageName]}
             
