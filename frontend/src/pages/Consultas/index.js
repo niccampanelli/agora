@@ -31,7 +31,7 @@ export default function Consultas() {
                     <Text style={styles.headerModalTitle}>Nova Consulta</Text>
                 </View>
                 <Text style={styles.headerModalSubitle}>Primeiro, escolha abaixo uma unidade de saúde:</Text>
-                <ModalNovaConsulta visivel={useState(visivel)}/>
+                <ModalNovaConsulta visivel={visivel}/>
             </Modal>
         )
     }
