@@ -1,13 +1,14 @@
 import { useBackButton } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { Alert, StyleSheet, Modal, View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
-import styles from '../styles'
+import { Alert, stylesheet, Modal, View, Text, Button, FlatList, TouchableOpacity, Image } from 'react-native';
+import styles from './styles'
 import { Feather } from '@expo/vector-icons';
+import img from '../../../assets/ubs-unidade-basica-de-saude-logo-5FA6837F13-seeklogo.com.png';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import InfoSobreNovaConsulta from '../InfoSobreNovaConsulta';
-import { lightTextColor } from '../../../gstyles';
+import gstyles from '../../../gstyles';
 
 export default function (props) {
 
@@ -26,48 +27,26 @@ export default function (props) {
 
     const ListaHosp = ({ item }) => {
         return (
-            <View style={styles.containerModal}>
-
-                <TouchableOpacity
-                    style={{ width: '25%', height: '95%' }}
-                    onPress={() => navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})}
-                >
-                    <Text style={styles.consultasTitle}>logo</Text>
-
-                </TouchableOpacity>
-
-                <View style={{ backgroundColor: '#fff', borderRadius: 10, width: "60%", alignItems: 'center' }}>
-
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})}
-                        style={{ height: 78, justifyContent: 'center' }}
-                    >
-                        <Text style={styles.consultasTitle}>{item.nome}</Text>
-                        <Text style={styles.consultasDate}>{item.local}</Text>
-
-                    </TouchableOpacity>
-
+            <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})}>
+                <View style={gstyles.listButtonImg}>
+                    <Image style={gstyles.listButtonImgImage} source={img}/>
                 </View>
-
-                <View >
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('InfoSobreNovaConsulta')}>
-                        <Feather color={lightTextColor} size={40} name={"chevron-right"} />
-                    </TouchableOpacity>
+                <View style={gstyles.listButtonTxt}>
+                    <Text style={gstyles.listButtonTitle}>{item.nome}</Text>
+                    <Text style={gstyles.listButtonDesc}>{item.local}</Text>
                 </View>
-
-            </View>
+                <View style={styles.buttonEnter}>
+                    <Feather size={40} name={'chevron-right'}/>
+                </View>
+            </TouchableOpacity>
         )
-
     }
-
-
 
     return (
 
-        <View style={Styles.container}>
-            <Text style={Styles.Hosp}>Escolha um Hospital:</Text>
+        <View style={styles.container}>
             <FlatList
+                style={styles.hospList}
                 data={hosp}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => <ListaHosp item={item} />} />
@@ -75,13 +54,3 @@ export default function (props) {
 
     )
 }
-const Styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        borderWidth: 1
-    },
-    Hosp: {
-        fontSize: 22
-    }
-})

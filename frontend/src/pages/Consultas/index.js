@@ -24,17 +24,13 @@ export default function Consultas() {
                     setVisivel(!visivel)
                   }}
             >
-                <View  HeaderModal style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-
-                    <TouchableOpacity onPress={()=>setVisivel(!visivel)}>
-                        <Feather color={lightTextColor} size={60} name={"chevron-down"} />
+                <View HeaderModal style={styles.headerModal}>
+                    <TouchableOpacity style={styles.closeButton} onPress={()=>setVisivel(!visivel)}>
+                        <Feather color={lightTextColor} size={40} name={"chevron-down"} />
                     </TouchableOpacity>
-
-                    <View style={{ alignItems: 'flex-start', width: "70%", justifyContent: 'center', }}>
-                        <Text style={{ fontSize: 28, fontWeight: 'bold', }}>Nova Consulta</Text>
-                    </View>
-
+                    <Text style={styles.headerModalTitle}>Nova Consulta</Text>
                 </View>
+                <Text style={styles.headerModalSubitle}>Primeiro, escolha abaixo uma unidade de saúde:</Text>
                 <ModalNovaConsulta visivel={useState(visivel)}/>
             </Modal>
         )
@@ -43,33 +39,29 @@ export default function Consultas() {
 
     return (
         <View style={gstyles.container}>
+            <StatusBar
+                barStyle='dark-content'
+                backgroundColor={'#fafafa'}
+            />
+            <ModalAdd />
             <View style={styles.header}>
-                <StatusBar
-                    barStyle='dark-content'
-                    backgroundColor={'#fafafa'}
-                />
-
-                <ModalAdd />
-
-                <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"} /></TouchableOpacity>
-                    <Text style={styles.headerTitle}>Consultas Marcadas</Text>
-                </View>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"}/></TouchableOpacity>
+                <Text style={styles.headerTitle}>Consultas</Text>
+                <Text style={styles.headerSubTitle}>Todas suas consultas com um especialista marcadas. Toque em uma consulta para ver mais detalhes sobre ela</Text>
             </View>
-
-            <View>
                 <FlatList
+                    style={styles.dataList}
+                    contentContainerStyle={{paddingBottom: 120}}
+                    nestedScrollEnabled
                     data={consultas}
                     keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => <Marcadas item={item} />} />
-            </View>
-
+                    renderItem={({ item }) => <Marcadas item={item} />} 
+                />
             <View style={styles.btnAdd}>
                 <TouchableOpacity onPress={() => setVisivel(!visivel)}>
-                    <Feather color={mainTextColor} name={'plus'} size={86}/>
+                    <Feather color={mainTextColor} name={'plus'} size={52}/>
                 </TouchableOpacity>
             </View>
-
         </View>
     );
 }

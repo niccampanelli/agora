@@ -4,13 +4,10 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { lightTextColor } from '../../../gstyles';
 
-
-
 export default function Marcadas({ route, navigation }) {
+
     const { nome, id } = route.params;
-
     const InfoKeys = (props) => <Text style={{fontWeight:'bold'}}>{props.name}</Text>
-
     const Info = (props) => <Text>{props.info}</Text>
 
     return (

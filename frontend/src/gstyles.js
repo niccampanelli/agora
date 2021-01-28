@@ -105,6 +105,19 @@ const gstyles = StyleSheet.create({
         width: 40
     },
 
+    listButtonImg: {
+        marginRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 50,
+        height: '100%'
+    },
+
+    listButtonImgImage: {
+        width: '100%',
+        height: '100%'
+    },
+
     listInputButtonIcon: {
         marginRight: 20,
         alignItems: 'center',
@@ -115,8 +128,13 @@ const gstyles = StyleSheet.create({
     },
 
     listButtonTxt: {
-        width: '80%',
+        width: '70%',
         justifyContent: 'center',
+    },
+
+    listButtonExtra: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 
     listButtonTitle: {

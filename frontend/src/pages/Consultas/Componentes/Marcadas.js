@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons';
-import styles from '../styles'
+import gstyles from '../../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 
@@ -10,19 +10,17 @@ export default function ({item}){
     const navigation = useNavigation()
 
     return (
-        <View style={styles.listaConsultasMarcadas}>
-                <TouchableOpacity
-                style={{marginStart:"5%"}}
-                    onPress={() => navigation.navigate('Consultas Marcadas', { nome: item.especialidade })}>
-                    <Text style={styles.consultasTitle}>{item.especialidade}</Text>
-                </TouchableOpacity>
-                <View  style={{backgroundColor:'yellow',marginEnd:0,borderRadius:10,width:"20%",alignItems:'center'}}>
-                <TouchableOpacity
-                    style={{height:78,justifyContent:'center',padding:0}}
-                    onPress={() => navigation.navigate('Consultas Marcadas', { nome:item.especialidade})} >
-                    <Text style={styles.consultasDate}>{item.date}</Text>
-                </TouchableOpacity>
-                </View>
+        <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('Consultas Marcadas', { nome: item.especialidade })}>
+            <View style={gstyles.listButtonIcon}>
+                <Feather size={24} name={'calendar'}/>
             </View>
+            <View style={gstyles.listButtonTxt}>
+                <View style={gstyles.listButtonExtra}>
+                    <Text style={gstyles.listButtonTitle}>{item.especialidade}</Text>
+                    <Text style={gstyles.listButtonDesc}>{item.date}</Text>
+                </View>
+                <Text style={gstyles.listButtonDesc}>{item.nomeMedico}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }

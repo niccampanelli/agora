@@ -34,5 +34,16 @@ export default StyleSheet.create({
         marginTop: "1%",
         padding: 10,
         
-    }
+    },
+
+    hospList: {
+        paddingHorizontal: 20
+    },
+
+    buttonEnter: {
+        height: '100%',
+        width: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })
