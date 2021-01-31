@@ -16,7 +16,7 @@ export default function (props) {
     const AppStack = createStackNavigator()
 
     const hosp = [
-        { id: 1, nome: 'hospital 1', local: 'Rua do 1, sao paulo' },
+        { id: 1, nome: "Hospital 1", local: 'Rua do 1, sao paulo' },
         { id: 2, nome: 'hospital 2', local: 'Rua do 2, sao paulo' },
         { id: 3, nome: 'hospital 3', local: 'Rua do 3, sao paulo' },
         { id: 4, nome: 'hospital 4', local: 'Rua do 4, sao paulo' },
@@ -25,9 +25,16 @@ export default function (props) {
     ]
 
 
+    const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})}
+    const fecharModal = ({item})=>{
+         navigation.goBack() 
+        return irParaHosp({item})
+    }
+
+
     const ListaHosp = ({ item }) => {
         return (
-            <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})}>
+            <TouchableOpacity style={gstyles.listTextButton} onPress={()=>fecharModal({item})}>
                 <View style={gstyles.listButtonImg}>
                     <Image style={gstyles.listButtonImgImage} source={img}/>
                 </View>
