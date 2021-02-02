@@ -5,24 +5,26 @@ export default StyleSheet.create({
     
     subContainer: {
         paddingHorizontal: 20,
+        height: '80%'
     },
 
     backbutton: {
-        marginLeft: -10,
+        marginLeft: 10,
         marginBottom: 10,
         width: 50,
         height: 40
     },
 
-    header: {
+    headerWithOption: {
         paddingHorizontal: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         marginBottom: 30
     },
 
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        marginBottom: 10,
         color: mainTextColor,
     },
 
@@ -31,57 +33,28 @@ export default StyleSheet.create({
         color: lightTextColor
     },
 
-    listButton: {
-        padding: 10,
-        flexDirection: 'row',
-        height: 60,
-        marginBottom: 10,
-        backgroundColor: '#f1f1f1',
-        borderRadius: 10
+    section2: {
+        paddingHorizontal: 20,
+        position: 'absolute',
+        bottom: 0,
     },
 
-    listTextButton: {
-        paddingVertical: 20,
-        paddingHorizontal: 10,
-        flexDirection: 'row',
-        height: 80,
-        marginBottom: 10,
-        backgroundColor: '#f1f1f1',
-        borderRadius: 10
+    adress: {
+        paddingBottom: 10,
+        borderBottomColor: lightTextColor,
+        borderBottomWidth: 1,
+        marginBottom: 20
     },
 
-    listButtonIcon: {
-        marginRight: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: mainAppColor,
-        borderRadius: 15,
-        width: 40
+    infoTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: mainTextColor
     },
 
-    listInputButtonIcon: {
-        marginRight: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: mainAppColor,
-        borderRadius: 15,
-        width: 40
+    infoSubTitle: {
+        fontSize: 20,
+        color: lightTextColor
     },
-
-    listButtonTxt: {
-        width: '80%',
-        justifyContent: 'center',
-    },
-
-    listButtonTitle: {
-        fontSize: 22,
-        color: mainTextColor,
-        fontWeight: 'bold'
-    },
-    
-    listButtonDesc: {
-        fontSize: 16,
-        color: lightTextColor,
-    }
 
 });

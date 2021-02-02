@@ -40,6 +40,7 @@ const gstyles = StyleSheet.create({
     bottomSheet: {
         position: 'absolute',
         bottom: 0,
+        width: '100%',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingTop: 20,
@@ -60,7 +61,8 @@ const gstyles = StyleSheet.create({
 
     bottomSheetPage: {
         paddingTop: 30,
-        paddingHorizontal: 20,
+        paddingHorizontal: 25,
+        width: '100%'
     },
 
     bottomSheetOptions: {

@@ -58,9 +58,9 @@ export default function Home(){
 
     const Sobre = () => (
         <View style={styles.subContainer}>
-            <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'} destination={'SettingScreen'} />
-            <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'} destination={'SettingScreen'} args={''}/>
-            <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'} destination={'SettingScreen'} args={''}/>
+            <ConfigButton iconName={'file-text'} name={'Termos e Condições de Uso'}/>
+            <ConfigTextButton iconName={'package'} name={'Versão do Aplicativo'} desc={'5.12.38'}/>
+            <ConfigTextButton iconName={'users'} name={'Criado por'} desc={'Nicholas Campanelli de Souza, Rafael da Silva Rodrigues'}/>
         </View>
     );
 

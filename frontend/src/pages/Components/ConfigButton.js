@@ -9,7 +9,13 @@ export default function ConfigButton(props){
     const navigation = useNavigation();
     
     return(
-        <TouchableOpacity style={gstyles.listButton} onPress={() => {navigation.navigate(props.destination, props.args)}}>
+        <TouchableOpacity style={gstyles.listButton} 
+            onPress={() => {
+                props.destination == null ?
+                () => {}
+                :
+                navigation.navigate(props.destination, props.args)
+            }}>
             <View style={gstyles.listButtonIcon}>
                 <Feather size={24} name={props.iconName}/>
             </View>
