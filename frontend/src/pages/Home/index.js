@@ -17,7 +17,7 @@ export default function Home(){
     function BtnHome(props){
         return(
             <View style={styles.button1}>
-                <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+                <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={props.pressFunction}>
                     <Text style={styles.button1tx}>{props.nome}</Text>
                 </TouchableOpacity>
             </View>
@@ -39,7 +39,7 @@ export default function Home(){
             </TouchableOpacity>
         </View>
             <View style={styles.marcarBtn}>
-                <BtnHome nome={'Marcar Consulta'}/>
+                <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Consultas', {modalOpen: true})}/>
             </View>
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -86,7 +86,7 @@ export default function Home(){
                 </View>
                 <View style={styles.listAreaHeader}>
                     <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                    <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Consultas')}>
+                    <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Consultas', {modalOpen: false})}>
                         <Text style={gstyles.seeMoreTxt}>Ver todas</Text>
                         <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right'/>
                     </TouchableOpacity>

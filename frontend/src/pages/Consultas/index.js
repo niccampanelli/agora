@@ -3,15 +3,19 @@ import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, Alert, TouchableHighlight, Button, StatusBar, FlatList, Image, Modal } from 'react-native';
 import styles from './styles';
 import gstyles, { lightTextColor, mainTextColor } from '../../gstyles';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import consultas from '../Consultas/Dados';
 import Marcadas from './Componentes/Marcadas'
 import ModalNovaConsulta from './Componentes/ModalNovaConsulta'
 
 export default function Consultas() {
 
+    const route = useRoute();
+
+    const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
+
     const navigation = useNavigation();
-    const [visivel, setVisivel] = useState(false)
+    const [visivel, setVisivel] = useState(modalOpenParam)
 
 
     function ModalAdd(props,{route}) {
