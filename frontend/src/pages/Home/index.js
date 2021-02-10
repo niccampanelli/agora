@@ -3,23 +3,24 @@ import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-nativ
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
+import ConfigButton from '../Components/ConfigButton';
 import Carousel from '../Components/Carousel';
-import consultas from '../Consultas/Dados'
+import consultasRaw from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Home(){
 
     const navigation = useNavigation();
-   
+    const consultas = consultasRaw.slice(0, 5);
 
 
     function BtnHome(props){
         return(
             <View style={styles.button1}>
-            <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
-                <Text style={styles.button1tx}>{props.nome}</Text>
-            </TouchableOpacity>
-        </View>
+                <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={() => {}}>
+                    <Text style={styles.button1tx}>{props.nome}</Text>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -37,6 +38,9 @@ export default function Home(){
                 </View>
             </TouchableOpacity>
         </View>
+            <View style={styles.marcarBtn}>
+                <BtnHome nome={'Marcar Consulta'}/>
+            </View>
         <ScrollView
             showsVerticalScrollIndicator={false}
             pagingEnabled
@@ -89,10 +93,18 @@ export default function Home(){
                 </View>
                 <View style={styles.consultasList}>
                     {consultas.map((consulta, index) => (
-                        <View key={consulta.id} style={styles.consultasListItem}>
-                            <Text style={styles.consultasTitle}>{consulta.especialidade}</Text>
-                            <Text style={styles.consultasDate}>{consulta.date}</Text>
-                        </View>
+                        <TouchableOpacity key={index} style={gstyles.listTextButton} onPress={() => navigation.navigate('Consultas Marcadas', { nome: consulta.especialidade })}>
+                            <View style={gstyles.listButtonIcon}>
+                                <Feather size={24} name={'calendar'}/>
+                            </View>
+                            <View style={gstyles.listButtonTxt}>
+                                <View style={gstyles.listButtonExtra}>
+                                    <Text style={gstyles.listButtonTitle}>{consulta.especialidade}</Text>
+                                    <Text style={gstyles.listButtonDesc}>{consulta.date}</Text>
+                                </View>
+                                <Text style={gstyles.listButtonDesc}>{consulta.nomeMedico}</Text>
+                            </View>
+                        </TouchableOpacity>
                     ))}
                 </View>
             </View>

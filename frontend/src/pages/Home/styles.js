@@ -58,7 +58,7 @@ export default StyleSheet.create({
     button1bt: {
         flex: 1,
         backgroundColor: mainAppColor,
-        borderRadius: 8
+        borderRadius: 10
     },
 
     button1tx: {
@@ -95,18 +95,17 @@ export default StyleSheet.create({
 	        width: 0,
 	        height: 1,
         },
-        shadowOpacity: 0.90,
-        shadowRadius: 10.30,
-        elevation: 25,
-        paddingHorizontal: 40,
+        paddingHorizontal: 20,
+        marginHorizontal: 10,
         paddingTop: 20,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        backgroundColor: mainAppColor,
+        backgroundColor: '#eee',
         height: 650,
     },
 
     listAreaHeader: {
+        paddingHorizontal: 10,
         marginBottom: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -141,6 +140,15 @@ export default StyleSheet.create({
 
     consultasTitle: {
         fontSize: 20,
-    }
+    },
+
+    marcarBtn: {
+        width: '100%',
+        height: 70,
+        position: 'absolute',
+        zIndex: 100,
+        paddingHorizontal: 10,
+        bottom:  20
+    },
 
 });

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const mainAppColor = 'aqua';
+const mainAppColor = '#ffea00';
 const layer0Color = '#fafafa';
 const mainTextColor = '#666';
 const lightTextColor = '#aaa';
@@ -130,7 +130,7 @@ const gstyles = StyleSheet.create({
     },
 
     listButtonTxt: {
-        width: '70%',
+        width: '80%',
         justifyContent: 'center',
     },
 
