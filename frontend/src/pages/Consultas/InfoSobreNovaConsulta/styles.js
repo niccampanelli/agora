@@ -5,6 +5,7 @@ import { mainAppColor, mainTextColor } from "../../../gstyles";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height:"100%",
         margin: "3%",
     },
     containerHosp: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
     },
     InfoKeys: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 12,
     },
     blocoInfo: {
         flexDirection: 'row',

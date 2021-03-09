@@ -120,7 +120,7 @@ export default function ({ route }) {
                 <View>
 
                     <TextInput
-                        style={{ height: 160, borderColor:mainAppColor, borderWidth: 2,padding:15,borderRadius:10 }}
+                        style={{ height: 120, borderColor:mainAppColor, borderWidth: 2,padding:15,borderRadius:10 }}
                         multiline={true}
                         textAlign='left'
                         textAlignVertical='top'

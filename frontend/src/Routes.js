@@ -11,9 +11,20 @@ import Consultas from './pages/Consultas';
 import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
 import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
 
+import * as firebase from 'firebase'
+import firebaseConfig from '../../backend/Firebase/firebaseConfig';
+
 const AppStack = createStackNavigator();
 
 export default function Routes({route}){
+
+
+    if (!firebase.apps.length) {
+        console.log('Conectado com firebase!')
+        firebase.initializeApp(firebaseConfig);
+      }
+
+
     return(
         <NavigationContainer>
             <AppStack.Navigator 
