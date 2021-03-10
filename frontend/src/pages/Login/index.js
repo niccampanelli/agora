@@ -21,8 +21,6 @@ export default function Home(){
         )
     }
 
-    Alert.alert('Status', cpfValue);
-
     const data = {
         emailValue, 
         passValue,
@@ -32,9 +30,12 @@ export default function Home(){
     }
 
     async function enviar(){
+
+        console.log(emailValue);
+
         try {
             const response = await API.post('login', data);
-            Alert.alert(JSON.stringify(response));
+            Alert.alert(emailValue, JSON.stringify(response));
         }
         catch (err) {
             console.log(err)

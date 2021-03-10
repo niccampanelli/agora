@@ -1,17 +1,4 @@
-const { firebase } = require('firebase/app');
 
-// Initialize Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAs6N2-qnM5nFz23XUKoZPo8hacolIwTzA",
-    authDomain: "agora-d193e.firebaseapp.com",
-    projectId: "agora-d193e",
-    storageBucket: "agora-d193e.appspot.com",
-    messagingSenderId: "92634649276",
-    appId: "1:92634649276:web:5c2b7d49f6eea6df3776b9",
-    measurementId: "G-2Y0BB7V9EW"
-};
-
-firebase.initializeApp(firebaseConfig);
 
 module.exports = {
     cadastrar(email, password, cpf, firstName, lastName) {
@@ -37,7 +24,7 @@ module.exports = {
         } catch (err) {
             const errorObj = {
                 "message": err.message,
-                "code": err.code
+                "code": err.message
             }
     
             return errorObj
