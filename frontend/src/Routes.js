@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import Landing from './pages/Landing';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Receitas from './pages/Receitas';
@@ -11,19 +12,9 @@ import Consultas from './pages/Consultas';
 import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
 import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
 
-import * as firebase from 'firebase'
-import firebaseConfig from '../../backend/Firebase/firebaseConfig';
-
 const AppStack = createStackNavigator();
 
 export default function Routes({route}){
-
-
-    if (!firebase.apps.length) {
-        console.log('Conectado com firebase!')
-        firebase.initializeApp(firebaseConfig);
-      }
-
 
     return(
         <NavigationContainer>
@@ -35,6 +26,7 @@ export default function Routes({route}){
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS 
                 }}    
             >
+                <AppStack.Screen name='Login' component={Login}/>
                 <AppStack.Screen name='Landing' component={Landing}/>
                 <AppStack.Screen name='Home' component={Home}/>
                 <AppStack.Screen name='Consultas' component={Consultas}/>
