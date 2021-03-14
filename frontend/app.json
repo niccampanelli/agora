@@ -4,7 +4,6 @@
     "slug": "agora",
     "version": "1.0.0",
     "orientation": "portrait",
-    "sdkVersion": "40.0.0",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,19 +19,16 @@
     "ios": {
       "supportsTablet": true
     },
-
     "androidNavigationBar": {
       "barStyle": "dark-content",
-      "backgroundColor":"#fafafa"
+      "backgroundColor": "#fafafa"
     },
-
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
-
     "web": {
       "favicon": "./assets/favicon.png"
     }
