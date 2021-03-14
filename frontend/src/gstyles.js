@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 const mainAppColor = '#ffea00';
 const layer0Color = '#fafafa';
@@ -9,7 +10,7 @@ const gstyles = StyleSheet.create({
     container: {
         height: '100%',
         backgroundColor: layer0Color,
-        paddingTop: 10
+        paddingTop: 20 + Constants.statusBarHeight
     },
 
     header: {
@@ -22,6 +23,27 @@ const gstyles = StyleSheet.create({
         fontWeight: 'bold',
         color: mainTextColor
     },
+
+    button1: {
+        width: '100%',
+        height: 50,
+    },
+
+    button1bt: {
+        flex: 1,
+        backgroundColor: mainAppColor,
+        borderRadius: 10
+    },
+
+    button1tx: {
+        flex: 1,
+        fontWeight: 'bold',
+        fontSize: 19,
+        color: mainTextColor,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+    },
+
 
     seeMore: {
         flexDirection: 'row',

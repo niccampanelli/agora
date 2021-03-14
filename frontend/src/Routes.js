@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
+import Map from './pages/Map';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Receitas from './pages/Receitas';
@@ -26,6 +27,7 @@ export default function Routes({route}){
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS 
                 }}    
             >
+                <AppStack.Screen name='Map' component={Map}/>
                 <AppStack.Screen name='Login' component={Login}/>
                 <AppStack.Screen name='Landing' component={Landing}/>
                 <AppStack.Screen name='Home' component={Home}/>

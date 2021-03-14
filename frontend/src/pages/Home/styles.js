@@ -49,27 +49,7 @@ export default StyleSheet.create({
         marginBottom: 30,
         height: 50
     },
-
-    button1: {
-        paddingHorizontal: 5,
-        flex: 1,
-    },
-
-    button1bt: {
-        flex: 1,
-        backgroundColor: mainAppColor,
-        borderRadius: 10
-    },
-
-    button1tx: {
-        flex: 1,
-        fontWeight: 'bold',
-        fontSize: 19,
-        color: mainTextColor,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-    },
-
+    
     carouselArea: {
         paddingHorizontal: 20,
         height: 120,
