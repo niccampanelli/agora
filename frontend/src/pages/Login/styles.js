@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
 
     cadOuEntrar:{
         marginTop:'20%',
-
-        color:mainAppColor
     },
 
 
