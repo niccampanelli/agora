@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView , StatusBar, TextInput, Alert, Button} from 'react-native';
-import styles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
+import { View, Text, TouchableOpacity, ScrollView, StatusBar, TextInput, Alert, Button } from 'react-native';
+import styles from './styles'
+import gstyles, { mainAppColor, mainTextColor, lightTextColor } from '../../gstyles';
 import API from '../../services/api';
 
-export default function Home(){
+export default function Login(props) {
 
     const [emailValue, setEmail] = useState('');
     const [passValue, setPass] = useState('')
-    const [cpfValue, setCpf] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
 
-    function BtnHome(props){
-        return(
-            <View style={styles.button1}>
-                <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={props.pressFunction}>
-                    <Text style={styles.button1tx}>{props.nome}</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+    /**
+     *  function BtnHome(props){
+         return(
+             <View style={styles.button1}>
+                 <TouchableOpacity activeOpacity={0} style={styles.button1bt} onPress={props.pressFunction}>
+                     <Text style={styles.button1tx}>{props.nome}</Text>
+                 </TouchableOpacity>
+             </View>
+         )
+     }
+     */
 
     const data = {
-        emailValue, 
+        emailValue,
         passValue,
-        cpfValue,
-        firstName,
-        lastName,
     }
 
-    async function enviar(){
+    async function enviar() {
 
         console.log(emailValue);
 
@@ -43,33 +40,37 @@ export default function Home(){
         }
     }
 
-    return(
-    <View style={styles.container}>
-        <TextInput 
-            autoCompleteType={'email'}
-            value={emailValue}
-            onChange={e => {setEmail(e.target.value)}}
-        />
-        <TextInput 
-            autoCompleteType={'password'}
-            value={passValue}
-            onChange={e => {setPass(e.target.value)}}
-        />
-        <TextInput 
-            value={cpfValue}
-            onChange={e => {setCpf(e.target.value)}}
-        />
-        <TextInput 
-            value={firstName}
-            onChange={e => {setFirstName(e.target.value)}}
-        />
-        <TextInput 
-            autoCompleteType={'email'}
-            value={lastName}
-            onChange={e => {setLastName(e.target.value)}}
-        />
-
-        <Button title="enviar" onPress={() => enviar()}/>
-    </View>
+    return (
+        <View style={styles.container}>
+            <StatusBar
+                barStyle='dark-content'
+                backgroundColor={mainAppColor}
+            />
+            <Text style={styles.title}>Login</Text>
+            <TextInput
+                autoCompleteType={'email'}
+                value={emailValue}
+                style={styles.input}
+                placeholder='Email'
+                onChangeText={e => { setEmail(e) }}
+            />
+            <TextInput
+                autoCompleteType={'password'}
+                value={passValue}
+                placeholder='Senha'
+                style={styles.input}
+                onChangeText={e => { setPass(e) }}
+            />
+            <TouchableOpacity
+                style={styles.btnEntrar}
+                onPress={() => enviar} >
+                <Text style={{fontSize:20}}>Entrar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.cadOuEntrar}
+                onPress={() => props.navigation.navigate('Cadastro')}>
+                <Text style={{color:'gray'}}> Ainda não tem uma conta? Cadastre-se</Text>
+            </TouchableOpacity>
+        </View>
     );
 }

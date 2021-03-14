@@ -4,6 +4,7 @@ import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from 
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Cadastro from './pages/Cadastro';
 import Profile from './pages/Profile';
 import Receitas from './pages/Receitas';
 import DetalheReceitas from './pages/Receitas/DetalheReceitas';
@@ -27,6 +28,7 @@ export default function Routes({route}){
                 }}    
             >
                 <AppStack.Screen name='Login' component={Login}/>
+                <AppStack.Screen name='Cadastro' component={Cadastro}/>
                 <AppStack.Screen name='Landing' component={Landing}/>
                 <AppStack.Screen name='Home' component={Home}/>
                 <AppStack.Screen name='Consultas' component={Consultas}/>
