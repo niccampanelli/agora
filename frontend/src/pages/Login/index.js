@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, TextInput, Alert,StatusBar } from 'react-native';
 import BtnHome from '../Components/BtnHome';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
-import styles from './styles';
+import styles from '../Cadastro/styles';
 import API from '../../services/api';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function Home(){
+export default function Cadastro(props) {
 
-    const navigator = useNavigation();
+    
+
 
     const [emailValue, setEmail] = useState('');
     const [passValue, setPass] = useState('')
-    const [cpfValue, setCpf] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
 
     const data = {
-        emailValue, 
+        emailValue,
         passValue,
-        cpfValue,
-        firstName,
-        lastName,
     }
 
-    async function enviar(){
+    async function enviar() {
 
         console.log(emailValue);
 
@@ -38,55 +33,21 @@ export default function Home(){
         }
     }
 
-    return(
-    <View style={gstyles.container}>
-        <View style={styles.loginCard}>
+    return (
+        <View style={styles.container}>
+            <StatusBar
+                barStyle='dark-content'
+                backgroundColor={mainAppColor}
+            />
+           
+           <View style={styles.loginCard}>
             <View style={styles.loginHeader}>
                 <Text style={styles.loginTitle}>Olá!</Text>
-                <Text style={styles.loginTitle}>Cadastre-se no Agora</Text>
-                <Text style={styles.loginSubtitle}>Crie uma conta para poder acessar a plataforma e suas funções!</Text>
+                <Text style={styles.loginTitle}>Faça login no Agora</Text>
+                <Text style={styles.loginSubtitle}>Entre com email e senha para acessar a plataforma e suas funções!</Text>
             </View>
             <View style={styles.inputsArea}>
-                <Text style={styles.inputLabel}>Nome</Text>
-                <TextInput
-                    returnKeyType={'next'}
-                    keyboardType={"default"}
-                    clearButtonMode={"while-editing"}
-                    autoCorrect={false}
-                    autoCapitalize={'words'}
-                    autoCompleteType={'name'}
-                    style={styles.loginInput}
-                    placeholder={"Fulano"}
-                    value={firstName}
-                    onChange={e => {setFirstName(e.target.value)}}
-                />
-                <Text style={styles.inputLabel}>Sobrenome</Text>
-                <TextInput
-                    returnKeyType={'next'}
-                    keyboardType={"default"}
-                    clearButtonMode={"while-editing"}
-                    autoCorrect={false}
-                    autoCapitalize={'words'}
-                    autoCompleteType={'name'}
-                    style={styles.loginInput}
-                    placeholder={"da Silva"}
-                    value={lastName}
-                    onChange={e => {setLastName(e.target.value)}}
-                />
-                <View style={styles.labelView}>
-                    <Text style={styles.inputLabel}>CPF</Text>
-                    <Text style={styles.labelHint}> • Insira apenas números</Text>
-                </View>
-                <TextInput
-                    maxLength={11}
-                    returnKeyType={'next'}
-                    keyboardType={"numeric"}
-                    clearButtonMode={"while-editing"}
-                    style={styles.loginInput}
-                    placeholder={"Ex: 12345678910"}
-                    value={cpfValue}
-                    onChange={e => {setCpf(e.target.value)}}
-                />
+                
                 <Text style={styles.inputLabel}>Email</Text>
                 <TextInput
                     returnKeyType={'next'}
@@ -118,12 +79,12 @@ export default function Home(){
             </View>
 
             <View style={styles.buttonArea}>
-                <BtnHome nome={'Continuar'} pressFunction={() => navigator.navigate('Home')}/>
+                <BtnHome nome={'Entrar'} pressFunction={() => props.navigation.navigate('Home')}/>
             </View>
 
-            <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>
-            <Text style={styles.hintLink} onPress={() => {}}>Acesse sua conta!</Text>
+            <Text style={styles.hintText}>Se ainda não está cadastrado no Agora:</Text>
+            <Text style={styles.hintLink} onPress={() => props.navigation.navigate('Cadastro')}>Cadastre-se!</Text>
         </View>
-    </View>
+        </View>
     );
 }
