@@ -1,4 +1,5 @@
 const firebase = require('firebase');
+require('firebase/auth')
 
 module.exports = {
 
@@ -7,32 +8,64 @@ module.exports = {
 
         // Pega os dados do corpo da requisição
         const { emailValue, passValue, cpfValue, firstName, lastName } = request.body;
+        const currentUser = await firebase.auth().currentUser;
 
-        try{
+        try {
             firebase.auth().createUserWithEmailAndPassword(emailValue, passValue).then((user) => {
 
-                const currentUser = firebase.auth().currentUser;
+
                 const db = firebase.firestore();
-                
+
                 db.collection("users").doc(currentUser.uid)
                     .set({
-                        email: currentUser.email,
+                        email: emailValue,
                         cpf: cpfValue,
                         firstName: firstName,
                         lastName: lastName,
                     });
-        
+
                 return response.json("Sucesso no cadastro.")
             });
-            
-    
+
+
         } catch (err) {
             const errorObj = {
                 "message": err.message,
                 "code": err.code
             }
-    
+
             return response.json(errorObj)
         }
+    },
+
+    async logar(request, response) {
+
+        const { emailValue, passValue } = request.body;
+
+        try {
+           return firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
+                .then((user) => {
+                    console.log('Logou com succeso')
+                })
+           
+        } catch (err) {
+            console.log('erro no controller, f logar' + err)
+        }
+
+    },
+
+    async observador() {
+        try {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    return 1
+                } else {
+                    return 2
+                }
+            });
+        } catch (error) {
+            console.log("erro com controller")
+        }
     }
+
 }

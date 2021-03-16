@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert,StatusBar } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, Alert,StatusBar, Button } from 'react-native';
 import BtnHome from '../Components/BtnHome';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import styles from '../Cadastro/styles';
 import API from '../../services/api';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function Cadastro(props) {
 
-    
+export default function Login(props) {
 
 
     const [emailValue, setEmail] = useState('');
@@ -19,17 +18,34 @@ export default function Cadastro(props) {
         passValue,
     }
 
+
+   /**
+    *  useEffect(()=>{
+        async function obs(){
+           const res = await API.post('observador')
+           if(res == 1)
+           props.navigation.navigate('Home')
+        }
+        obs()
+    })
+    */
+
+
     async function enviar() {
-
-        console.log(emailValue);
-
+        console.log("ta indo")
+        console.log(passValue)
+        console.log(emailValue)
         try {
-            const response = await API.post('login', data);
+            const response =  API.post('login', data);
             Alert.alert(emailValue, JSON.stringify(response));
+            props.navigation.navigate('Home')
+            console.log("Finalizado")
+             
+
         }
         catch (err) {
             console.log(err)
-            Alert.alert('Erro ao cadastrar caso, tente novamente mais tarde.', err.toString());
+            Alert.alert('Erro ao logar'+ err);
         }
     }
 
@@ -59,7 +75,7 @@ export default function Cadastro(props) {
                     style={styles.loginInput}
                     placeholder={"exemplo@email.com"}
                     value={emailValue}
-                    onChange={e => {setEmail(e.target.value)}}
+                    onChangeText={e => setEmail(e)}
                 />
                 <View style={styles.labelView}>
                     <Text style={styles.inputLabel}>Senha</Text>
@@ -74,12 +90,13 @@ export default function Cadastro(props) {
                     placeholder={"Insira sua senha"}
                     autoCompleteType={'password'}
                     value={passValue}
-                    onChange={e => {setPass(e.target.value)}}
+                    onChangeText={e => setPass(e)}
                 />
             </View>
 
             <View style={styles.buttonArea}>
-                <BtnHome nome={'Entrar'} pressFunction={() => props.navigation.navigate('Home')}/>
+                <BtnHome nome={'Entrar'}  pressFunction={()=>enviar()}/>
+                <Button title='entrar2' onPress={()=>enviar()} />
             </View>
 
             <Text style={styles.hintText}>Se ainda não está cadastrado no Agora:</Text>

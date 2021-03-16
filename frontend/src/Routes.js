@@ -29,7 +29,7 @@ export default function Routes({route}){
                     gestureDirection: 'horizontal',
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS 
                 }}    
-                initialRouteName='Map'
+                initialRouteName='Login'
             >
                 
                 <AppStack.Screen name='Login' component={Login}/>
@@ -44,6 +44,8 @@ export default function Routes({route}){
                 <AppStack.Screen name='SettingScreen' component={SettingScreen}/>
                 <AppStack.Screen name='Consultas Marcadas' component={ConsultasMarcadas} />
                 <AppStack.Screen name='InfoSobreNovaConsulta' component={InfoSobreNovaConsulta} />
+
+                
             </AppStack.Navigator>
         </NavigationContainer>
     );
