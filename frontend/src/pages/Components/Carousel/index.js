@@ -25,7 +25,7 @@ export default function Caroussel(props){
                     <MaterialCommunityIcons name="pill" size={24} color={'#888'}/>
                 </View>
                 <View style={styles.itemText}>
-                    <Text style={styles.itemTitle}>{item.label}</Text>
+                    <Text numberOfLines={1} style={styles.itemTitle}>{item.label}</Text>
                     <Text style={styles.itemQtd}>{item.qtd}</Text>
                 </View>
             </TouchableOpacity>

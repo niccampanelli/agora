@@ -1,78 +1,16 @@
-/**
- * <<<<<<< HEAD
-import { StyleSheet } from "react-native";
-
-import {layer0Color,mainTextColor,mainAppColor} from '../../gstyles'
-
-
-const styles = StyleSheet.create({
-
-    container: {
-        height: '100%',
-      backgroundColor: layer0Color,
-
-        paddingTop: 10,
-
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-
-    title:{
-        fontSize: 25,
-        fontWeight: 'bold',
-
-     color: mainTextColor,
-
-        marginBottom:'10%'
-    },
-
-    btnEntrar:{
-        width:'60%',
-
-        justifyContent:'center',
-        alignItems:'center',
-
-        borderWidth:1,
-        borderRadius:5,
-
-        marginTop:"5%"
-    },
-
-    cadOuEntrar:{
-        marginTop:'20%',
-
-        color:mainAppColor
-    },
-
-
-    input:{
-        paddingLeft:"10%",
-        marginBottom:'5%',
-
-        borderRadius:5,
-        borderWidth:1,
-        
-        width:"70%",
-        
-        
-    }
-})
-
-export default styles
-=======
- */
 import { StyleSheet } from 'react-native';
 import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
 
     loginCard: {
+        position: 'relative',
+        height: '100%',
         margin: 30
     },
 
     loginHeader: {
-        marginBottom: 30
+        height: '28%',
     },
 
     loginTitle: {
@@ -81,12 +19,13 @@ export default StyleSheet.create({
     },
 
     loginSubtitle: {
+        marginTop: 10,
         fontSize: 16,
         color: lightTextColor
     },
 
     inputsArea: {
-        marginBottom: 20
+        height: '25%'
     },
 
     labelView: {
@@ -117,7 +56,15 @@ export default StyleSheet.create({
         fontSize: 16
     },
 
+    sendArea: {
+        paddingTop: 20,
+        width: '100%',
+        height: '25%'
+    },
+    
     buttonArea: {
+        width: '100%',
+        height: 50,
         marginBottom: 20
     },
 
@@ -128,7 +75,7 @@ export default StyleSheet.create({
 
     hintLink: {
         color: '#000',
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold'
     },
 

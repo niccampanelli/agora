@@ -10,7 +10,6 @@ import Profile from './pages/Profile';
 import Receitas from './pages/Receitas';
 import DetalheReceitas from './pages/Receitas/DetalheReceitas';
 import SettingScreen from './pages/Profile/SettingScreen';
-import Consultas from './pages/Consultas';
 import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
 import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
 
@@ -29,14 +28,13 @@ export default function Routes({route}){
                     gestureDirection: 'horizontal',
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS 
                 }}    
-                initialRouteName='Map'
+                initialRouteName='Login'
             >
                 <AppStack.Screen name='Map' component={Map}/>
                 <AppStack.Screen name='Login' component={Login}/>
                 <AppStack.Screen name='Cadastro' component={Cadastro}/>
                 <AppStack.Screen name='Landing' component={Landing}/>
                 <AppStack.Screen name='Home' component={Home}/>
-                <AppStack.Screen name='Consultas' component={Consultas}/>
                 <AppStack.Screen name='Receitas' component={Receitas}/>
                 <AppStack.Screen name='DetalheReceitas' component={DetalheReceitas}/>
                 <AppStack.Screen name='Profile' component={Profile}/>

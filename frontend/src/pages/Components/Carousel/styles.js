@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
     },
 
     itemTitle: {
+        width: '100%',
         fontSize: 24,
         fontWeight: 'bold',
         color: mainTextColor

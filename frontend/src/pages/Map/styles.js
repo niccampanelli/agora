@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-
+import Constants from 'expo-constants';
 import {layer0Color,mainTextColor,mainAppColor} from '../../gstyles'
 
 
@@ -18,9 +18,14 @@ const styles = StyleSheet.create({
 
     mapOverlay: {
         position: 'absolute',
+        paddingTop: Constants.statusBarHeight + 20,
+        paddingHorizontal: 10,
         width: '100%',
         height: '100%',
     },
+
+    backButton: {
+    }
 
 })
 

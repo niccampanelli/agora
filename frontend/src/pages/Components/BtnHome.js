@@ -1,4 +1,5 @@
 import React from 'react';
+import { Feather } from '@expo/vector-icons';
 import { View, TouchableOpacity, Text } from 'react-native';
 import gstyles from '../../gstyles';
 

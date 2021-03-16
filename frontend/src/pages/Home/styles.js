@@ -37,7 +37,7 @@ export default StyleSheet.create({
     topButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         marginBottom: 10,
         height: 50
     },
@@ -45,7 +45,7 @@ export default StyleSheet.create({
     topButtons2: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         marginBottom: 30,
         height: 50
     },
@@ -76,7 +76,7 @@ export default StyleSheet.create({
 	        height: 1,
         },
         paddingHorizontal: 20,
-        marginHorizontal: 10,
+        marginHorizontal: 20,
         paddingTop: 20,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -127,8 +127,7 @@ export default StyleSheet.create({
         height: 70,
         position: 'absolute',
         zIndex: 100,
-        paddingHorizontal: 10,
-        bottom:  20
+        bottom: 0
     },
 
 });

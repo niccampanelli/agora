@@ -24,15 +24,14 @@ export default function Home(){
             </TouchableOpacity>
         </View>
             <View style={styles.marcarBtn}>
-                <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Consultas', {modalOpen: true})}/>
+                <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', {modalOpen: true})}/>
             </View>
         <ScrollView
             showsVerticalScrollIndicator={false}
             pagingEnabled
         >
             <View style={styles.topButtons}>
-                <BtnHome nome={'Hospitais'}/>
-                <BtnHome nome={'Postos'}/>
+                <BtnHome nome={'Unidades de Saúde'}/>
             </View>
             <View style={styles.topButtons2}>
                 <BtnHome nome={'Vacinas'}/>
@@ -84,10 +83,10 @@ export default function Home(){
                             </View>
                             <View style={gstyles.listButtonTxt}>
                                 <View style={gstyles.listButtonExtra}>
-                                    <Text style={gstyles.listButtonTitle}>{consulta.especialidade}</Text>
+                                    <Text numberOfLines={1} style={gstyles.listButtonTitle}>{consulta.especialidade}</Text>
                                     <Text style={gstyles.listButtonDesc}>{consulta.date}</Text>
                                 </View>
-                                <Text style={gstyles.listButtonDesc}>{consulta.nomeMedico}</Text>
+                                <Text numberOfLines={1} style={gstyles.listButtonDesc}>{consulta.nomeMedico}</Text>
                             </View>
                         </TouchableOpacity>
                     ))}

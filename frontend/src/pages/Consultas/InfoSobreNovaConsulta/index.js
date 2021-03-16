@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import { Text, View, Image, Picker, Alert } from 'react-native'
-import img from '../../../assets/ubs-unidade-basica-de-saude-logo-5FA6837F13-seeklogo.com.png';
+import { Text, View, Image, Alert } from 'react-native';
+import img from '../../../assets/ubslogo.png';
 import styles from "./styles";
 import { Feather } from '@expo/vector-icons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';

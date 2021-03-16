@@ -1,58 +1,84 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
 
-import {layer0Color,mainTextColor,mainAppColor} from '../../gstyles'
+export default StyleSheet.create({
 
-
-const styles = StyleSheet.create({
-
-    container: {
+    loginCard: {
+        position: 'relative',
         height: '100%',
-      backgroundColor: layer0Color,
-
-        paddingTop: 10,
-
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+        margin: 30
     },
 
-    title:{
-        fontSize: 25,
+    loginHeader: {
+        height: '28%',
+    },
+
+    loginTitle: {
+        fontSize: 32,
+        fontWeight: 'bold'
+    },
+
+    loginSubtitle: {
+        marginTop: 10,
+        fontSize: 16,
+        color: lightTextColor
+    },
+
+    inputsArea: {
+        paddingTop: '10%',
+        height: '50%',
+    },
+
+    labelView: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5
+    },
+
+    inputLabel: {
         fontWeight: 'bold',
-
-     color: mainTextColor,
-
-        marginBottom:'10%'
+        fontSize: 16,
     },
 
-    btnEntrar:{
-        width:'60%',
-
-        justifyContent:'center',
-        alignItems:'center',
-
-        borderWidth:1,
-        borderRadius:5,
-
-        marginTop:"5%"
+    labelHint: {
+        color: lightTextColor,
+        fontSize: 14
     },
 
-    cadOuEntrar:{
-        marginTop:'20%',
+    loginInput: {
+        height: 40,
+        borderColor: '#ddd',
+        backgroundColor: '#fff',
+        paddingHorizontal: 15,
+        borderWidth: 1,
+        borderRadius: 5,
+        marginBottom: 15,
+        fontSize: 16
+    },
+
+    sendArea: {
+        width: '100%',
+        height: '20%'
+    },
+    
+    buttonArea: {
+        width: '100%',
+        height: 50,
+        marginBottom: 20
+    },
+
+    hintText: {
+        fontSize: 16,
+        color: lightTextColor
+    },
+
+    hintLink: {
+        color: '#000',
+        fontSize: 16,
+        fontWeight: 'bold'
     },
 
 
-    input:{
-        paddingLeft:"10%",
-        marginBottom:'5%',
+});
 
-        borderRadius:5,
-        borderWidth:1,
-        
-        width:"70%",
-        
-        
-    }
-})
-
-export default styles

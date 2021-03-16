@@ -10,7 +10,7 @@ const gstyles = StyleSheet.create({
     container: {
         height: '100%',
         backgroundColor: layer0Color,
-        paddingTop: 20 + Constants.statusBarHeight
+        paddingTop: Constants.statusBarHeight + 30
     },
 
     header: {
@@ -26,11 +26,14 @@ const gstyles = StyleSheet.create({
 
     button1: {
         width: '100%',
-        height: 50,
+        height: '100%',
     },
 
     button1bt: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: mainAppColor,
         borderRadius: 10
     },
@@ -162,6 +165,7 @@ const gstyles = StyleSheet.create({
     },
 
     listButtonTitle: {
+        width: '70%',
         fontSize: 22,
         color: mainTextColor,
         fontWeight: 'bold'

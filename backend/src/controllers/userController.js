@@ -19,7 +19,6 @@ module.exports = {
                 db.collection("users").doc(currentUser.uid)
                     .set({
                         email: emailValue,
-                        cpf: cpfValue,
                         firstName: firstName,
                         lastName: lastName,
                     });
@@ -43,13 +42,15 @@ module.exports = {
         const { emailValue, passValue } = request.body;
 
         try {
-           return firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
+           firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
                 .then((user) => {
                     console.log('Logou com succeso')
+                    return response.json("Logou");
                 })
            
         } catch (err) {
             console.log('erro no controller, f logar' + err)
+            return response.json(err);
         }
 
     },

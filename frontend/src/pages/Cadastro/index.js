@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, ScrollView, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BtnHome from '../Components/BtnHome';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import styles from './styles';
 import API from '../../services/api';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Cadastro(props) {
 
@@ -13,14 +12,12 @@ export default function Cadastro(props) {
 
     const [emailValue, setEmail] = useState('');
     const [passValue, setPass] = useState('')
-    const [cpfValue, setCpf] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
     const data = {
         emailValue, 
         passValue,
-        cpfValue,
         firstName,
         lastName,
     }
@@ -43,21 +40,17 @@ export default function Cadastro(props) {
 
     return(
     <View style={gstyles.container}>
-        <ScrollView>
         <View style={styles.loginCard}>
             <View style={styles.loginHeader}>
                 <Text style={styles.loginTitle}>Olá!</Text>
                 <Text style={styles.loginTitle}>Cadastre-se no Agora</Text>
                 <Text style={styles.loginSubtitle}>Crie uma conta para poder acessar a plataforma e suas funções!</Text>
             </View>
-            <View style={styles.inputsArea}>
+            <ScrollView style={styles.inputsArea}>
                 <Text style={styles.inputLabel}>Nome</Text>
                 <TextInput
-                    //returnKeyType={'next'}
-                    //keyboardType={"default"}
-                    //clearButtonMode={"while-editing"}
                     autoCorrect={false}
-                   // autoCapitalize={'words'}
+                    autoCapitalize={'words'}
                     autoCompleteType={'name'}
                     style={styles.loginInput}
                     placeholder={"Fulano"}
@@ -77,21 +70,7 @@ export default function Cadastro(props) {
                     value={lastName}
                     onChangeText={e => setLastName(e)}
                 />
-                <View style={styles.labelView}>
-                    <Text style={styles.inputLabel}>CPF</Text>
-                    <Text style={styles.labelHint}> • Insira apenas números</Text>
-                </View>
-                <TextInput
-                    maxLength={11}
-                    //returnKeyType={'next'}
-                    //keyboardType={"numeric"}
-                    //clearButtonMode={"while-editing"}
-                    style={styles.loginInput}
-                   // placeholder={"Ex: 12345678910"}
-                    value={cpfValue}
-                    onChangeText={e => setCpf(e)}
-                />
-                <Text style={styles.inputLabel}>Email</Text>
+                <Text style={styles.inputLabel}>Endereço de Email</Text>
                 <TextInput
                     //returnKeyType={'next'}
                     //keyboardType={'email-address'}
@@ -110,25 +89,24 @@ export default function Cadastro(props) {
                 </View>
                 <TextInput
                     secureTextEntry
-                    //returnKeyType={'done'}
-                    //keyboardType={'default'}
-                    //clearButtonMode={"while-editing"}
                     style={styles.loginInput}
-                   // placeholder={"Insira sua senha"}
+                    placeholder={"Insira sua senha"}
                     autoCompleteType={'password'}
                     value={passValue}
                     onChangeText={e => setPass(e)}
                 />
-            </View>
+            </ScrollView>
+            <View style={styles.sendArea}>
+                <View style={styles.buttonArea}>
+                    <BtnHome nome={'Continuar'} pressFunction={() => enviar()}/>
+                </View>
 
-            <View style={styles.buttonArea}>
-                <BtnHome nome={'Continuar'} pressFunction={() => enviar()}/>
+                <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>
+                <TouchableOpacity onPress={() => navigator.replace('Login')}>
+                    <Text style={styles.hintLink} >Toque aqui e acesse sua conta!</Text>
+                </TouchableOpacity>
             </View>
-
-            <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>
-            <Text style={styles.hintLink} onPress={() => navigator.replace('Login')} >Acesse sua conta!</Text>
         </View>
-        </ScrollView>
     </View>
     );
 }
