@@ -7,7 +7,7 @@ import styles from './styles';
 import API from '../../services/api';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function Login(props) {
+export default function Cadastro(props) {
 
     const navigator = useNavigation();
 
@@ -31,7 +31,7 @@ export default function Login(props) {
         console.log(emailValue);
 
         try {
-            const response = await API.post('login', data);
+            const response = await API.post('cadastrar', data);
             Alert.alert(emailValue, JSON.stringify(response));
         }
         catch (err) {
@@ -53,29 +53,29 @@ export default function Login(props) {
             <View style={styles.inputsArea}>
                 <Text style={styles.inputLabel}>Nome</Text>
                 <TextInput
-                    returnKeyType={'next'}
-                    keyboardType={"default"}
-                    clearButtonMode={"while-editing"}
+                    //returnKeyType={'next'}
+                    //keyboardType={"default"}
+                    //clearButtonMode={"while-editing"}
                     autoCorrect={false}
-                    autoCapitalize={'words'}
+                   // autoCapitalize={'words'}
                     autoCompleteType={'name'}
                     style={styles.loginInput}
                     placeholder={"Fulano"}
                     value={firstName}
-                    onChange={e => {setFirstName(e.target.value)}}
+                    onChangeText={e => setFirstName(e)}
                 />
                 <Text style={styles.inputLabel}>Sobrenome</Text>
                 <TextInput
-                    returnKeyType={'next'}
-                    keyboardType={"default"}
-                    clearButtonMode={"while-editing"}
+                    //returnKeyType={'next'}
+                    //keyboardType={"default"}
+                    //clearButtonMode={"while-editing"}
                     autoCorrect={false}
-                    autoCapitalize={'words'}
+                   // autoCapitalize={'words'}
                     autoCompleteType={'name'}
                     style={styles.loginInput}
                     placeholder={"da Silva"}
                     value={lastName}
-                    onChange={e => {setLastName(e.target.value)}}
+                    onChangeText={e => setLastName(e)}
                 />
                 <View style={styles.labelView}>
                     <Text style={styles.inputLabel}>CPF</Text>
@@ -83,26 +83,26 @@ export default function Login(props) {
                 </View>
                 <TextInput
                     maxLength={11}
-                    returnKeyType={'next'}
-                    keyboardType={"numeric"}
-                    clearButtonMode={"while-editing"}
+                    //returnKeyType={'next'}
+                    //keyboardType={"numeric"}
+                    //clearButtonMode={"while-editing"}
                     style={styles.loginInput}
-                    placeholder={"Ex: 12345678910"}
+                   // placeholder={"Ex: 12345678910"}
                     value={cpfValue}
-                    onChange={e => {setCpf(e.target.value)}}
+                    onChangeText={e => setCpf(e)}
                 />
                 <Text style={styles.inputLabel}>Email</Text>
                 <TextInput
-                    returnKeyType={'next'}
-                    keyboardType={'email-address'}
-                    clearButtonMode={"while-editing"}
+                    //returnKeyType={'next'}
+                    //keyboardType={'email-address'}
+                    //clearButtonMode={"while-editing"}
                     autoCorrect={false}
-                    autoCapitalize={'none'}
-                    autoCompleteType={'email'}
+                   // autoCapitalize={'none'}
+                  //  autoCompleteType={'email'}
                     style={styles.loginInput}
                     placeholder={"exemplo@email.com"}
                     value={emailValue}
-                    onChange={e => {setEmail(e.target.value)}}
+                    onChangeText={e => setEmail(e)}
                 />
                 <View style={styles.labelView}>
                     <Text style={styles.inputLabel}>Senha</Text>
@@ -110,19 +110,19 @@ export default function Login(props) {
                 </View>
                 <TextInput
                     secureTextEntry
-                    returnKeyType={'done'}
-                    keyboardType={'default'}
-                    clearButtonMode={"while-editing"}
+                    //returnKeyType={'done'}
+                    //keyboardType={'default'}
+                    //clearButtonMode={"while-editing"}
                     style={styles.loginInput}
-                    placeholder={"Insira sua senha"}
+                   // placeholder={"Insira sua senha"}
                     autoCompleteType={'password'}
                     value={passValue}
-                    onChange={e => {setPass(e.target.value)}}
+                    onChangeText={e => setPass(e)}
                 />
             </View>
 
             <View style={styles.buttonArea}>
-                <BtnHome nome={'Continuar'} pressFunction={() => navigator.navigate('Home')}/>
+                <BtnHome nome={'Continuar'} pressFunction={() => enviar()}/>
             </View>
 
             <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>
