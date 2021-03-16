@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Feather } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 import { View, Text, TouchableOpacity, ScrollView , StatusBar, Alert} from 'react-native';
@@ -60,6 +61,11 @@ export default function Map(){
             originWhitelist={'*'} 
             source={{ html:  html }}
         />
+        <View style={styles.mapOverlay}>
+            <View style={styles.backButton}>
+                <Feather style={styles.backButtonIcon} name="chevron-left"/>
+            </View>
+        </View>
     </View>
     );
 }

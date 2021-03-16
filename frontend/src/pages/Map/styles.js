@@ -14,7 +14,13 @@ const styles = StyleSheet.create({
 
     webView: {
         padding: 0
-    }
+    },
+
+    mapOverlay: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+    },
 
 })
 
