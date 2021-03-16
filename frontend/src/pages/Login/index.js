@@ -19,7 +19,11 @@ export default function Login(props) {
         try {
             const response = await API.post('login', data);
             Alert.alert("Mandou pro Backend", JSON.stringify(response.data));
-            props.navigation.navigate('Home')
+            
+            if(response.data.code === "200"){
+                props.navigation.navigate('Home');
+            };
+
             console.log("Finalizado")
         }
         catch (err) {

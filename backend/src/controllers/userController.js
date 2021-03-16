@@ -8,12 +8,10 @@ module.exports = {
 
         // Pega os dados do corpo da requisição
         const { emailValue, passValue, cpfValue, firstName, lastName } = request.body;
-        const currentUser = await firebase.auth().currentUser;
 
-        try {
-            firebase.auth().createUserWithEmailAndPassword(emailValue, passValue).then((user) => {
+        firebase.auth().createUserWithEmailAndPassword(emailValue, passValue).then(() => {
 
-
+                const currentUser = firebase.auth().currentUser;
                 const db = firebase.firestore();
 
                 db.collection("users").doc(currentUser.uid)
@@ -23,36 +21,24 @@ module.exports = {
                         lastName: lastName,
                     });
 
-                return response.json("Sucesso no cadastro.")
+                return response.json({"message": "Sucesso no cadastro.", "code": "200"});
+
+            }).catch((e) => {
+                return response.json({"message": `Erro no cadastro: ${e}`, "code": "400"});
             });
-
-
-        } catch (err) {
-            const errorObj = {
-                "message": err.message,
-                "code": err.code
-            }
-
-            return response.json(errorObj)
-        }
     },
 
     async logar(request, response) {
 
         const { emailValue, passValue } = request.body;
 
-        try {
-           firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
-                .then((user) => {
-                    console.log('Logou com succeso')
-                    return response.json("Logou");
-                })
-           
-        } catch (err) {
-            console.log('erro no controller, f logar' + err)
-            return response.json(err);
-        }
-
+        firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
+            .then(() => {
+                return response.json({"message": "Sucesso no login.", "code": "200"});
+                
+            }).catch((e) => {
+                return response.json({"message": `Erro no login: ${e}`, "code": "400"});
+            });
     },
 
     async observador() {
