@@ -11,6 +11,14 @@ ___
 
 O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames.
 
+## Telas do App
+<div width="100%">
+<img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/Screenshot_20210317-054514.png" width="24.5%"/>
+<img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/Screenshot_20210317-054524.png" width="24.5%"/>
+<img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/Screenshot_20210317-054552.png" width="24.5%"/>
+<img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/Screenshot_20210317-054643.png" width="24.5%"/>
+</div>
+
 ## Primeiros Passos
 
 Primeiros passos para a instalação e utilização do AGORA.
