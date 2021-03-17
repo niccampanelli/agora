@@ -1,4 +1,5 @@
 # AGORA - Aplicativo de Gerenciamento e Organização do Atendimento.
+Feito por Nicholas Campanelli de Souza, Rafael da Silva Rodrigues.
 
 ## Introdução
 
