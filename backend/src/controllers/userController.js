@@ -11,21 +11,21 @@ module.exports = {
 
         firebase.auth().createUserWithEmailAndPassword(emailValue, passValue).then(() => {
 
-                const currentUser = firebase.auth().currentUser;
-                const db = firebase.firestore();
+            const currentUser = firebase.auth().currentUser;
+            const db = firebase.firestore();
 
-                db.collection("users").doc(currentUser.uid)
-                    .set({
-                        email: emailValue,
-                        firstName: firstName,
-                        lastName: lastName,
-                    });
+            db.collection("users").doc(currentUser.uid)
+                .set({
+                    email: emailValue,
+                    firstName: firstName,
+                    lastName: lastName,
+                });
 
-                return response.json({"message": "Sucesso no cadastro.", "code": "200"});
+            return response.json({ "message": "Sucesso no cadastro.", "code": "200" });
 
-            }).catch((e) => {
-                return response.json({"message": `Erro no cadastro: ${e}`, "code": "400"});
-            });
+        }).catch((e) => {
+            return response.json({ "message": `Erro no cadastro: ${e}`, "code": "400" });
+        });
     },
 
     async logar(request, response) {
@@ -34,10 +34,10 @@ module.exports = {
 
         firebase.auth().signInWithEmailAndPassword(emailValue, passValue)
             .then(() => {
-                return response.json({"message": "Sucesso no login.", "code": "200"});
-                
+                return response.json({ "message": "Sucesso no login.", "code": "200" });
+
             }).catch((e) => {
-                return response.json({"message": `Erro no login: ${e}`, "code": "400"});
+                return response.json({ "message": `Erro no login: ${e}`, "code": "400" });
             });
     },
 
@@ -53,6 +53,20 @@ module.exports = {
         } catch (error) {
             console.log("erro com controller")
         }
-    }
+    },
 
+    async pegarDadosUser() {
+        try {
+            const user = await firebase.auth().currentUser
+            const dbFirestore = await firebase.firestore()
+
+            const docRef = db.collection('users').doc(user.uid);
+            let userInfo = await docRef.get()
+            console.log("Deu retorno nos dados do user", userInfo.data())
+            return userInfo.data()
+        } catch (error) {
+            console.log("Erro" + error)
+        }
+    }
 }
+

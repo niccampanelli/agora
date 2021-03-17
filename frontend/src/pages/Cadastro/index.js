@@ -30,6 +30,7 @@ export default function Cadastro(props) {
         try {
             const response = await API.post('cadastrar', data);
             Alert.alert(emailValue, JSON.stringify(response));
+            props.navigation.navigate('Home')
         }
         catch (err) {
             console.log(err)
