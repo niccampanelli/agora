@@ -1,3 +1,5 @@
+<img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/agora_extended_logo.png" width="100%" align="center" />
+
 # AGORA - Aplicativo de Gerenciamento e Organização do Atendimento.
 Feito por Nicholas Campanelli de Souza, Rafael da Silva Rodrigues.
 
