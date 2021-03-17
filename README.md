@@ -3,6 +3,10 @@
 # AGORA - Aplicativo de Gerenciamento e Organização do Atendimento.
 Feito por Nicholas Campanelli de Souza, Rafael da Silva Rodrigues.
 
+___
+
+[![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
+
 ## Introdução
 
 O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames.
@@ -15,7 +19,7 @@ Primeiros passos para a instalação e utilização do AGORA.
 
 É necessário para utilizar o AGORA:
 
-- A ultima versão do NPM instalado em sua máquina.
+- A ultima versão do NPM instalado em sua máquina. 
 - A ultima versão do Expo instalado em sua máquina.
 - Um celular com Android ou IOS.
 - O aplicativo Expo Go instalado em seu celular.
