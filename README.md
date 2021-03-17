@@ -4,7 +4,7 @@
 
 O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames.
 
-##Primeiros Passos
+## Primeiros Passos
 
 Primeiros passos para a instalação e utilização do AGORA.
 
