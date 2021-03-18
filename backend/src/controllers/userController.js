@@ -41,41 +41,29 @@ module.exports = {
             });
     },
 
-    async observador(request,response) {
-
-        const isActive = {"code":"200"}
-
+    async observador() {
         try {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    console.log('esta logado')
-                    isActive = {...isActive,user}
+                    return 1
                 } else {
-                    console.log('nao esta logado')
+                    return 2
                 }
-              
             });
-            console.log(isActive)
-            return isActive
         } catch (error) {
-            console.log("erro com controller de observação")
+            console.log("erro com controller")
         }
     },
 
-    async pegarDadosUser(request, response) {
-
-        const { currentUser } = request;
-        const dbFirestore = firebase.firestore()
-
+    async pegarDadosUser() {
         try {
-            console.log('user')
+            const user = await firebase.auth().currentUser
+            const dbFirestore = await firebase.firestore()
 
-            const docRef = dbFirestore.collection('users').doc(currentUser);
-            let userInfo = await docRef.get();
-            
-            console.log("Deu retorno nos dados do user", userInfo.data());
-            return response.json(userInfo);
-
+            const docRef = db.collection('users').doc(user.uid);
+            let userInfo = await docRef.get()
+            console.log("Deu retorno nos dados do user", userInfo.data())
+            return userInfo.data()
         } catch (error) {
             console.log("Erro" + error)
         }
