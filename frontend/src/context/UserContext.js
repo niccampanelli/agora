@@ -2,22 +2,32 @@ import React, { createContext, useEffect, useReducer, useState } from 'react'
 import API from '../services/api'
 
 const ContextUser = createContext({})
-const initialState = API.get('pegarInfo') 
 
-export const ContextUserProvider = props => {
 
-  //  async function pegarDados(){
-  //      const userInfo = await pegarDadosUser()
-   //     const initialState = userInfo
-   //     return initialState
-  //  }
+export const ContextUserProvider =  props => {
 
-    function reducer(state,action){
+   // const initialState = await API.post('pegarInfo')
+   const initialState = {}
+
+   async function pega(){
+    const info = await API.post('pegarInfo')
+    console.log("Context"+info)
+   }
+   async function obse(){
+      const isActive = await API.post('observador')
+      console.warn(isActive)
+   }
+   useEffect(()=>{
+      obse()
+       //pega()
+   },[])
+
+    function reducer(state, action) {
         const funcao = actions[action.type]
-        return funcao ? funcao(state,action) : state
+        return funcao ? funcao(state, action) : state
     }
 
-    const [state,dispatch] = useReducer(reducer,initialState)
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
         <ContextUser.Provider value={{ state, dispatch }}>

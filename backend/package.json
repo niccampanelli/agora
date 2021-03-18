@@ -4,7 +4,7 @@
   "description": "aplicativo de gerenciamento e organizacao do atendimento",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
