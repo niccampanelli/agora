@@ -62,19 +62,20 @@ module.exports = {
         }
     },
 
-    async pegarDadosUser() {
+    async pegarDadosUser(request, response) {
 
-        const currentUser = await firebase.auth().currentUser;
-            const dbFirestore = firebase.firestore()
+        const { currentUser } = request;
+        const dbFirestore = firebase.firestore()
 
         try {
-            
             console.log('user')
 
-            const docRef = dbFirestore.collection('users').doc(currentUser.uid)
-            let userInfo = await docRef.get()
-            console.log("Deu retorno nos dados do user", userInfo.data())
-            return ;
+            const docRef = dbFirestore.collection('users').doc(currentUser);
+            let userInfo = await docRef.get();
+            
+            console.log("Deu retorno nos dados do user", userInfo.data());
+            return response.json(userInfo);
+
         } catch (error) {
             console.log("Erro" + error)
         }
