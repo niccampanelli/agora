@@ -21,10 +21,10 @@ export default function Login(props) {
             Alert.alert("Mandou pro Backend", JSON.stringify(response.data));
             
             if(response.data.code === "200"){
-                props.navigation.navigate('Home');
+            return  props.navigation.navigate('Home');
             };
 
-            console.log("Finalizado")
+            
         }
         catch (err) {
             console.log(err)

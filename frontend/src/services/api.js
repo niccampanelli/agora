@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    //endereço ip 
+    //endereço ip
     baseURL: 'https://agorabackend.herokuapp.com/'
 });
 
