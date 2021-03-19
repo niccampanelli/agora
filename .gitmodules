@@ -1,3 +1,6 @@
 [submodule "agorabackend"]
 	path = agorabackend
 	url = https://github.com/niccampanelli/agorabackend.git
+[submodule "agoraweb"]
+	path = agoraweb
+	url = https://github.com/niccampanelli/agoraweb.git
