@@ -12,13 +12,19 @@ import DetalheReceitas from './pages/Receitas/DetalheReceitas';
 import SettingScreen from './pages/Profile/SettingScreen';
 import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.js'
 import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
-
+import firebaseConfig from './middleware/firebaseConfig';
+import * as firebase from 'firebase';
 
 //
 
 const AppStack = createStackNavigator();
 
 export default function Routes({ route }) {
+
+    if (!firebase.apps.length) {
+        console.log('Conectado com firebase!')
+        firebase.initializeApp(firebaseConfig);
+    }
 
     return (
       

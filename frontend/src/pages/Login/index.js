@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
 import BtnHome from '../Components/BtnHome';
 import gstyles from '../../gstyles';
 import styles from './styles';
 import API from '../../services/api';
+import { logar } from '../../middleware/userController';
+
+import { observador } from '../../middleware/userController'
 
 export default function Login(props) {
 
@@ -15,22 +18,9 @@ export default function Login(props) {
         passValue,
     }
 
-    async function enviar() {
-        try {
-            const response = await API.post('login', data);
-            Alert.alert("Mandou pro Backend", JSON.stringify(response.data));
-            
-            if(response.data.code === "200"){
-            return  props.navigation.navigate('Home');
-            };
-
-            
-        }
-        catch (err) {
-            console.log(err)
-            Alert.alert('Erro ao logar'+ err);
-        }
-    }
+    useEffect(()=>{
+        observador(props)
+    },[])
 
     return (
         <View style={gstyles.container}>           
@@ -72,7 +62,7 @@ export default function Login(props) {
             </View>
 
             <View style={styles.buttonArea}>
-                <BtnHome nome={'Entrar'}  pressFunction={()=>enviar()}/>
+                <BtnHome nome={'Entrar'}  pressFunction={()=>logar(emailValue,passValue).then(props.navigation.navigate('Home'))}/>
             </View>
 
             <Text style={styles.hintText}>Se ainda não está cadastrado no Agora:</Text>
