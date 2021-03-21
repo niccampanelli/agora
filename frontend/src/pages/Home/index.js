@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
@@ -7,16 +7,19 @@ import BtnHome from '../Components/BtnHome';
 import Carousel from '../Components/Carousel';
 import consultasRaw from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
+import ContextUser from '../../context/UserContext';
 
 export default function Home(){
 
+
+    const { state } = useContext(ContextUser)
     const navigation = useNavigation();
     const consultas = consultasRaw.slice(0, 5);
 
     return(
     <View style={gstyles.container}>
         <View style={styles.header}>
-            <Text style={styles.headerText}>Olá, Rafael!</Text>
+            <Text style={styles.headerText}>Olá, {state.firstName}!</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
                 <View>
                     <Feather color={mainTextColor} size={26} name='user'/>

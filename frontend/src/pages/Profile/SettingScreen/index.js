@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Modal } from 'react-native';
 import styles from './styles';
@@ -6,8 +6,11 @@ import gstyles, { mainAppColor, mainTextColor, lightTextColor, layer0Color } fro
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ConfigButton from '../../Components/ConfigButton';
 import ConfigTextButton from '../../Components/ConfigTextButton';
+import ContextUser from '../../../context/UserContext';
 
 export default function Home(){
+
+    const { state } = useContext(ContextUser)
 
     const [isEditingInfo, setInfoEditing] = useState(false);
 
@@ -35,9 +38,9 @@ export default function Home(){
 
     const Conta = () => (
         <ScrollView style={styles.subContainer}>
-            <ConfigTextButton iconName={'user'} name={'Nome'} desc={'Nicholas Campanelli de Souza'} destination={'SettingScreen'} args={''}/>
-            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={'268.457.984-45'} destination={'SettingScreen'} args={''}/>
-            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={'nicholascampanelli@outlook.com'} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'user'} name={'Nome'} desc={state.firstName} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={state.cpf} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={state.email} destination={'SettingScreen'} args={''}/>
             <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={'SettingScreen'} args={''}/>
             <TouchableOpacity style={styles.listButtonRed} onPress={() => {setModalVisible(true); setModalPage('delete')}}>
                 <View style={styles.listButtonIconRed}>

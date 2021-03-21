@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
+import { pegarDadosUser } from '../middleware/userController'
 
 
 
@@ -6,7 +7,6 @@ const ContextUser = createContext({})
 
 
 export const ContextUserProvider =  props => {
-    console.log(props)
 
    // const initialState = await API.post('pegarInfo')
    const initialState = {}
@@ -15,12 +15,23 @@ export const ContextUserProvider =  props => {
         const funcao = actions[action.type]
         return funcao ? funcao(state, action) : state
     }
+
+    const [state, setUserInfo] = useState({})
+
+    useEffect(() => {
+        async function pegar(){
+            const user = await pegarDadosUser()
+            setUserInfo(user)
+        }
+        setTimeout(() => {
+            pegar()
+        },1000);
+    },[])
+
     
 
-    const [state, dispatch] = useReducer(reducer, initialState)
-
     return (
-        <ContextUser.Provider value={{ state, dispatch }}>
+        <ContextUser.Provider value={{ state }}>
             {props.children}
         </ContextUser.Provider>
     )
