@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { pegarDadosUser } from '../middleware/userController'
 
 
@@ -18,20 +18,8 @@ export const ContextUserProvider =  props => {
 
     const [state, setUserInfo] = useState({})
 
-    useEffect(() => {
-        async function pegar(){
-            const user = await pegarDadosUser()
-            setUserInfo(user)
-        }
-        setTimeout(() => {
-            pegar()
-        },1000);
-    },[])
-
-    
-
     return (
-        <ContextUser.Provider value={{ state }}>
+        <ContextUser.Provider value={{ state,setUserInfo }}>
             {props.children}
         </ContextUser.Provider>
     )
