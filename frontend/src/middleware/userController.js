@@ -1,35 +1,37 @@
-const firebase = require("firebase")
+const firebase = require("firebase");
+const { Alert } = require("react-native");
 require("firebase/auth")
 
+
+
+
+
 module.exports = {
-
+    
     // Função de cadastro de usuário
-    async cadastrar(email, password, cpf, firstName, lastName) {
+    async cadastrar(email, password, CPF, firstName, lastName) {
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-
-            const currentUser = firebase.auth().currentUser;
-            const db = firebase.firestore();
-
+      await  firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+            const currentUser =  firebase.auth().currentUser
+            const db = firebase.firestore()
             db.collection("users").doc(currentUser.uid)
                 .set({
                     email: email,
-                    CPF: cpf,
+                    CPF: CPF,
                     firstName: firstName,
                     lastName: lastName,
                 });
-
-            return response.json({ "message": "Sucesso no cadastro.", "code": "200" });
+                return;
 
         }).catch((e) => {
-            return response.json({ "message": `Erro no cadastro: ${e}`, "code": "400" });
+            return alert('Erro com cadastro!:'+e)
         });
     },
 
     async logar(email, password) {
 
         try {
-            await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .then(() => {
                     return firebase.auth().signInWithEmailAndPassword(email, password);
                 })
@@ -38,18 +40,15 @@ module.exports = {
                     var errorMessage = error.message;
                     console.log(errorMessage)
                 })
-            let user = firebase.auth().currentUser
-            console.log("Conectado como :" + user.uid)
-            return user
         } catch (error) {
-
+            Alert.alert('Não foi possivel fazer login!','Voltando a tela de login!')
         }
     },
 
     async logOut(props) {
     try {
         await firebase.auth().signOut()
-        console.log('Deslogado!')
+        Alert.alert("Deslogado",'Use Sempre e recomende o AGORA para outras pessoas!')
     } catch (err) {
         Alert.alert('Ocorreu um erro com: ', err.message);
     }
@@ -59,25 +58,24 @@ async observador(props) {
     try {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                console.log('esta logado ' + user.uid)
+                console.log(user.firstName)
                 props.navigation.navigate('Home')
             } else {
-                console.log('Não esta logado, voltando ao login')
+                Alert.alert("Deslogado",'Voltando a tela de login!')
+                props.navigation.navigate("Cadastro")
             }
         });
     } catch (error) {
-        console.log("erro com controller" + error)
+        console.log("erro com Observador" + error)
     }
 },
 
 async pegarDadosUser() {
     try {
-        const user = await firebase.auth().currentUser
-        const db = await firebase.firestore()
-
-        const docRef = db.collection('users').doc(user.uid);
+        const db =  firebase.firestore()
+        const currentUser =  firebase.auth().currentUser
+        const docRef = db.collection('users').doc(currentUser.uid);
         let userInfo = await docRef.get()
-        console.log("Deu retorno", userInfo.data())
         return userInfo.data()
     } catch (error) {
         console.log("Erro" + error)

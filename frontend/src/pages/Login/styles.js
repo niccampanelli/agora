@@ -1,8 +1,12 @@
 import { StyleSheet } from 'react-native';
 import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
-
+import Constants from 'expo-constants';
 export default StyleSheet.create({
 
+    container:{
+        flex:1,
+        backgroundColor: layer0Color,
+    },
     loginCard: {
         position: 'relative',
         height: '100%',
@@ -26,7 +30,7 @@ export default StyleSheet.create({
 
     inputsArea: {
         paddingTop: '10%',
-        height: '50%',
+        height: '40%',
     },
 
     labelView: {
@@ -65,7 +69,7 @@ export default StyleSheet.create({
     buttonArea: {
         width: '100%',
         height: 50,
-        marginBottom: 20
+        marginBottom: 40
     },
 
     hintText: {

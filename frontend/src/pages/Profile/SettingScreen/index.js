@@ -39,7 +39,7 @@ export default function Home(){
     const Conta = () => (
         <ScrollView style={styles.subContainer}>
             <ConfigTextButton iconName={'user'} name={'Nome'} desc={state.firstName} destination={'SettingScreen'} args={''}/>
-            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={state.cpf} destination={'SettingScreen'} args={''}/>
+            <ConfigTextButton iconName={'credit-card'} name={'CPF'} desc={state.CPF} destination={'SettingScreen'} args={''}/>
             <ConfigTextButton iconName={'mail'} name={'Endereço de Email'} desc={state.email} destination={'SettingScreen'} args={''}/>
             <ConfigTextButton iconName={'key'} name={'Senha'} desc={'************'} destination={'SettingScreen'} args={''}/>
             <TouchableOpacity style={styles.listButtonRed} onPress={() => {setModalVisible(true); setModalPage('delete')}}>

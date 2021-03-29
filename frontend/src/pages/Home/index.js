@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView , StatusBar} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
@@ -8,13 +8,18 @@ import Carousel from '../Components/Carousel';
 import consultasRaw from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
 import ContextUser from '../../context/UserContext';
+import { pegarDadosUser } from '../../middleware/userController';
 
 export default function Home(){
 
 
-    const { state } = useContext(ContextUser)
+    const { state,setUserInfo } = useContext(ContextUser)
     const navigation = useNavigation();
     const consultas = consultasRaw.slice(0, 5);
+
+    useEffect(() => {
+        pegarDadosUser().then(user =>setUserInfo(user))
+    },[])
 
     return(
     <View style={gstyles.container}>

@@ -36,7 +36,7 @@ export default function Routes({ route }) {
                         gestureDirection: 'horizontal',
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                     }}
-                    initialRouteName='Login'
+                    initialRouteName='Cadastro'
                 >
                     <AppStack.Screen name='Login' component={Login} />
                     <AppStack.Screen name='Cadastro' component={Cadastro} />

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Alert, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, TextInput, Alert, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import BtnHome from '../Components/BtnHome';
-import gstyles from '../../gstyles';
+import gstyles, { mainAppColor } from '../../gstyles';
 import styles from './styles';
 import API from '../../services/api';
-import { logar } from '../../middleware/userController';
+import { logar, logOut } from '../../middleware/userController';
 
-import { observador } from '../../middleware/userController'
+import { observador,pegarDadosUser } from '../../middleware/userController'
+import ContextUser from '../../context/UserContext';
 
 export default function Login(props) {
 
+    const { setUserInfo } = useContext(ContextUser)
     const [emailValue, setEmail] = useState('');
     const [passValue, setPass] = useState('')
 
@@ -19,11 +21,15 @@ export default function Login(props) {
     }
 
     useEffect(() => {
-        observador(props)
-    }, [])
+        observador(props) 
+   }, [])
 
     return (
-        <View style={gstyles.container}>
+        <View style={styles.container}>
+            <StatusBar
+            barStyle='dark-content'
+            backgroundColor={mainAppColor}
+            />
             <ScrollView>
                 <View style={styles.loginCard}>
                     <View style={styles.loginHeader}>
@@ -61,17 +67,17 @@ export default function Login(props) {
                             onChangeText={e => setPass(e)}
                         />
                     </View>
-
                     <View style={styles.buttonArea}>
-                        <BtnHome nome={'Entrar'} pressFunction={() => logar(emailValue, passValue).then(props.navigation.navigate('Home'))} />
+                        <BtnHome nome={'Entrar'} pressFunction={() => logar(emailValue, passValue).then(user=>{
+                            pegarDadosUser().then(setUserInfo)
+                            props.navigation.navigate('Home')})} />
                     </View>
-
                     <Text style={styles.hintText}>Se ainda não está cadastrado no Agora:</Text>
                     <TouchableOpacity onPress={() => props.navigation.navigate('Cadastro')}>
                         <Text style={styles.hintLink}>Toque aqui e cadastre-se!</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView>
+                </ScrollView>
         </View>
     );
 }
