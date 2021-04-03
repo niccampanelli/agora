@@ -1,7 +1,7 @@
 <img alt="Logo do Agora" src="https://github.com/niccampanelli/agora/blob/master/assets/agora_extended_logo.png" width="100%" align="center" />
 
-# AGORA - Aplicativo de Gerenciamento e Organização do Atendimento.
-Feito por Nicholas Campanelli de Souza, Rafael da Silva Rodrigues.
+#  AGORA - Aplicativo de Gerenciamento e Organização do Atendimento.
+Feito por [Nicholas Campanelli de Souza](https://github.com/niccampanelli), [Rafael da Silva Rodrigues](https://github.com/rafael2801).
 
 ___
 
@@ -32,9 +32,9 @@ Primeiros passos para a instalação e utilização do AGORA.
 - Um celular com Android ou IOS.
 - O aplicativo Expo Go instalado em seu celular.
 
-### Instalação
+### Instalação do Repositório Clonado
 
-Passo a passo para a instalação do AGORA:
+Se você quiser ver na prática como o AGORA funciona, clone este repositório e instale-o usando o npm de acordo com o passo a passo a seguir:
 
 - Clone este repositório em um diretório em sua máquina.
 ```bash
