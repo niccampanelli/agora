@@ -7,6 +7,9 @@ ___
 
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
 
+#### [💻 Acesse o Dashboard](https://agoraweb.herokuapp.com/)
+#### 📱 Baixe o Aplicativo (Em Breve...)
+
 ## Introdução
 
 O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames.
@@ -25,7 +28,7 @@ Primeiros passos para a instalação e utilização do AGORA.
 
 ### Usar a Versão Final do AGORA
 
-Para tornar o AGORA acessível e disponível para todas as pessoas, foi utilizado o serviço de hospedagem em núvem do Heroku. Lá foi hospedado o Dashboard (o painel de controle) para as unidades de saúde, onde é possível ter acesso total às consultas marcadas, receitas prescritas, médicos cadastrados e outras funcionalidades da plataforma. É por este Dashboard que as unidades irão marcar consultas e controlá-las.
+Para tornar o AGORA acessível e disponível para todas as pessoas, foi utilizado o serviço de hospedagem em núvem do Heroku. Lá foi hospedado o Dashboard (o painel de controle) para as unidades de saúde, onde é possível ter acesso total às consultas marcadas, receitas prescritas, médicos cadastrados e outras funcionalidades da plataforma. É por este Dashboard que as unidades irão marcar consultas e controlá-las. [Acesse o Dashboard aqui](https://agoraweb.herokuapp.com/)
 
 - O primeiro acesso requer a criação de uma conta, portanto será necessário fornecer algumas informações básicas sobre a sua unidade de saúde.
 ![Tela de Cadastro da Unidade](https://user-images.githubusercontent.com/56810073/113474532-e07f6900-9446-11eb-83ee-908abc8fbea8.png)
