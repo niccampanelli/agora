@@ -23,19 +23,28 @@ O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo 
 
 Primeiros passos para a instalação e utilização do AGORA.
 
-### Requisitos
+### Usar a Versão Final do AGORA
 
-É necessário para utilizar o AGORA:
+Para tornar o AGORA acessível e disponível para todas as pessoas, foi utilizado o serviço de hospedagem em núvem do Heroku. Lá foi hospedado o Dashboard (o painel de controle) para as unidades de saúde, onde é possível ter acesso total às consultas marcadas, receitas prescritas, médicos cadastrados e outras funcionalidades da plataforma. É por este Dashboard que as unidades irão marcar consultas e controlá-las.
 
-- A ultima versão do NPM instalado em sua máquina. 
-- A ultima versão do Expo instalado em sua máquina.
-- Um celular com Android ou IOS.
-- O aplicativo Expo Go instalado em seu celular.
+- O primeiro acesso requer a criação de uma conta, portanto será necessário fornecer algumas informações básicas sobre a sua unidade de saúde.
+![Tela de Cadastro da Unidade](https://user-images.githubusercontent.com/56810073/113474532-e07f6900-9446-11eb-83ee-908abc8fbea8.png)
+
+- Se sua unidade já tiver acessado a plataforma antes e já for cadastrada, o acesso neste cadastro é simples, necessitando apenas do endereço de email especificado na hora do cadastro, e da senha.
+![Tela de Login](https://user-images.githubusercontent.com/56810073/113474595-305e3000-9447-11eb-9b0c-887434766fea.png)
 
 ### Instalação do Repositório Clonado
 
 Se você quiser ver na prática como o AGORA funciona, clone este repositório e instale-o usando o npm de acordo com o passo a passo a seguir:
 
+#### Requisitos
+
+É necessário para instalar o repositório do AGORA:
+
+- A ultima versão do NPM instalado em sua máquina. 
+- A ultima versão do Expo instalado em sua máquina.
+- Um celular com Android ou IOS.
+- O aplicativo Expo Go instalado em seu celular.
 - Clone este repositório em um diretório em sua máquina.
 ```bash
 git clone https://github.com/niccampanelli/agora.git
