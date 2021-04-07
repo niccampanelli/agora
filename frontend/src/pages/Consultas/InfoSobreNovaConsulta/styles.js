@@ -5,8 +5,8 @@ import { mainAppColor, mainTextColor } from "../../../gstyles";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height:"100%",
-        margin: "3%",
+        height:'100%',
+        marginHorizontal:'3%',
     },
     containerHosp: {
         height: "20%",
@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     blocoInfo: {
-        flexDirection: 'row',
-        padding: 10,
+        justifyContent:'center',
+        alignItems:'center',
+        padding: 5,
     },
     picker: {
         borderWidth: 1,

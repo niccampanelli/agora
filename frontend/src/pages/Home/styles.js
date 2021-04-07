@@ -53,7 +53,7 @@ export default StyleSheet.create({
     carouselArea: {
         paddingHorizontal: 20,
         height: 120,
-        marginBottom: 120,
+        marginBottom:"25%",
     },
 
     receitasTitle: {
@@ -77,11 +77,12 @@ export default StyleSheet.create({
         },
         paddingHorizontal: 20,
         marginHorizontal: 20,
-        paddingTop: 20,
+        marginTop:'10%',
+        paddingTop: '5%',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         backgroundColor: '#eee',
-        height: 650,
+        height: 450,
     },
 
     listAreaHeader: {
@@ -123,11 +124,13 @@ export default StyleSheet.create({
     },
 
     marcarBtn: {
-        width: '100%',
+        width: '80%',
         height: 70,
         position: 'absolute',
         zIndex: 100,
-        bottom: 0
+        bottom:"5%",
+        start:"10%",
+        end:"10%"
     },
 
 });

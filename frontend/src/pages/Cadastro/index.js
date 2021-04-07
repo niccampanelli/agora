@@ -26,7 +26,7 @@ export default function Cadastro(props) {
     },[])
 
     return (
-        <View style={gstyles.container}>
+        <View style={styles.container}>
             <StatusBar
             barStyle='dark-content'
             backgroundColor={mainAppColor}
