@@ -10,7 +10,7 @@ const gstyles = StyleSheet.create({
     container: {
         height: '100%',
         backgroundColor: layer0Color,
-        paddingTop: Constants.statusBarHeight + 10
+    //    paddingTop: Constants.statusBarHeight + 10
     },
 
     header: {

@@ -4,12 +4,12 @@ import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 import { View, Text, TouchableOpacity, Modal, FlatList, Alert, Image} from 'react-native';
 import img from '../../assets/ubslogo.png';
-import styles from './styles';
+import styles from './styles.js';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/core';
 
 export default function Map(){
-
+ 
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -27,7 +27,7 @@ export default function Map(){
 
     const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})};
     const fecharModal = ({item})=>{
-        navigation.goBack() 
+        setVisivel(!visivel)
        return irParaHosp({item})
    };
 
@@ -112,14 +112,19 @@ export default function Map(){
                 onRequestClose={() => {
                     setVisivel(!visivel)
                   }}
+                  
             >
                 <View HeaderModal style={styles.headerModal}>
-                    <TouchableOpacity style={styles.closeButton} onPress={()=>setVisivel(!visivel)}>
+                    <TouchableOpacity style={styles.closeButton} onPress={()=>{
+                        setVisivel(!visivel) 
+                        navigation.replace("Home")  }}>
                         <Feather color={lightTextColor} size={40} name={"chevron-down"} />
                     </TouchableOpacity>
-                    <Text style={styles.headerModalTitle}>Nova Consulta</Text>
+                    <Text style={styles.headerTexto}>Nova Consulta</Text>
                 </View>
+                <View style={styles.headerModalSubitleView} >
                 <Text style={styles.headerModalSubitle}>Primeiro, escolha abaixo uma unidade de saúde:</Text>
+                </View>
                     <FlatList
                         style={styles.hospList}
                         data={hosp}

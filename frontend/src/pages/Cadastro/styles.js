@@ -3,6 +3,10 @@ import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../..
 
 export default StyleSheet.create({
 
+    container:{
+        flex:1,
+
+    },
     loginCard: {
         position: 'relative',
         height: '100%',
@@ -76,7 +80,8 @@ export default StyleSheet.create({
     hintLink: {
         color: '#000',
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom:'10%'
     },
 
 
