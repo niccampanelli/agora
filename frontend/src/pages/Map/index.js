@@ -7,25 +7,19 @@ import img from '../../assets/ubslogo.png';
 import styles from './styles.js';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/core';
+import { pegarUnidade } from '../../middleware/UnidController';
 
 export default function Map(){
  
     const navigation = useNavigation();
     const route = useRoute();
 
-    const hosp = [
-        { id: 1, nome: "Hospital 1", local: 'Rua do 1, sao paulo' },
-        { id: 2, nome: 'hospital 2', local: 'Rua do 2, sao paulo' },
-        { id: 3, nome: 'hospital 3', local: 'Rua do 3, sao paulo' },
-        { id: 4, nome: 'hospital 4', local: 'Rua do 4, sao paulo' },
-        { id: 5, nome: 'hospital 5', local: 'Rua do 5, sao paulo' },
-
-    ]
+    const [hosp,setHosp] = useState([{name:1,endereco:"aaa"}])
 
     const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
     const [visivel, setVisivel] = useState(modalOpenParam);
 
-    const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{nome:item.nome,local:item.local})};
+    const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{nome:item.name,local:item.endereco})};
     const fecharModal = ({item})=>{
         setVisivel(!visivel)
        return irParaHosp({item})
@@ -76,6 +70,9 @@ export default function Map(){
           setHTML(MapHTML);
         })();
       }, []);
+      useEffect(()=>{
+         pegarUnidade().then(setHosp)
+      },[])
 
       const ListaHosp = ({ item }) => {
         return (
@@ -84,8 +81,8 @@ export default function Map(){
                     <Image style={gstyles.listButtonImgImage} source={img}/>
                 </View>
                 <View style={gstyles.listButtonTxt}>
-                    <Text style={gstyles.listButtonTitle}>{item.nome}</Text>
-                    <Text style={gstyles.listButtonDesc}>{item.local}</Text>
+                    <Text style={gstyles.listButtonTitle}>{item.name ? item.name : "n carrego"}</Text>
+                    <Text style={gstyles.listButtonDesc}>{item.endereco ? item.endereco : "n carrego" }</Text>
                 </View>
                 <View style={styles.buttonEnter}>
                     <Feather size={40} color={lightTextColor} name={'chevron-right'}/>
@@ -128,7 +125,7 @@ export default function Map(){
                     <FlatList
                         style={styles.hospList}
                         data={hosp}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.name.toString()}
                         renderItem={({ item }) => <ListaHosp item={item} />}/>
             </Modal>
         </View>
