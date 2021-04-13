@@ -76,10 +76,23 @@ async pegarDadosUser() {
         const currentUser =  firebase.auth().currentUser
         const docRef = db.collection('users').doc(currentUser.uid);
         let userInfo = await docRef.get()
-        return userInfo.data()
+        return {...userInfo.data(),uid:userInfo.id}
     } catch (error) {
         console.log("Erro" + error)
     }
+},
+async getCons(fieldToGet,op,queryParam){
+    const con = firebase.firestore().collection('consultas');
+
+    const consultas = [] 
+    await con.where(fieldToGet,op,queryParam).get()
+    .then(res => (res.forEach(a => {
+        consultas.push({
+            ...a.data(),
+            uid:a.id
+        })
+    }))).catch(console.log)
+    return consultas
 }
 }
 
