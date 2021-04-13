@@ -5,20 +5,23 @@ import styles from './styles';
 import gstyles, { mainAppColor, mainTextColor, lightTextColor } from '../../gstyles';
 import BtnHome from '../Components/BtnHome';
 import Carousel from '../Components/Carousel';
-import consultasRaw from '../Consultas/Dados'
 import { useNavigation } from '@react-navigation/native';
 import ContextUser from '../../context/UserContext';
-import { getConsWithQuery, pegarDadosUser } from '../../middleware/userController';
-
+import { getCons, pegarDadosUser } from '../../middleware/userController';
 
 export default function Home() {
 
 
-    const { state, setUserInfo, consultas } = useContext(ContextUser)
+    const { state, setUserInfo, consultas,setConsultas } = useContext(ContextUser)
     const navigation = useNavigation();
 
     useEffect(() => {
-        pegarDadosUser().then(user => setUserInfo(user))
+        pegarDadosUser().then(user => setUserInfo(user)).then(console.log(typeof state.uid,state.uid))
+    }, [])
+    useEffect(() => {
+        
+            getCons().then( res => setConsultas(res)).catch(console.log)
+        
     }, [])
 
     function ListaConsultas() {
