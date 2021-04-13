@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { Text, View, Image, Alert, Picker } from 'react-native';
 import img from '../../../assets/ubslogo.png';
@@ -7,17 +7,22 @@ import { Feather } from '@expo/vector-icons';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import gstyles, { lightTextColor, mainAppColor, mainTextColor } from "../../../gstyles";
 import { useNavigation } from '@react-navigation/native'
+import { setCons } from '../../../middleware/UnidController';
+import ContextUser from '../../../context/UserContext';
 
 
 
 export default function ({ route }) {
 
-    const { nome, local } = route.params
+    const { name,endereco,uidUnid } = route.params
+    const idUnid = JSON.stringify(uidUnid).toString()
     const [especialidade, setEspecialidade] = useState("Clinico Geral")
     const [unidade, setUnidade] = useState("Unidade um")
     const [dia, setDia] = useState("12/01/2021")
     const [hora, setHora] = useState('10:10')
     const navigation = useNavigation()
+
+    const { state } = useContext(ContextUser)
 
     const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', ...styles.InfoKeys }}>{props.name}</Text>
     const Info = (props) => <Text style={{ color: mainTextColor, fontSize:18 }}>{props.info}</Text>
@@ -40,16 +45,16 @@ export default function ({ route }) {
                 <View InfoHosp  >
 
                     <View style={styles.blocoInfo}>
-                        <Info info={JSON.stringify(nome)} />
+                        <Info info={JSON.stringify(name)} />
                     </View>
 
                     <View style={styles.blocoInfo}>
             
-                        <Info info={JSON.stringify(local)} />
+                        <Info info={JSON.stringify(endereco)} />
                     </View>
 
                     <View style={styles.blocoInfo}>
-                        <Info info={"?????????????"} />
+                        <Info info={idUnid} />
                     </View>
 
                 </View>
@@ -93,9 +98,9 @@ export default function ({ route }) {
                             style={{ height: '100%', width: '100%', borderWidth: 5 }}
                             onValueChange={(itemValue, itemIndex) => setDia(itemValue)}
                         >
-                            <Picker.Item label='13/01/2002' value='1' />
-                            <Picker.Item label='14/02/1001' value='2' />
-                            <Picker.Item label='15/06/2005' value='3' />
+                            <Picker.Item label='13/01/2021' value='13/01/2021' />
+                            <Picker.Item label='14/02/2021' value='14/02/2021' />
+                            <Picker.Item label='15/06/2021' value='15/06/2021' />
                         </Picker>
                     </View>
 
@@ -143,7 +148,9 @@ export default function ({ route }) {
 
                     <View style={styles.btn}>
 
-                        <TouchableOpacity onPress={() => Alert.alert("esp"+especialidade+'uni'+unidade+'dia'+dia+"hora"+hora)}>
+                        <TouchableOpacity onPress={() => setCons(null,state.uid,idUnid,"1",dia,hora,especialidade).then(a => {
+                            Alert.alert("AGORA",'Consuta Marcada!')
+                            navigation.replace("Home")}).catch(console.log)}>
                             <Text style={{ color: 'black' }}>MARCAR</Text>
                         </TouchableOpacity>
 

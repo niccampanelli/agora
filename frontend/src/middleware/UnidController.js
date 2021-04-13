@@ -19,7 +19,7 @@ module.exports = {
                         name:a.data().name,
                         cep:a.data().cep,
                         endereco:a.data().endereco,
-                        uid:a.data().uid
+                        uidUnid:a.id
                     })
                 })))
                 .catch((error) => {
@@ -31,6 +31,17 @@ module.exports = {
 
         }
 
+    },
+     async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora,espec){
+
+        const cons = firebase.firestore().collection('consultas')
+        const user = firebase.auth().currentUser.id
+
+        if(docId){
+            return await cons.doc(docId).set({COD_USER, COD_UNI, COD_MEDIC, data, hora});
+        } else{
+            return await cons.add({COD_USER, COD_UNI, COD_MEDIC, data, hora, espec});
+        }
     }
 }
 

@@ -1,6 +1,5 @@
-import React, { createContext, useState } from 'react'
-import { pegarDadosUser } from '../middleware/userController'
-
+import React, { createContext, useEffect, useState } from 'react'
+import { getCons } from '../middleware/userController';
 
 
 const ContextUser = createContext({})
@@ -17,9 +16,14 @@ export const ContextUserProvider =  props => {
     }
 
     const [state, setUserInfo] = useState({})
+    const [consultas, setConsultas] = useState()
+
+    useEffect(() => {
+        getCons('COD_USER', '==', state.uid).then(setConsultas).catch(console.log)
+    }, [])
 
     return (
-        <ContextUser.Provider value={{ state,setUserInfo }}>
+        <ContextUser.Provider value={{ state,setUserInfo, consultas }}>
             {props.children}
         </ContextUser.Provider>
     )
@@ -27,19 +31,3 @@ export const ContextUserProvider =  props => {
 
 export default ContextUser
 
-
-
-/**
- *     useEffect(() => {
-       (async function pegarDados(){
-           const isConn = await observador()
-           if(isConn === 1){
-               const user = await pegarDadosUser()
-               setUserInfo(user)
-           }
-           else{
-               props.navigation.navigate('Login')
-           }
-       })
-    },window.onload)
- */
