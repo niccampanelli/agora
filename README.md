@@ -12,7 +12,7 @@ ___
 
 ## Introdução
 
-O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames.
+O AGORA Foi criado para pacientes usuários do sistema público de sáude tendo em vista a redução do tempo de espera em longas e demoradas filas para a realização de consultas e exames
 
 ## Telas do App
 <div width="100%">
