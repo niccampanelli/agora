@@ -112,7 +112,7 @@ export default function Home() {
                     </View>
                     <View style={styles.listAreaHeader}>
                         <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                        <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Consultas', { modalOpen: false })}>
+                        <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Marcadas',{modalOpen:true})}>
                             <Text style={gstyles.seeMoreTxt}>Ver todas</Text>
                             <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
                         </TouchableOpacity>

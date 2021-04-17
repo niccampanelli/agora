@@ -14,6 +14,7 @@ import ConsultasMarcadas from './pages/Consultas/Componentes/ConsultasMarcadas.j
 import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index'
 import firebaseConfig from './middleware/firebaseConfig';
 import * as firebase from 'firebase';
+import Marcadas from './pages/Consultas/Componentes/Marcadas';
 
 //
 
@@ -47,7 +48,8 @@ export default function Routes({ route }) {
                     <AppStack.Screen name='DetalheReceitas' component={DetalheReceitas} />
                     <AppStack.Screen name='Profile' component={Profile} />
                     <AppStack.Screen name='SettingScreen' component={SettingScreen} />
-                    <AppStack.Screen name='Consultas Marcadas' component={ConsultasMarcadas} />
+                    <AppStack.Screen name='ConsultasM' component={ConsultasMarcadas} />
+                    <AppStack.Screen name='Marcadas' component={Marcadas} />
                     <AppStack.Screen name='InfoSobreNovaConsulta' component={InfoSobreNovaConsulta} />
                 </AppStack.Navigator>
             </NavigationContainer>

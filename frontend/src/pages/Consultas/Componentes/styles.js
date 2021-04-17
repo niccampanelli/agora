@@ -2,26 +2,33 @@ import { StyleSheet } from 'react-native';
 import { mainAppColor, mainTextColor, lightTextColor, layer0Color } from '../../../gstyles';
 
 export default StyleSheet.create({
-    header: {
+    headerConsInfo: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: "5%",
     },
-
+    webView: {
+        borderWidth:2,
+        borderRadius:10,
+        height:'40%',width:'100%',
+        alignSelf:'center',
+        marginTop:'5%',
+    },
     headerTexto: {
         alignItems: 'flex-start',
         width: "70%",
         justifyContent: 'center',
     },
 
-    voltar:{
-        marginLeft: 5,
+    voltar: {
+        marginLeft: "10%",
         width: 40,
         height: 40
     },
 
-    info:{
-        borderWidth:0.5,
+    info: {
+        elevation: 2,
+        shadowColor: mainAppColor,
         margin: "2%",
         flex: 1,
         borderRadius: 10,
@@ -29,11 +36,10 @@ export default StyleSheet.create({
         flexWrap: 'wrap'
     },
 
-    blocoInfo:{
+    blocoInfo: {
         flexDirection: 'row',
         marginTop: "1%",
         padding: 10,
-        
     },
 
     hospList: {
@@ -46,4 +52,34 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    headerCons: {
+        alignItems: 'flex-start',
+        marginLeft: '10%',
+        marginTop: '10%',
+    },
+    headerConsText: {
+        fontWeight: 'bold',
+        fontSize: 28,
+        marginBottom: '5%',
+        color: mainTextColor
+    },
+    headerConsSubText: {
+        fontSize: 16,
+        color: lightTextColor,
+    },
+    modalCons: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        marginHorizontal: '0%'
+    },
+    closeButton: {
+        position: 'absolute',
+        right: '5%',
+        top: '5%',
+    }
 })
