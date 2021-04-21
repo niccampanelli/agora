@@ -148,7 +148,14 @@ export default function ({ route }) {
 
                     <View style={styles.btn}>
 
-                        <TouchableOpacity onPress={() => setCons(null,state.uid,idUnid,"1",dia,hora,especialidade).then(a => {
+                        <TouchableOpacity onPress={() => setCons(
+                            null,
+                            state.uid,
+                            idUnid,
+                            "1",
+                            dia,
+                            hora,
+                            especialidade).then(a => {
                             Alert.alert("AGORA",'Consuta Marcada!')
                             navigation.replace("Home")}).catch(console.log)}>
                             <Text style={{ color: 'black' }}>MARCAR</Text>

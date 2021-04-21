@@ -25,8 +25,8 @@ export default function (props) {
                 </View>
                 <View style={gstyles.listButtonTxt}>
                     <View style={gstyles.listButtonExtra}>
-                        <Text style={gstyles.listButtonTitle}>{item.especialidade ? item.especialidade : 'Clinico Geral'}</Text>
-                        <Text style={gstyles.listButtonDesc}>{item.date ? item.date : 'Um dia ai...'}</Text>
+                        <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : '...'}</Text>
+                        <Text style={gstyles.listButtonDesc}>{item.data ? item.data : 'Um dia ai...'}</Text>
                     </View>
                     <Text style={gstyles.listButtonDesc}>{item.nomeMedico ? item.nomeMedico : 'Dr. Rafael'}</Text>
                 </View>

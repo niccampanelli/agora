@@ -36,13 +36,13 @@ export default function Home() {
     const FlatCons = ({ item }) => {
         return (
             <View key={item.uid} >
-                {consultas ? <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('Consultas Marcadas', { nome: consulta.especialidade })}>
+                {consultas ? <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM')}>
                     <View style={gstyles.listButtonIcon}>
                         <Feather size={24} name={'calendar'} />
                     </View>
                     <View style={gstyles.listButtonTxt}>
                         <View style={gstyles.listButtonExtra}>
-                            <Text style={gstyles.listButtonTitle}>{item.hora}</Text>
+                            <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : "N"}</Text>
                             <Text style={gstyles.listButtonDesc}>{item.data}</Text>
                         </View>
                     </View>

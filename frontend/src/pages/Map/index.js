@@ -112,15 +112,17 @@ export default function Map(){
                   
             >
                 <View HeaderModal style={styles.headerModal}>
-                    <TouchableOpacity style={styles.closeButton} onPress={()=>{
+                <Text style={styles.headerTexto}>Nova Consulta</Text>
+                    <TouchableOpacity style={{position:'absolute',right:0,top:"8%"}} onPress={()=>{
                         setVisivel(!visivel) 
                         navigation.replace("Home")  }}>
-                        <Feather color={lightTextColor} size={40} name={"chevron-down"} />
+                        <Feather color={lightTextColor} size={45} name={"chevron-down"} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTexto}>Nova Consulta</Text>
+                    
                 </View>
                 <View style={styles.headerModalSubitleView} >
-                <Text style={styles.headerModalSubitle}>Primeiro, escolha abaixo uma unidade de saúde:</Text>
+                <Text style={{...styles.headerModalSubitle}}>Primeiro,</Text>
+                <Text style={styles.headerModalSubitle}> escolha abaixo uma unidade de saúde:</Text>
                 </View>
                     <FlatList
                         style={styles.hospList}

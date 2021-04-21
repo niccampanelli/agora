@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import Constants from 'expo-constants';
-import {layer0Color,mainTextColor,mainAppColor} from '../../gstyles'
+import {layer0Color,mainTextColor,mainAppColor, lightTextColor} from '../../gstyles'
 
 
 const styles = StyleSheet.create({
@@ -36,7 +36,10 @@ const styles = StyleSheet.create({
     },
     headerModalSubitle:{
         fontWeight:'bold',
-        letterSpacing:1
+        color:lightTextColor,
+        fontSize:16,
+        alignSelf:'flex-start',
+        marginHorizontal:'10%'
     },
 
     headerTexto: {
@@ -44,12 +47,12 @@ const styles = StyleSheet.create({
         width: "70%",
         fontWeight:'bold',
         justifyContent: 'center',
-        fontSize:24,
+        fontSize:26,
         color:mainTextColor
     },
     headerModal:{
-        justifyContent:'space-evenly',
-
+        justifyContent:'flex-start',
+        marginHorizontal:'10%',
         alignItems:'center',
         flexDirection:'row',
         marginTop:'10%'
@@ -87,8 +90,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-
 })
 
 export default styles
