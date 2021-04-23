@@ -17,11 +17,12 @@ export const ContextUserProvider =  props => {
 
     const [state, setUserInfo] = useState({})
     const [consultas, setConsultas] = useState()
+    const [uni, setUni] = useState('')
 
     
 
     return (
-        <ContextUser.Provider value={{ state,setUserInfo, consultas,setConsultas }}>
+        <ContextUser.Provider value={{ state,setUserInfo, consultas,setConsultas,uni,setUni }}>
             {props.children}
         </ContextUser.Provider>
     )

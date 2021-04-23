@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
     },
     containerHosp: {
         height: "20%",
-        borderBottomWidth: 1.5,
-        borderBottomColor: mainAppColor,
         padding: "5%"
     },
     InfoKeys: {
@@ -24,11 +22,10 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     picker: {
-        borderWidth: 1,
         width: '55%',
         height: '100%',
         borderRadius: 10,
-        borderColor:mainAppColor,
+        elevation:1,
         paddingLeft: 10,
     },
     containerPicker: {
