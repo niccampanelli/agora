@@ -16,7 +16,7 @@ export const ContextUserProvider =  props => {
     }
 
     const [state, setUserInfo] = useState({})
-    const [consultas, setConsultas] = useState()
+    const [consultas, setConsultas] = useState([])
     const [uni, setUni] = useState('')
 
     

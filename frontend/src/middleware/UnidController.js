@@ -31,7 +31,7 @@ module.exports = {
         }
 
     },
-    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora, espec) {
+    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora, espec,name) {
 
         const cons = firebase.firestore().collection('consultas')
         const user = firebase.auth().currentUser.id
@@ -39,7 +39,7 @@ module.exports = {
         if (docId) {
             return await cons.doc(docId).set({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
         } else {
-            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora, espec });
+            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora, espec,name });
         }
     },
     async getMedicos(fieldToGet, operator, queryParam) {
@@ -48,7 +48,7 @@ module.exports = {
         const unimedRef = db.collection('unimed')
         const medicRef = db.collection('medicos')
         const arrayMedicos = []
-        const auxarr = []
+        const auxarrN = []
       try {
        const codMedicos =  await unimedRef.where(fieldToGet,operator,queryParam).get().then(res => (res.forEach(doc => {
             arrayMedicos.push(doc.data().COD_MED)
@@ -56,9 +56,10 @@ module.exports = {
         .catch(console.log)
 
         for(let i=0;i < arrayMedicos.length;i++){
-            console.log(arrayMedicos[i])
             await medicRef.doc(arrayMedicos[i]).get()
-            .then(res => auxarr.push(res.data().name))
+            .then(res => {
+                auxarrN.push({name:res.data().name,id:res.id})  
+            })
         }
 
         
@@ -67,7 +68,7 @@ module.exports = {
       } catch (error) {
           console.log(error)
       }
-      return auxarr
+      return auxarrN
     }
 }
 

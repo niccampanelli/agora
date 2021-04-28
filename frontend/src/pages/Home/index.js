@@ -12,49 +12,56 @@ import { getCons, pegarDadosUser } from '../../middleware/userController';
 export default function Home() {
 
 
-    const { state, setUserInfo, consultas,setConsultas } = useContext(ContextUser)
+    const { state, setUserInfo, consultas, setConsultas } = useContext(ContextUser)
     const navigation = useNavigation();
 
+
     useEffect(() => {
-        pegarDadosUser().then(user => setUserInfo(user)).then(console.log(typeof state.uid,state.uid))
+        pegarDadosUser().then(user => setUserInfo(user)).then(console.log(typeof state.uid, state.uid))
     }, [])
     useEffect(() => {
-        
-            getCons().then( res => setConsultas(res)).catch(console.log)
-        
+
+        getCons().then(res => setConsultas(res)).catch(console.log)
+
     }, [])
 
     function ListaConsultas() {
         return (
             <FlatList
-            data={consultas}
-            keyExtractor={item => item.uid}
-            renderItem={FlatCons}
+                data={consultas}
+                keyExtractor={item => item.uid}
+                renderItem={FlatCons}
             />
         )
     }
     const FlatCons = ({ item }) => {
         return (
             <View key={item.uid} >
-                {consultas ? <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM')}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM')}>
                     <View style={gstyles.listButtonIcon}>
                         <Feather size={24} name={'calendar'} />
                     </View>
                     <View style={gstyles.listButtonTxt}>
                         <View style={gstyles.listButtonExtra}>
-                            <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : "N"}</Text>
+                            <View>
+                                <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{item.espec ? item.espec : ""}</Text>
+                                <Text style={gstyles.listButtonDesc}>{item.name ? "Dr."+item.name : ""}</Text>
+                            </View>
                             <Text style={gstyles.listButtonDesc}>{item.data}</Text>
                         </View>
                     </View>
-                </TouchableOpacity> : null}
+                </TouchableOpacity>
+                <View style={{ ...styles.marcarBtn, position: 'relative', marginTop: "5%" }}>
+                    <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
+                </View>
             </View>
         )
     }
 
 
-    
+
     return (
-        <View style={gstyles.container}>
+        <View style={{ ...gstyles.container, flex: 1 }}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Olá, {state.firstName}!</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
@@ -106,53 +113,29 @@ export default function Home() {
                         qtd: '2 capsulas por dia'
                     }]} /> : <View style={{ justifyContent: 'center', alignItems: "center", marginTop: '10%' }} ><Text style={{ color: mainTextColor, fontSize: 20 }} >Não há remedios ou indicações! </Text></View>}
                 </View>
-                {consultas ? <View style={styles.listArea}>
+                {consultas.length >= 1 ? <View style={styles.listArea}>
                     <View style={styles.sheetGrab}>
                         <View style={styles.sheetGrabInner} />
                     </View>
                     <View style={styles.listAreaHeader}>
                         <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                        <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Marcadas',{modalOpen:true})}>
+                        <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Marcadas', { modalOpen: true })}>
                             <Text style={gstyles.seeMoreTxt}>Ver todas</Text>
                             <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
                         </TouchableOpacity>
                     </View>
-                    <ListaConsultas/>
-                    <View style={{ ...styles.marcarBtn, position: 'relative', marginTop: "5%" }}>
-                        <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
-                    </View>
+                    <ListaConsultas />
                 </View>
 
                     : null}
+
             </ScrollView>
-            
+            {consultas.length >= 1 ?
+                null
+                :
+                <View style={{ zIndex: 2, bottom: '5%', width: "80%", height: 70, alignSelf: 'center' }}>
+                    <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
+                </View>}
         </View>
     );
 }
-/**
- * list
- * {consultas.map((consulta, index) => (
-                            <TouchableOpacity key={index} style={gstyles.listTextButton} onPress={() => navigation.navigate('Consultas Marcadas', { nome: consulta.especialidade })}>
-                                <View style={gstyles.listButtonIcon}>
-                                    <Feather size={24} name={'calendar'} />
-                                </View>
-                                <View style={gstyles.listButtonTxt}>
-                                    <View style={gstyles.listButtonExtra}>
-                                        <Text numberOfLines={1} style={gstyles.listButtonTitle}>{consulta.especialidade}</Text>
-                                        <Text style={gstyles.listButtonDesc}>{consulta.date}</Text>
-                                    </View>
-                                    <Text numberOfLines={1} style={gstyles.listButtonDesc}>{consulta.nomeMedico}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        ))}
-
-
-                        f view
-                         <View style={styles.listAreaHeader}>
-                        <Text style={styles.listAreaTxt}>Consultas Marcadas</Text>
-                        <TouchableOpacity style={gstyles.seeMore} onPress={() => navigation.navigate('Consultas', { modalOpen: false })}>
-                            <Text style={gstyles.seeMoreTxt}>Ver todas</Text>
-                            <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
-                        </TouchableOpacity>
-                    </View>
- */
