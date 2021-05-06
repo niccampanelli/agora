@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
 import { logOut } from '../../middleware/userController';
 
+import Swipeable from "react-native-gesture-handler/Swipeable";
+
 export default function Home(){
 
     const navigation = useNavigation();

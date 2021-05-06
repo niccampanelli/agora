@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Text, View, TouchableOpacity, Modal } from 'react-native'
+import { Text, View, TouchableOpacity, Modal,Animated } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import gstyles, { lightTextColor } from '../../../gstyles';
 import styles from './styles'
@@ -7,6 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useRoute } from '@react-navigation/core';
 import ContextUser from '../../../context/UserContext';
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+
 
 export default function (props) {
 
@@ -15,33 +18,43 @@ export default function (props) {
     const { consultas } = useContext(ContextUser)
     const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
     const [visivel, setVisivel] = useState(modalOpenParam);
+
     function flat({ item }) {
         return (
-            <TouchableOpacity style={{ ...gstyles.listTextButton, marginHorizontal: '5%' }} onPress={() => {
-                setVisivel(!visivel)
-                navigation.navigate('ConsultasM')}}>
-                <View style={gstyles.listButtonIcon}>
-                    <Feather size={24} name={'calendar'} />
-                </View>
-                <View style={gstyles.listButtonTxt}>
-                    <View style={gstyles.listButtonExtra}>
-                        <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : '...'}</Text>
-                        <Text style={gstyles.listButtonDesc}>{item.data ? item.data : 'Um dia ai...'}</Text>
+            <Swipeable
+                overshootRight={false}
+                renderLeftActions={()=><View><Text>a</Text></View>}
+                renderRightActions={() => (
+                    <Animated.View>
+                        <View>
+                            <RectButton style={styles.buttonRemove} onPress={()=>{}}>
+                                <Feather name="trash" size={32} color={'#fff'} />
+                            </RectButton>
+                        </View>
+                    </Animated.View>
+                )}
+            >
+                <RectButton style={{ ...gstyles.listTextButton, marginHorizontal: '5%' }} onPress={() => {
+                    setVisivel(!visivel)
+                    navigation.navigate('ConsultasM')
+                }}>
+                    <View style={gstyles.listButtonIcon}>
+                        <Feather size={24} name={'calendar'} />
                     </View>
-                    <Text style={gstyles.listButtonDesc}>{item.nomeMedico ? item.nomeMedico : 'Dr. Rafael'}</Text>
-                </View>
-            </TouchableOpacity>
+                    <View style={gstyles.listButtonTxt}>
+                        <View style={gstyles.listButtonExtra}>
+                            <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : '...'}</Text>
+                            <Text style={gstyles.listButtonDesc}>{item.data ? item.data : 'Um dia ai...'}</Text>
+                        </View>
+                        <Text style={gstyles.listButtonDesc}>{item.nomeMedico ? item.nomeMedico : 'Dr. Rafael'}</Text>
+                    </View>
+                </RectButton>
+            </Swipeable>
         )
     }
 
     return (
-        <Modal
-            animationType="slide"
-            transparent={false}
-            visible={visivel}
-            onRequestClose={() => {
-                setVisivel(!visivel)
-            }}
+        <View
             style={styles.modalCons}
         >
             <TouchableOpacity style={styles.closeButton} onPress={() => {
@@ -66,6 +79,6 @@ export default function (props) {
                 keyExtractor={item => item.uid}
                 renderItem={flat}
             />
-        </Modal>
+        </View>
     )
 }

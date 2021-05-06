@@ -32,6 +32,24 @@ export default function ({ route }) {
     const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', ...styles.InfoKeys }}>{props.name}</Text>
     const Info = (props) => <Text style={{ color: mainTextColor, fontSize: 18 }}>{props.info}</Text>
 
+    function fazerConsulta() {
+        setCons(
+            null,
+            state.uid,
+            idUnid,
+            medicData.id,
+            dia,
+            hora,
+            especialidade,
+            medicData.name).then(a => {
+                Alert.alert("AGORA", 'Consuta Marcada!')
+                navigation.replace("Home")
+            })
+            .catch(err =>{
+                Alert.alert('Não foi Possivel fazer a Consulta!',"Erro: "+err.message)
+                navigation.replace("Home")
+            })
+    }
 
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
@@ -173,18 +191,7 @@ export default function ({ route }) {
 
                     <View style={styles.btn}>
 
-                        <TouchableOpacity onPress={() =>setCons(
-                            null,
-                            state.uid,
-                            idUnid,
-                            medicData.id,
-                            dia,
-                            hora,
-                            especialidade,
-                            medicData.name).then(a => {
-                                Alert.alert("AGORA", 'Consuta Marcada!')
-                                navigation.replace("Home")
-                            }).catch(console.log)} >
+                        <TouchableOpacity onPress={() =>fazerConsulta()} >
                             <Text style={{ color: 'black' }}>MARCAR</Text>
                         </TouchableOpacity>
 
