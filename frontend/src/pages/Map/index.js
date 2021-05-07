@@ -96,16 +96,41 @@ export default function Map(){
 
     return(
     <View style={styles.container}>
-        <WebView
-            style={styles.webView}
-            originWhitelist={'*'} 
-            source={{ html:  html }}
-        />
-        <View style={styles.mapOverlay}>
+        
+     
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <Feather size={42} color={lightTextColor} name="chevron-left"/>
+                <Feather size={42} color={lightTextColor} name="chevrons-down"/>
             </TouchableOpacity>
-            <Modal
+           
+                <View HeaderModal style={styles.headerModal}>
+                <Text style={styles.headerTexto}>Nova Consulta</Text> 
+                </View>
+                <View style={styles.headerModalSubitleView} >
+                <Text style={{...styles.headerModalSubitle}}>Primeiro,{'\n'}
+                escolha abaixo uma unidade de saúde:
+                </Text>
+                </View>
+                    <FlatList
+                        style={styles.hospList}
+                        data={hosp}
+                        keyExtractor={item => item.name.toString()}
+                        renderItem={({ item }) => <ListaHosp item={item} />}/>
+        </View>
+    
+    );
+}
+
+/**
+ * WebView com localizaçao atual do usuario
+ * 
+ * <WebView
+ *        style={styles.webView}
+ *         originWhitelist={'*'} 
+ *          source={{ html:  html }}
+ *       />
+ *
+ *   modal de antes 
+ *  <Modal
                 animationType="slide"
                 transparent={false}
                 visible={visivel}
@@ -114,26 +139,16 @@ export default function Map(){
                   }}
                   
             >
-                <View HeaderModal style={styles.headerModal}>
-                <Text style={styles.headerTexto}>Nova Consulta</Text>
-                    <TouchableOpacity style={{position:'absolute',right:0,top:"8%"}} onPress={()=>{
+ *      
+ * 
+ */
+
+            /**
+             *  feather de antes
+             * 
+             * <TouchableOpacity style={{position:'absolute',right:0,top:"8%"}} onPress={()=>{
                         setVisivel(!visivel) 
                         navigation.replace("Home")  }}>
                         <Feather color={lightTextColor} size={45} name={"chevron-down"} />
                     </TouchableOpacity>
-                    
-                </View>
-                <View style={styles.headerModalSubitleView} >
-                <Text style={{...styles.headerModalSubitle}}>Primeiro,</Text>
-                <Text style={styles.headerModalSubitle}> escolha abaixo uma unidade de saúde:</Text>
-                </View>
-                    <FlatList
-                        style={styles.hospList}
-                        data={hosp}
-                        keyExtractor={item => item.name.toString()}
-                        renderItem={({ item }) => <ListaHosp item={item} />}/>
-            </Modal>
-        </View>
-    </View>
-    );
-}
+             */

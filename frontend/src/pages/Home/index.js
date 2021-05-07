@@ -17,7 +17,7 @@ export default function Home() {
 
 
     useEffect(() => {
-        pegarDadosUser().then(user => setUserInfo(user)).then(console.log(typeof state.uid, state.uid))
+        pegarDadosUser().then(user => setUserInfo(user))
     }, [])
     useEffect(() => {
 
@@ -63,7 +63,7 @@ export default function Home() {
     return (
         <View style={{ ...gstyles.container, flex: 1 }}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Olá, {state.firstName}!</Text>
+                <Text style={styles.headerText}>Olá, {state.firstName ? state.firstName : 'n carrego'}!</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.headerButton}>
                     <View>
                         <Feather color={mainTextColor} size={26} name='user' />

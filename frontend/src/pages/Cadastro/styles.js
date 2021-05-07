@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
-import {  mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
+import { mainAppColor, mainTextColor, layer0Color, lightTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
 
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
+        justifyContent: 'space-between',
+        height: "100%"
 
     },
     loginCard: {
@@ -65,7 +67,7 @@ export default StyleSheet.create({
         width: '100%',
         height: '25%'
     },
-    
+
     buttonArea: {
         width: '100%',
         height: 50,
@@ -81,9 +83,8 @@ export default StyleSheet.create({
         color: '#000',
         fontSize: 16,
         fontWeight: 'bold',
-        marginBottom:'10%'
+        marginBottom: '10%'
     },
 
 
 });
-

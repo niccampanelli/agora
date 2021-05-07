@@ -33,6 +33,20 @@ export default function ({ route }) {
     const Info = (props) => <Text style={{ color: mainTextColor, fontSize: 18 }}>{props.info}</Text>
 
     function fazerConsulta() {
+
+        if(state.sexo==undefined || state.sexo == null){ 
+            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+            return;
+        }
+        if(state.sexo == 'f' && especialidade == 'urologista'){
+            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+            return;
+        }
+        if(state.sexo == 'm' && especialidade == 'ginecologista'){
+            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+            return;
+        }
+ 
         setCons(
             null,
             state.uid,
@@ -53,17 +67,25 @@ export default function ({ route }) {
 
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
-            setMedics(res)
+            if(res.length <= 1){
+                setMedics([{
+                    name:"Não disponivel",
+                    id:123
+                }])        
+            }
+            else{
+                setMedics(res)
+            }
         })
     }, [])
 
     function PickerPersonalizado() {
 
         return (
-            <View PickerUnidade style={{ ...styles.picker, width: "42%" }}>
+            <View PickerUnidade style={{ ...styles.picker, width: "48%",marginLeft:7}}>
                 <Picker
                     selectedValue={medicName}
-                    style={{ height: '100%', width: '100%', borderWidth: 5 }}
+                    style={{ height: '100%', width: '100%', borderWidth: 5}}
                     onValueChange={(itemValue, itemIndex) => {
                      setMedicName(itemValue)
                     setMedicData({
@@ -73,7 +95,7 @@ export default function ({ route }) {
                     }}
                 >
                     {medics.map((a, i) => {
-                        return <Picker.Item key={i} label={`Dr.${medics[i].name}`} value={medics[i].name} />
+                        return <Picker.Item key={i} label={`${medics.length <= 1? '':'Dr.'} ${medics[i].name}`} value={medics[i].name} />
                     })}
                 </Picker>
             </View>
@@ -113,7 +135,7 @@ export default function ({ route }) {
                 </View>
 
 
-                <View picker style={{ ...styles.containerPicker, marginTop: "10%", elevation: 5 }}>
+                <View picker style={{ ...styles.containerPicker, marginTop: "10%",width:'95%' }}>
 
                     <View PickerEspecialidades style={styles.picker}>
                         <Picker

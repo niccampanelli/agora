@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Text, View, TouchableOpacity, Modal,Animated } from 'react-native'
+import { Text, View, TouchableOpacity, Modal,Animated, Alert } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import gstyles, { lightTextColor } from '../../../gstyles';
 import styles from './styles'
@@ -9,6 +9,7 @@ import { useRoute } from '@react-navigation/core';
 import ContextUser from '../../../context/UserContext';
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import {apagarConsulta} from '../../../middleware/userController'
 
 
 export default function (props) {
@@ -20,14 +21,33 @@ export default function (props) {
     const [visivel, setVisivel] = useState(modalOpenParam);
 
     function flat({ item }) {
+        console.log(item)
+
+
+        function removerCon(conId) {
+            Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
+              {
+                text: "Não",
+                style: "cancel",
+              },
+              {
+                text: "Sim",
+                onPress: async () => {
+                    apagarConsulta(conId)
+                },
+              }
+            ]);
+          }
+        
+
+
         return (
             <Swipeable
                 overshootRight={false}
-                renderLeftActions={()=><View><Text>a</Text></View>}
                 renderRightActions={() => (
                     <Animated.View>
                         <View>
-                            <RectButton style={styles.buttonRemove} onPress={()=>{}}>
+                            <RectButton style={styles.buttonRemove} onPress={()=>removerCon(item.uid)}>
                                 <Feather name="trash" size={32} color={'#fff'} />
                             </RectButton>
                         </View>

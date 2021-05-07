@@ -14,7 +14,7 @@ export default function Landing(){
             <View style={styles.overlay}>
                 <Text style={style.title}>Bem-Vindo ao Agora!</Text>
                 <Text style={style.subTitle}>Aqui você pode controlar e visualizar suas consultas marcadas.</Text>
-                <TouchableOpacity style={styles.nextButton} onPress={() => navigation.reset({index: 0, routes: [{ name: 'Home' }]})}>
+                <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('Home') }>
                     <Text style={styles.nextButtonText}>Continuar</Text>
                 </TouchableOpacity>
             </View>
