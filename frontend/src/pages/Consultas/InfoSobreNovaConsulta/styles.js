@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from 'react-native'
-import { mainAppColor, mainTextColor } from "../../../gstyles";
+import { lightTextColor, mainAppColor, mainTextColor } from "../../../gstyles";
 
 const styles = StyleSheet.create({
     container: {
@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
     },
     containerHosp: {
         height: "20%",
-        borderBottomWidth: 1.5,
-        borderBottomColor: mainAppColor,
         padding: "5%"
     },
     InfoKeys: {
@@ -24,11 +22,14 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     picker: {
-        borderWidth: 1,
         width: '55%',
-        height: '100%',
-        borderRadius: 10,
-        borderColor:mainAppColor,
+        height: "100%",
+        borderBottomWidth:1,
+        borderEndWidth:1,
+        borderColor:lightTextColor,
+        borderStartWidth:1,
+        borderBottomEndRadius:18,
+        borderRadius:16,
         paddingLeft: 10,
     },
     containerPicker: {

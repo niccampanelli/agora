@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000mm"
+   height="1000mm"
+   viewBox="0 0 1000 1000"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="agora_logo.svg"
+   inkscape:export-filename="C:\Users\Alexandre\Desktop\Projetos\etec\TCC\agora_logo.png"
+   inkscape:export-xdpi="97"
+   inkscape:export-ydpi="97">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#262626"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.08"
+     inkscape:cx="2394.7519"
+     inkscape:cy="1983.577"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:snap-page="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-others="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="opacity:1">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:130.367;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:32.5918, 32.5918;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect885"
+       width="1000"
+       height="1000"
+       x="1.0060702e-13"
+       y="8.5636752e-14"
+       rx="327.11584" />
+    <rect
+       style="fill:#ffc900;fill-opacity:1;stroke:none;stroke-width:128.983;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:32.2461, 32.2461;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect868"
+       width="345.59497"
+       height="108.73479"
+       x="497.60767"
+       y="500.06201"
+       rx="26.742258" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#ffc900;stroke-width:108.735;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:27.1837, 27.1837;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="path866"
+       sodipodi:type="arc"
+       sodipodi:cx="502.29739"
+       sodipodi:cy="499.95807"
+       sodipodi:rx="309.1481"
+       sodipodi:ry="309.1481"
+       sodipodi:start="0.17304375"
+       sodipodi:end="5.8826458"
+       sodipodi:open="true"
+       sodipodi:arc-type="arc"
+       d="M 806.82845,553.18763 A 309.1481,309.1481 0 0 1 493.13313,808.97031 309.1481,309.1481 0 0 1 195.14711,535.04723 309.1481,309.1481 0 0 1 423.6751,200.97465 309.1481,309.1481 0 0 1 786.97666,379.41652" />
+    <rect
+       rx="36.011456"
+       y="445.64404"
+       x="-608.79675"
+       height="108.73478"
+       width="252.86247"
+       id="rect872"
+       style="fill:#ffc900;fill-opacity:1;stroke:none;stroke-width:110.332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:27.5825, 27.5825;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       transform="rotate(-90)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2" />
+</svg>

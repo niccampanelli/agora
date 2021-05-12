@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Feather } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
@@ -8,19 +8,22 @@ import styles from './styles.js';
 import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyles';
 import { useNavigation, useRoute } from '@react-navigation/core';
 import { pegarUnidade } from '../../middleware/UnidController';
+import ContextUser from '../../context/UserContext';
 
 export default function Map(){
  
     const navigation = useNavigation();
     const route = useRoute();
+    const { uni,setUni } = useContext(ContextUser)
 
-    const [hosp,setHosp] = useState([{name:1,endereco:"aaa"}])
+    const [hosp,setHosp] = useState()
 
     const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
     const [visivel, setVisivel] = useState(modalOpenParam);
 
     const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{name:item.name,endereco:item.endereco,uidUnid:item.uidUnid})};
     const fecharModal = ({item})=>{
+        setUni(item.uidUnid)
         setVisivel(!visivel)
        return irParaHosp({item})
    };
@@ -93,16 +96,41 @@ export default function Map(){
 
     return(
     <View style={styles.container}>
-        <WebView
-            style={styles.webView}
-            originWhitelist={'*'} 
-            source={{ html:  html }}
-        />
-        <View style={styles.mapOverlay}>
+        
+     
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <Feather size={42} color={lightTextColor} name="chevron-left"/>
+                <Feather size={42} color={lightTextColor} name="chevrons-down"/>
             </TouchableOpacity>
-            <Modal
+           
+                <View HeaderModal style={styles.headerModal}>
+                <Text style={styles.headerTexto}>Nova Consulta</Text> 
+                </View>
+                <View style={styles.headerModalSubitleView} >
+                <Text style={{...styles.headerModalSubitle}}>Primeiro,{'\n'}
+                escolha abaixo uma unidade de saúde:
+                </Text>
+                </View>
+                    <FlatList
+                        style={styles.hospList}
+                        data={hosp}
+                        keyExtractor={item => item.name.toString()}
+                        renderItem={({ item }) => <ListaHosp item={item} />}/>
+        </View>
+    
+    );
+}
+
+/**
+ * WebView com localizaçao atual do usuario
+ * 
+ * <WebView
+ *        style={styles.webView}
+ *         originWhitelist={'*'} 
+ *          source={{ html:  html }}
+ *       />
+ *
+ *   modal de antes 
+ *  <Modal
                 animationType="slide"
                 transparent={false}
                 visible={visivel}
@@ -111,24 +139,16 @@ export default function Map(){
                   }}
                   
             >
-                <View HeaderModal style={styles.headerModal}>
-                    <TouchableOpacity style={styles.closeButton} onPress={()=>{
+ *      
+ * 
+ */
+
+            /**
+             *  feather de antes
+             * 
+             * <TouchableOpacity style={{position:'absolute',right:0,top:"8%"}} onPress={()=>{
                         setVisivel(!visivel) 
                         navigation.replace("Home")  }}>
-                        <Feather color={lightTextColor} size={40} name={"chevron-down"} />
+                        <Feather color={lightTextColor} size={45} name={"chevron-down"} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTexto}>Nova Consulta</Text>
-                </View>
-                <View style={styles.headerModalSubitleView} >
-                <Text style={styles.headerModalSubitle}>Primeiro, escolha abaixo uma unidade de saúde:</Text>
-                </View>
-                    <FlatList
-                        style={styles.hospList}
-                        data={hosp}
-                        keyExtractor={item => item.name.toString()}
-                        renderItem={({ item }) => <ListaHosp item={item} />}/>
-            </Modal>
-        </View>
-    </View>
-    );
-}
+             */

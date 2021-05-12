@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
 import Constants from 'expo-constants';
-import {layer0Color,mainTextColor,mainAppColor} from '../../gstyles'
+import {layer0Color,mainTextColor,mainAppColor, lightTextColor} from '../../gstyles'
 
 
 const styles = StyleSheet.create({
 
     container: {
         padding: 0,
-        position: 'absolute',
-        width: '100%',
-        height: '100%'
+       flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     },
 
     webView: {
@@ -31,12 +31,15 @@ const styles = StyleSheet.create({
     headerModalSubitleView:{
         justifyContent:'center',
         alignItems:'center',
-        marginBottom:'5%',
-        marginTop:'5%'
+        marginBottom:'10%',
+        alignSelf:'flex-start',
+        marginTop:'5%',
     },
     headerModalSubitle:{
         fontWeight:'bold',
-        letterSpacing:1
+        color:lightTextColor,
+        fontSize:16,
+        marginHorizontal:'10%'
     },
 
     headerTexto: {
@@ -44,13 +47,14 @@ const styles = StyleSheet.create({
         width: "70%",
         fontWeight:'bold',
         justifyContent: 'center',
-        fontSize:24,
+        fontSize:30,
         color:mainTextColor
     },
     headerModal:{
-        justifyContent:'space-evenly',
-
-        alignItems:'center',
+        justifyContent:'flex-start',
+        marginHorizontal:'10%',
+        alignItems:'flex-start',
+        alignSelf:'flex-start',
         flexDirection:'row',
         marginTop:'10%'
     },
@@ -87,8 +91,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-
+    backButton:{
+        position:'absolute',
+        right:'5%',
+        top:'5%'
+    }
 })
 
 export default styles

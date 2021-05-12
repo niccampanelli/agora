@@ -8,11 +8,12 @@ export default StyleSheet.create({
         marginTop: "5%",
     },
     webView: {
-        borderWidth:2,
-        borderRadius:10,
-        height:'40%',width:'100%',
-        alignSelf:'center',
-        marginTop:'5%',
+        borderWidth: 2,
+        borderRadius: 10,
+        height: '40%',
+        width: '100%',
+        alignSelf: 'center',
+        marginTop: '5%',
     },
     headerTexto: {
         alignItems: 'flex-start',
@@ -70,6 +71,7 @@ export default StyleSheet.create({
     modalCons: {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
+        flex:1
     },
     header: {
         flexDirection: 'row',
@@ -81,5 +83,14 @@ export default StyleSheet.create({
         position: 'absolute',
         right: '5%',
         top: '5%',
+    },
+    buttonRemove: {
+        width: 80,
+        height: '90%',
+        backgroundColor: 'red',
+        borderRadius: 20,
+        justifyContent: "center",
+        alignItems: "center",
+
     }
 })

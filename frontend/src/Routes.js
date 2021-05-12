@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import Landing from './pages/Landing';
@@ -15,6 +15,8 @@ import InfoSobreNovaConsulta from './pages/Consultas/InfoSobreNovaConsulta/index
 import firebaseConfig from './middleware/firebaseConfig';
 import * as firebase from 'firebase';
 import Marcadas from './pages/Consultas/Componentes/Marcadas';
+import ContextUser from './context/UserContext';
+import AppLoading from 'expo-app-loading'
 
 //
 
@@ -22,10 +24,15 @@ const AppStack = createStackNavigator();
 
 export default function Routes({ route }) {
 
+    const {state} = useContext(ContextUser)
+
     if (!firebase.apps.length) {
         console.log('Conectado com firebase!')
         firebase.initializeApp(firebaseConfig);
     }
+
+    
+  if(!state) return <AppLoading/>
 
     return (
       

@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
 import { logOut } from '../../middleware/userController';
 
+import Swipeable from "react-native-gesture-handler/Swipeable";
+
 export default function Home(){
 
     const navigation = useNavigation();
@@ -23,9 +25,8 @@ export default function Home(){
                 <ConfigButton iconName={'settings'} name={'Configurações do Aplicativo'} destination={'SettingScreen'} args={{title: 'Configurações do Aplicativo', subTitle: 'Configurações relacionadas ao aplicativo e suas funções.', page: 'appconf'}} />
                 <ConfigButton iconName={'lock'} name={'Privacidade'} destination={'SettingScreen'} args={{title: 'Privacidade', subTitle: 'Informações sobre a privacidade dos seus dados na plataforma.', page: 'privacidade'}} />
                 <ConfigButton iconName={'info'} name={'Sobre'} destination={'SettingScreen'} args={{title: 'Sobre', subTitle: 'Informações sobre o aplicativo.', page: 'sobre'}} />
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center'}} onPress={()=>logOut().then(navigation.replace('Login'))} >
-                    <Text>Sair</Text>
-                </TouchableOpacity>
+                <ConfigButton iconName={'log-out'} name={'Sair'} destination={null} />
+               
             </View>
         </View>
     );
