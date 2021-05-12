@@ -9,23 +9,28 @@ require("firebase/auth")
 module.exports = {
 
     // Função de cadastro de usuário
-    async cadastrar(email, password, CPF, firstName, lastName) {
+    async cadastrar(email, password, CPF, firstName, lastName,sexo) {
 
-        await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-            const currentUser = firebase.auth().currentUser
-            const db = firebase.firestore()
-            db.collection("users").doc(currentUser.uid)
-                .set({
-                    email: email,
-                    CPF: CPF,
-                    firstName: firstName,
-                    lastName: lastName,
-                });
-            return;
-
-        }).catch((e) => {
-            return alert('Erro com cadastro!:' + e)
-        });
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+                const currentUser = firebase.auth().currentUser
+                const db = firebase.firestore()
+                db.collection("users").doc(currentUser.uid)
+                    .set({
+                        email: email,
+                        CPF: CPF,
+                        firstName: firstName,
+                        lastName: lastName,
+                        sexo:sexo
+                    });
+                return;
+    
+            }).catch((e) => {
+                return alert('Erro com cadastro!:' + e)
+            });
+        } catch (error) {
+            console.log(error)
+        }
     },
 
     async logar(email, password) {

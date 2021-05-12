@@ -10,13 +10,14 @@ export default StyleSheet.create({
 
     },
     loginCard: {
-        position: 'relative',
+        flex:1,
         height: '100%',
         margin: 30
     },
 
     loginHeader: {
-        height: '28%',
+        height: 100,
+        marginBottom:'20%'
     },
 
     loginTitle: {
@@ -26,6 +27,7 @@ export default StyleSheet.create({
 
     loginSubtitle: {
         marginTop: 10,
+        marginBottom:10,
         fontSize: 16,
         color: lightTextColor
     },
@@ -44,6 +46,7 @@ export default StyleSheet.create({
     inputLabel: {
         fontWeight: 'bold',
         fontSize: 16,
+        marginBottom:10
     },
 
     labelHint: {
@@ -85,6 +88,25 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: '10%'
     },
+    viewSexo: {
+        flex: 1,
+        alignItems: 'flex-start',
+        marginBottom: '5%'
+    },
+    radioBtn: {
+        flexDirection: 'row',
 
+        justifyContent: 'space-around',
+        alignItems:'center'
+    },
+    radio: {
+        borderRadius: 20,
+        borderWidth: 2,
+        height: '50%',
+        width: 25,
+        marginRight: '10%',
+        alignItems: 'center'
+    }
 
 });
+

@@ -71,6 +71,7 @@ export default StyleSheet.create({
     modalCons: {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
+        flex:1
     },
     header: {
         flexDirection: 'row',

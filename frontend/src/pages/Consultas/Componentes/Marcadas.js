@@ -21,9 +21,6 @@ export default function (props) {
     const [visivel, setVisivel] = useState(modalOpenParam);
 
     function flat({ item }) {
-        console.log(item)
-
-
         function removerCon(conId) {
             Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
               {
@@ -54,7 +51,7 @@ export default function (props) {
                     </Animated.View>
                 )}
             >
-                <RectButton style={{ ...gstyles.listTextButton, marginHorizontal: '5%' }} onPress={() => {
+                <View style={{ ...gstyles.listTextButton, marginHorizontal: '5%',borderBottomWidth:1,borderColor:lightTextColor}} onPress={() => {
                     setVisivel(!visivel)
                     navigation.navigate('ConsultasM')
                 }}>
@@ -68,21 +65,32 @@ export default function (props) {
                         </View>
                         <Text style={gstyles.listButtonDesc}>{item.nomeMedico ? item.nomeMedico : 'Dr. Rafael'}</Text>
                     </View>
-                </RectButton>
+                </View>
             </Swipeable>
         )
     }
+    function infoCons() {
+       return Alert.alert('AGORA','Para cancelar uma consulta deslize alguma consulta para a esquerda.')
+    }
+    function verCon() {
+        setVisivel(!visivel)
+        navigation.replace("Home")
+    }
+    function teste() {
+        const t = new Date().toLocaleTimeString().
+        console.log(t)
+    }
 
     return (
-        <View
-            style={styles.modalCons}
-        >
-            <TouchableOpacity style={styles.closeButton} onPress={() => {
-                setVisivel(!visivel)
-                navigation.replace("Home")
-            }}>
+        <View style={styles.modalCons}>
+            <TouchableOpacity style={styles.closeButton} onPress={() =>verCon()}>
                 <Feather color={lightTextColor} size={40} name={"chevron-down"} />
             </TouchableOpacity>
+
+            <TouchableOpacity style={{...styles.closeButton,top:'90%',zIndex:9}} onPress={()=>teste()}>
+                <Feather color={lightTextColor} size={30} name={"info"} />
+            </TouchableOpacity>
+
             <View style={styles.header}>
                 <View style={styles.headerCons} >
                     <Text style={styles.headerConsText} >Consultas Marcadas</Text>
