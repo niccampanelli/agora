@@ -18,20 +18,21 @@ export default function Home() {
 
     useEffect(() => {
         pegarDadosUser().then(user => setUserInfo(user))
-    }, [])
-    useEffect(() => {
-
-        getCons().then(res => setConsultas(res)).catch(console.log)
-
+        .then(()=> getCons().then(res => setConsultas(res)).catch(console.log))
     }, [])
 
     function ListaConsultas() {
         return (
-            <FlatList
-                data={consultas}
-                keyExtractor={item => item.uid}
-                renderItem={FlatCons}
-            />
+            <View>
+                <FlatList
+                    data={consultas}
+                    keyExtractor={item => item.uid}
+                    renderItem={FlatCons}
+                />
+                <View style={{ ...styles.marcarBtn, position: 'relative', marginTop: "5%" }}>
+                    <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
+                </View>
+            </View>
         )
     }
     const FlatCons = ({ item }) => {
@@ -45,15 +46,13 @@ export default function Home() {
                         <View style={gstyles.listButtonExtra}>
                             <View>
                                 <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{item.espec ? item.espec : ""}</Text>
-                                <Text style={gstyles.listButtonDesc}>{item.name ? "Dr."+item.name : ""}</Text>
+                                <Text style={gstyles.listButtonDesc}>{item.name ? item.name : ""}</Text>
                             </View>
                             <Text style={gstyles.listButtonDesc}>{item.data}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{ ...styles.marcarBtn, position: 'relative', marginTop: "5%" }}>
-                    <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
-                </View>
+
             </View>
         )
     }
@@ -76,7 +75,6 @@ export default function Home() {
                 </View>}
             <ScrollView
                 showsVerticalScrollIndicator={false}
-                pagingEnabled
                 horizontal={false}
             >
                 <View style={styles.topButtons}>

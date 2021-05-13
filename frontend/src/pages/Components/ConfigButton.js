@@ -13,7 +13,7 @@ export default function ConfigButton(props){
         <TouchableOpacity style={gstyles.listButton} 
             onPress={() => {
                 props.destination == null ?
-                () => {logOut().then(navigation.replace('Login')) }
+                () => {}
                 :
                 navigation.navigate(props.destination, props.args)
             }}>

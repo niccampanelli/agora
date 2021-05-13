@@ -34,8 +34,8 @@ export default function ({ route }) {
 
     function fazerConsulta() {
 
-        if(state.sexo==undefined || state.sexo == null){ 
-            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+        if(state.sexo===undefined || state.sexo === null){ 
+            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo não informado!')
             return;
         }
         if(state.sexo == 'f' && especialidade == 'urologista'){
@@ -67,7 +67,7 @@ export default function ({ route }) {
 
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
-            if(res.length <= 1){
+            if(res.length <= 0){
                 setMedics([{
                     name:"Não disponivel",
                     id:123
@@ -95,7 +95,7 @@ export default function ({ route }) {
                     }}
                 >
                     {medics.map((a, i) => {
-                        return <Picker.Item key={i} label={`${medics.length <= 1? '':'Dr.'} ${medics[i].name}`} value={medics[i].name} />
+                        return <Picker.Item key={i} label={`${medics.length <= 0 ? '':'Dr.'} ${medics[i].name}`} value={medics[i].name} />
                     })}
                 </Picker>
             </View>

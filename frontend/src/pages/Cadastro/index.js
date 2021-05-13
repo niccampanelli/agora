@@ -24,8 +24,6 @@ export default function Cadastro(props) {
     const [sexo, setSexo] = useState('m');
 
     const RadioSexo = () => {
-        
-
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }}>
 
@@ -71,7 +69,7 @@ export default function Cadastro(props) {
     }
 
     useEffect(() => {
-        // observador(props)
+         observador(props)
     }, [])
 
     return (

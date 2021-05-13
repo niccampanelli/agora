@@ -20,31 +20,34 @@ export default function (props) {
     const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
     const [visivel, setVisivel] = useState(modalOpenParam);
 
-    function flat({ item }) {
-        function removerCon(conId) {
-            Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
-              {
-                text: "Não",
-                style: "cancel",
-              },
-              {
-                text: "Sim",
-                onPress: async () => {
-                    apagarConsulta(conId)
-                },
-              }
-            ]);
+    function removerCon(conId) {
+        Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
+          {
+            text: "Não",
+            style: "cancel",
+          },
+          {
+            text: "Sim",
+            onPress: async () => {
+                apagarConsulta(conId)
+                .then(()=>{
+                    Alert.alert('AGORA','Sua consulta foi removida com sucesso!')
+                    navigation.navigate('Home')
+                })
+                .catch(console.log)
+            },
           }
-        
+        ]);
+      }
 
-
+    function flat({ item }) {
         return (
             <Swipeable
                 overshootRight={false}
                 renderRightActions={() => (
                     <Animated.View>
                         <View>
-                            <RectButton style={styles.buttonRemove} onPress={()=>removerCon(item.uid)}>
+                            <RectButton style={styles.buttonRemove} onPress={()=> removerCon(item.uid)}>
                                 <Feather name="trash" size={32} color={'#fff'} />
                             </RectButton>
                         </View>
@@ -69,16 +72,12 @@ export default function (props) {
             </Swipeable>
         )
     }
-    function infoCons() {
-       return Alert.alert('AGORA','Para cancelar uma consulta deslize alguma consulta para a esquerda.')
-    }
     function verCon() {
         setVisivel(!visivel)
         navigation.replace("Home")
     }
-    function teste() {
-        const t = new Date().toLocaleTimeString().
-        console.log(t)
+    function info() {
+        Alert.alert('AGORA','Para desfazer uma consulta deslize-a para a esquerda!')
     }
 
     return (
@@ -87,7 +86,7 @@ export default function (props) {
                 <Feather color={lightTextColor} size={40} name={"chevron-down"} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={{...styles.closeButton,top:'90%',zIndex:9}} onPress={()=>teste()}>
+            <TouchableOpacity style={{...styles.closeButton,top:'90%',zIndex:9}} onPress={()=>info()}>
                 <Feather color={lightTextColor} size={30} name={"info"} />
             </TouchableOpacity>
 

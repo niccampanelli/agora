@@ -17,7 +17,7 @@ export default StyleSheet.create({
 
     loginHeader: {
         height: 100,
-        marginBottom:'20%'
+        marginBottom:'30%'
     },
 
     loginTitle: {
@@ -46,7 +46,8 @@ export default StyleSheet.create({
     inputLabel: {
         fontWeight: 'bold',
         fontSize: 16,
-        marginBottom:10
+        marginBottom:10,
+        marginTop:'5%'
     },
 
     labelHint: {
