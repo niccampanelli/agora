@@ -24,12 +24,9 @@ const styles = StyleSheet.create({
     picker: {
         width: '55%',
         height: "100%",
-        borderBottomWidth:1,
-        borderEndWidth:1,
+borderWidth:1,
         borderColor:lightTextColor,
-        borderStartWidth:1,
-        borderBottomEndRadius:18,
-        borderRadius:16,
+        borderRadius:8,
         paddingLeft: 10,
     },
     containerPicker: {

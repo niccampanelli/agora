@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import gstyles, { lightTextColor, mainAppColor, mainTextColor } from "../../../gstyles";
 import { useNavigation } from '@react-navigation/native'
-import { setCons, getMedicos } from '../../../middleware/UnidController';
+import { setCons, getMedicos, getEspecs, getMedicEspecs } from '../../../middleware/UnidController';
 import ContextUser from '../../../context/UserContext';
 
 
@@ -22,7 +22,12 @@ export default function ({ route }) {
     //medicData é o obj tem os dados para marcar a consulta
     const [medicData, setMedicData] = useState({})
     //renderizar o nome sem entrar em conflito com o Picker
-    const [medicName, setMedicName] = useState(`${medics[0]}`)
+    const [medicName, setMedicName] = useState()
+    //
+    const [especialidadeSelected, setEspecialidadeSelected] = useState([])
+    const [medicEspec, setMedicEspec] = useState([])
+    const [medicEspecFilter, setMedicEspecFilter] = useState([])
+
     const [dia, setDia] = useState("12/01/2021")
     const [hora, setHora] = useState('10:10')
     const navigation = useNavigation()
@@ -34,19 +39,19 @@ export default function ({ route }) {
 
     function fazerConsulta() {
 
-        if(state.sexo===undefined || state.sexo === null){ 
-            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo não informado!')
+        if (state.sexo === undefined || state.sexo === null) {
+            Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo não informado!')
             return;
         }
-        if(state.sexo == 'f' && especialidade == 'urologista'){
-            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+        if (state.sexo == 'f' && especialidade == 'urologista') {
+            Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo!')
             return;
         }
-        if(state.sexo == 'm' && especialidade == 'ginecologista'){
-            Alert.alert('AGORA','Voce não pode escolher essa especialidade por conta do seu sexo!')
+        if (state.sexo == 'm' && especialidade == 'ginecologista') {
+            Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo!')
             return;
         }
- 
+
         setCons(
             null,
             state.uid,
@@ -59,48 +64,43 @@ export default function ({ route }) {
                 Alert.alert("AGORA", 'Consuta Marcada!')
                 navigation.replace("Home")
             })
-            .catch(err =>{
-                Alert.alert('Não foi Possivel fazer a Consulta!',"Erro: "+err.message)
+            .catch(err => {
+                Alert.alert('Não foi Possivel fazer a Consulta!', "Erro: " + err.message)
                 navigation.replace("Home")
             })
     }
 
+    function teste(params) {
+        console.log(especialidade, medicData.id, medicData.name)
+    }
+
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
-            if(res.length <= 0){
+            if (res.length <= 0) {
                 setMedics([{
-                    name:"Não disponivel",
-                    id:123
-                }])        
+                    name: "Não disponivel",
+                    id: 123
+                }])
             }
-            else{
+            else {
                 setMedics(res)
             }
         })
     }, [])
 
-    function PickerPersonalizado() {
+    useEffect(() => {
+        getEspecs('COD_UNI', '==', uni).then(res => {
+            setEspecialidadeSelected(res)
+        })
+    }, [])
 
-        return (
-            <View PickerUnidade style={{ ...styles.picker, width: "48%",marginLeft:7}}>
-                <Picker
-                    selectedValue={medicName}
-                    style={{ height: '100%', width: '100%', borderWidth: 5}}
-                    onValueChange={(itemValue, itemIndex) => {
-                     setMedicName(itemValue)
-                    setMedicData({
-                        name:itemValue,
-                        id:medics[itemIndex].id
-                    })
-                    }}
-                >
-                    {medics.map((a, i) => {
-                        return <Picker.Item key={i} label={`${medics.length <= 0 ? '':'Dr.'} ${medics[i].name}`} value={medics[i].name} />
-                    })}
-                </Picker>
-            </View>
-        )
-    }
+    useEffect(() => {
+        getMedicEspecs('COD_UNI', '==', uni, especialidade)
+            .then(res => {
+                setMedicEspec(res)
+                setMedicEspecFilter(res)
+            })
+    }, [])
 
 
     return (
@@ -127,31 +127,41 @@ export default function ({ route }) {
 
                         <Info info={JSON.stringify(endereco)} />
                     </View>
-
-                    <View style={styles.blocoInfo}>
-                        <Info info={uni} />
-                    </View>
-
                 </View>
 
-
-                <View picker style={{ ...styles.containerPicker, marginTop: "10%",width:'95%' }}>
-
-                    <View PickerEspecialidades style={styles.picker}>
+                <View style={{ width: '100%' }} >
+                    <View style={{ borderWidth: 1, borderRadius: 8, borderColor: lightTextColor, marginBottom: 10 }} >
                         <Picker
                             selectedValue={especialidade}
-                            style={{ height: '100%', width: '100%', }}
-                            onValueChange={(itemValue, itemIndex) => setEspecialidade(itemValue)}
+                            style={{ width: '100%' }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setEspecialidade(itemValue)
+                            }}
                         >
-                            <Picker.Item label="Clinico Geral" value="CR" />
-                            <Picker.Item label="Otorrino" value="otorrino" />
-                            <Picker.Item label="Pediatra" value="pediatra" />
-                            <Picker.Item label="Oftalmo" value="oftalmo" />
-                            <Picker.Item label="Radiologia" value="radio" />
+                            {especialidadeSelected.map((a, i) => {
+                                return <Picker.Item key={i} label={`${especialidadeSelected[i]}`} value={especialidadeSelected[i]} />
+                            })}
+
                         </Picker>
                     </View>
-
-                    <PickerPersonalizado />
+                    <View style={{ borderWidth: 1, borderRadius: 8, borderColor: lightTextColor, marginBottom: 10, zIndex: 9 }} >
+                        <Picker
+                            selectedValue={medicName}
+                            style={{ width: '100%' }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setMedicName(itemValue)
+                            }}
+                        >
+                            {medicEspec.map((e, i) => {
+                                if(e.espec == especialidade){
+                                    return <Picker.Item label={`Dr.`+e.name} value={e.name}/>
+                                }
+                              
+                            }
+                                
+                            )}
+                        </Picker>
+                    </View>
 
                 </View>
 
@@ -160,7 +170,7 @@ export default function ({ route }) {
                     <View PickerHora style={{ ...styles.picker, width: "50%" }}>
                         <Picker
                             selectedValue={dia}
-                            style={{ height: '100%', width: '100%', borderWidth: 5 }}
+                            style={{ height: '100%', width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setDia(itemValue)}
                         >
                             <Picker.Item label='13/01/2021' value='13/01/2021' />
@@ -172,7 +182,7 @@ export default function ({ route }) {
                     <View PickerHora style={{ ...styles.picker, width: "35%" }}>
                         <Picker
                             selectedValue={hora}
-                            style={{ height: '100%', width: '100%', borderWidth: 5 }}
+                            style={{ height: '100%', width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setHora(itemValue)}
                         >
                             <Picker.Item label='13:00' value='13:00' />
@@ -213,7 +223,7 @@ export default function ({ route }) {
 
                     <View style={styles.btn}>
 
-                        <TouchableOpacity onPress={() =>fazerConsulta()} >
+                        <TouchableOpacity onPress={() => teste()} >
                             <Text style={{ color: 'black' }}>MARCAR</Text>
                         </TouchableOpacity>
 
