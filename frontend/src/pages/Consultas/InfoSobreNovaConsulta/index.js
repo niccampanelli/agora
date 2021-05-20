@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
-import { Text, View, Image, Alert, Picker } from 'react-native';
+import { Text, View, Image, Alert, Picker, Modal, TouchableOpacity } from 'react-native';
 import img from '../../../assets/ubslogo.png';
 import styles from "./styles";
 import { Feather } from '@expo/vector-icons';
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { FlatList, ScrollView, TextInput, } from 'react-native-gesture-handler';
 import gstyles, { lightTextColor, mainAppColor, mainTextColor } from "../../../gstyles";
 import { useNavigation } from '@react-navigation/native'
 import { setCons, getMedicos, getEspecs, getMedicEspecs } from '../../../middleware/UnidController';
@@ -12,7 +12,9 @@ import ContextUser from '../../../context/UserContext';
 
 
 
+
 export default function ({ route }) {
+    
 
     const { name, endereco, uidUnid } = route.params
     const idUnid = JSON.stringify(uidUnid)
@@ -22,7 +24,7 @@ export default function ({ route }) {
     //medicData é o obj tem os dados para marcar a consulta
     const [medicData, setMedicData] = useState({})
     //renderizar o nome sem entrar em conflito com o Picker
-    const [medicName, setMedicName] = useState()
+    const [medicName, setMedicName] = useState('Medic')
     //
     const [especialidadeSelected, setEspecialidadeSelected] = useState([])
     const [medicEspec, setMedicEspec] = useState([])
@@ -31,13 +33,14 @@ export default function ({ route }) {
     const [dia, setDia] = useState("12/01/2021")
     const [hora, setHora] = useState('10:10')
     const navigation = useNavigation()
+    const [modalVisible, setModalVisible] = useState(false);
 
     const { state, uni } = useContext(ContextUser)
 
     const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', ...styles.InfoKeys }}>{props.name}</Text>
     const Info = (props) => <Text style={{ color: mainTextColor, fontSize: 18 }}>{props.info}</Text>
 
-    function fazerConsulta() {
+    function fazerConsulta(id,name) {
 
         if (state.sexo === undefined || state.sexo === null) {
             Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo não informado!')
@@ -56,11 +59,11 @@ export default function ({ route }) {
             null,
             state.uid,
             idUnid,
-            medicData.id,
+            id,
             dia,
             hora,
             especialidade,
-            medicData.name).then(a => {
+            name).then(a => {
                 Alert.alert("AGORA", 'Consuta Marcada!')
                 navigation.replace("Home")
             })
@@ -68,10 +71,6 @@ export default function ({ route }) {
                 Alert.alert('Não foi Possivel fazer a Consulta!', "Erro: " + err.message)
                 navigation.replace("Home")
             })
-    }
-
-    function teste(params) {
-        console.log(especialidade, medicData.id, medicData.name)
     }
 
     useEffect(() => {
@@ -98,17 +97,98 @@ export default function ({ route }) {
         getMedicEspecs('COD_UNI', '==', uni, especialidade)
             .then(res => {
                 setMedicEspec(res)
-                setMedicEspecFilter(res)
             })
     }, [])
+    function continuar(conId) {
+        Alert.alert("AGORA",
+        `Deseja continuar com essa consulta?
+        ${especialidade} com ${medicData.name} 
+         no dia ${dia} as ${hora}`, [
+            {
+                text: "Não",
+                style: "cancel",
+            },
+            {
+                text: "Sim",
+                onPress: () => {
 
+                    fazerConsulta()
+                },
+            }
+        ]);
+    }
+
+    function ModalMedicos() {
+        let data = []
+        for (let i = 0; i < medicEspec.length; i++) {
+            if (medicEspec[i].espec === especialidade) {
+                data.push({ name: medicEspec[i].name, id: medicEspec[i].id })
+            }
+        }
+        function Lista({ item }) {
+            return (
+                <TouchableOpacity
+                    style={styles.btnModalMedico}
+                    onPress={() => {
+                        setMedicData({ name: item.name, id: item.id })
+                        setModalVisible(!modalVisible)
+                        fazerConsulta(item.id,item.name)
+                        
+
+                    }} >
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} >
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }} >
+                            <Feather size={34} name={'user'} />
+                            <View style={{ marginLeft: '10%' }}>
+                                <Text style={{ fontSize: 16 }} >{`Dr.` + item.name}</Text>
+                                <Text style={{ fontSize: 14, color: lightTextColor }} >{especialidade}</Text>
+                            </View>
+                        </View>
+                        <Feather size={34} name={'arrow-right'} color={mainAppColor} />
+                    </View>
+
+                </TouchableOpacity>
+            )
+        }
+        return (
+            <Modal
+                animationType="fade"
+                transparent={false}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.modalMedicos}  >
+                    <View style={{ marginBottom: '5%' }}>
+                        <Text style={gstyles.headerTitle} >Médicos Disponiveis</Text>
+                        <Text style={[gstyles.listButtonDesc, { marginTop: '5%' }]}>Toque em um medico de sua preferencia, ou toque em SEM PREFERENCIA.</Text>
+                    </View>
+                    <FlatList
+                        data={data}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={Lista}
+                    />
+                    <TouchableOpacity
+
+                        onPress={() => {
+                            setModalVisible(false)
+                            console.log(modalVisible)
+                        }} >
+                        <Feather size={40} name={"chevron-left"} />
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+        )
+    }
 
     return (
         <View style={styles.container}>
             <View logo style={styles.containerHosp}>
                 <Image style={{ width: '100%', height: '100%' }} source={img} resizeMode='contain' />
             </View>
-
+            <ModalMedicos />
             <View style={{ zIndex: 1, position: 'absolute', top: "5%" }}>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <Feather color={lightTextColor} size={45} name={"chevron-left"} />
@@ -144,25 +224,6 @@ export default function ({ route }) {
 
                         </Picker>
                     </View>
-                    <View style={{ borderWidth: 1, borderRadius: 8, borderColor: lightTextColor, marginBottom: 10, zIndex: 9 }} >
-                        <Picker
-                            selectedValue={medicName}
-                            style={{ width: '100%' }}
-                            onValueChange={(itemValue, itemIndex) => {
-                                setMedicName(itemValue)
-                            }}
-                        >
-                            {medicEspec.map((e, i) => {
-                                if(e.espec == especialidade){
-                                    return <Picker.Item label={`Dr.`+e.name} value={e.name}/>
-                                }
-                              
-                            }
-                                
-                            )}
-                        </Picker>
-                    </View>
-
                 </View>
 
                 <View Picker style={styles.containerPicker}>
