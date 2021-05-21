@@ -10,7 +10,7 @@ import ContextUser from '../../../context/UserContext';
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
 import {apagarConsulta} from '../../../middleware/userController'
-
+import { CommonActions } from '@react-navigation/native';
 
 export default function (props) {
 
@@ -19,6 +19,12 @@ export default function (props) {
     const { consultas } = useContext(ContextUser)
     const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
     const [visivel, setVisivel] = useState(modalOpenParam);
+
+
+    const resetAction = CommonActions.reset({
+        index: 1,
+        routes:[{ name: 'Home'}],
+      });
 
     function removerCon(conId) {
         Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
@@ -32,7 +38,7 @@ export default function (props) {
                 apagarConsulta(conId)
                 .then(()=>{
                     Alert.alert('AGORA','Sua consulta foi removida com sucesso!')
-                    navigation.navigate('Home')
+                    navigation.dispatch(resetAction)
                 })
                 .catch(console.log)
             },

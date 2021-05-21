@@ -18,13 +18,9 @@ export default function Map(){
 
     const [hosp,setHosp] = useState()
 
-    const modalOpenParam = route.params.modalOpen == undefined ? false : route.params.modalOpen;
-    const [visivel, setVisivel] = useState(modalOpenParam);
-
     const irParaHosp = ({item}) => {navigation.navigate('InfoSobreNovaConsulta',{name:item.name,endereco:item.endereco,uidUnid:item.uidUnid})};
     const fecharModal = ({item})=>{
         setUni(item.uidUnid)
-        setVisivel(!visivel)
        return irParaHosp({item})
    };
 

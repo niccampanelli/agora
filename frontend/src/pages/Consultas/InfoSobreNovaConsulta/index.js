@@ -75,6 +75,7 @@ export default function ({ route }) {
 
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
+            console.log(res)
             if (res.length <= 0) {
                 setMedics([{
                     name: "Não disponivel",
@@ -89,7 +90,8 @@ export default function ({ route }) {
 
     useEffect(() => {
         getEspecs('COD_UNI', '==', uni).then(res => {
-            setEspecialidadeSelected(res)
+           if(res.length <= 0)  setEspecialidadeSelected(['Não disponivel'])
+           if(res.length >= 1) setEspecialidadeSelected(res)
         })
     }, [])
 
@@ -181,6 +183,11 @@ export default function ({ route }) {
                 </View>
             </Modal>
         )
+    }
+
+    function verificar() {
+        if(especialidadeSelected[0] === 'Não disponivel') fazerConsulta(0,'Sem Preferencia')
+        else setModalVisible(!modalVisible)
     }
 
     return (
@@ -284,7 +291,7 @@ export default function ({ route }) {
 
                     <View style={styles.btn}>
 
-                        <TouchableOpacity onPress={() => teste()} >
+                        <TouchableOpacity onPress={() => verificar()} >
                             <Text style={{ color: 'black' }}>MARCAR</Text>
                         </TouchableOpacity>
 
