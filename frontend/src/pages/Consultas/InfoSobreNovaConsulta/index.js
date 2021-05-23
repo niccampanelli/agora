@@ -186,7 +186,7 @@ export default function ({ route }) {
     }
 
     function verificar() {
-        if(especialidadeSelected[0] === 'Não disponivel') fazerConsulta(0,'Sem Preferencia')
+        if(especialidadeSelected[0] === 'Não disponivel') Alert.alert("AGORA",'Não é possivel marcar consultas nesta unidade!')
         else setModalVisible(!modalVisible)
     }
 

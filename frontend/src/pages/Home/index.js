@@ -38,7 +38,7 @@ export default function Home() {
     const FlatCons = ({ item }) => {
         return (
             <View key={item.uid} >
-                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM')}>
+                <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM',item)}>
                     <View style={gstyles.listButtonIcon}>
                         <Feather size={24} name={'calendar'} />
                     </View>

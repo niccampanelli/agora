@@ -8,12 +8,13 @@ export default StyleSheet.create({
         marginTop: "5%",
     },
     webView: {
-        borderWidth: 2,
+        borderWidth: 1,
+        borderColor:lightTextColor,
         borderRadius: 10,
-        height: '40%',
+        height: '50%',
         width: '100%',
         alignSelf: 'center',
-        marginTop: '5%',
+        
     },
     headerTexto: {
         alignItems: 'flex-start',
@@ -28,7 +29,8 @@ export default StyleSheet.create({
     },
 
     info: {
-        elevation: 2,
+        borderWidth:1,
+        borderColor:lightTextColor,
         shadowColor: mainAppColor,
         margin: "2%",
         flex: 1,

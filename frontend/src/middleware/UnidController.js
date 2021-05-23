@@ -129,6 +129,19 @@ module.exports = {
         }
         return arrayMedicosEspec
 
+    },
+    async pegarLocal(u){
+        const db = firebase.firestore()
+        let info
+        try {
+           info = await db.collection('unidade').doc(JSON.parse(u)).get()
+           
+        } catch (error) {
+            console.log('Erro com: '+error)
+            info = {message:true}
+        }
+        return {...info.data()}
+        
     }
 }
 
