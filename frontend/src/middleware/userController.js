@@ -15,7 +15,7 @@ module.exports = {
             await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                 const currentUser = firebase.auth().currentUser
                 const db = firebase.firestore()
-                db.collection("users").doc(currentUser.uid)
+                db.collection("users").doc(currentUser.id)
                     .set({
                         email: email,
                         CPF: CPF,
@@ -104,6 +104,20 @@ module.exports = {
             console.log(error.message)
         }
         return consultas
+    },
+    async getRece(fieldToGet, op, queryP){
+        const db = firebase.firestore()
+        let infoRece
+        let infoMedicamentos
+        try {
+            infoRece = await db.collection("receita").where(fieldToGet,op,queryP).get()
+        } catch (error) {
+            console.log(error);
+        }
+
+        if(!infoRece.exists)  return []
+        else return infoRece.data()
+
     },
     async apagarConsulta(conId) {
         try {
