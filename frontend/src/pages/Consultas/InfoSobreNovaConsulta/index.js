@@ -58,12 +58,11 @@ export default function ({ route }) {
         setCons(
             null,
             state.uid,
-            idUnid,
+            uidUnid,
             id,
             dia,
             hora,
-            especialidade,
-            name).then(a => {
+            ).then(a => {
                 Alert.alert("AGORA", 'Consuta Marcada!')
                 navigation.replace("Home")
             })
@@ -75,7 +74,6 @@ export default function ({ route }) {
 
     useEffect(() => {
         getMedicos('COD_UNI', '==', uni).then(res => {
-            console.log(res)
             if (res.length <= 0) {
                 setMedics([{
                     name: "Não disponivel",

@@ -32,7 +32,7 @@ export default function Receitas() {
 
                     <View style={styles.subContainer}>
                         <FlatList
-                            data={remedios}
+                            data={remedios.medicamentoInfo}
                             keyExtractor={item => item.COD_RECE.toString()}
                             renderItem={listaRemedios}
                         />

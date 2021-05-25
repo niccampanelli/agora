@@ -31,15 +31,17 @@ module.exports = {
         }
 
     },
-    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora, espec, name) {
+    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora) {
 
         const cons = firebase.firestore().collection('consultas')
         const user = firebase.auth().currentUser.id
+ 
+
 
         if (docId) {
             return await cons.doc(docId).set({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
         } else {
-            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora, espec, name });
+            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
         }
     },
     async getMedicos(fieldToGet, operator, queryParam) {
@@ -92,7 +94,7 @@ module.exports = {
                     .then(res => {
                         auxarrEspec.push(res.data().especialidade)
                     })
-                   aux = auxarrEspec.filter((el,i)=>auxarrEspec.indexOf(el)===i)
+                aux = auxarrEspec.filter((el, i) => auxarrEspec.indexOf(el) === i)
             }
         } catch (err) {
             console.log(err)
@@ -117,7 +119,7 @@ module.exports = {
             })))
                 .catch(console.log)
 
-            for (let i = 0; i < arrayMedicos.length; i++) { 
+            for (let i = 0; i < arrayMedicos.length; i++) {
 
                 await medicRef.doc(arrayMedicos[i]).get()
                     .then(res => {
@@ -130,18 +132,18 @@ module.exports = {
         return arrayMedicosEspec
 
     },
-    async pegarLocal(u){
+    async pegarLocal(u) {
         const db = firebase.firestore()
         let info
         try {
-           info = await db.collection('unidade').doc(JSON.parse(u)).get()
-           
+            info = await db.collection('unidade').doc(u).get()
+
         } catch (error) {
-            console.log('Erro com: '+error)
-            info = {message:true}
+            console.log('Erro com: ' + error)
+            info = { message: true }
         }
-        return {...info.data()}
-        
+        return { ...info.data() }
+
     }
 }
 

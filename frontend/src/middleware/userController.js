@@ -9,7 +9,7 @@ require("firebase/auth")
 module.exports = {
 
     // Função de cadastro de usuário
-    async cadastrar(email, password, CPF, firstName, lastName,sexo) {
+    async cadastrar(email, password, CPF, firstName, lastName, sexo) {
 
         try {
             await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
@@ -21,10 +21,10 @@ module.exports = {
                         CPF: CPF,
                         firstName: firstName,
                         lastName: lastName,
-                        sexo:sexo
+                        sexo: sexo
                     });
                 return;
-    
+
             }).catch((e) => {
                 return alert('Erro com cadastro!:' + e)
             });
@@ -62,7 +62,7 @@ module.exports = {
 
     async observador(props) {
         try {
-            firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     props.navigation.navigate('Home')
                 } else {
@@ -81,7 +81,7 @@ module.exports = {
             const currentUser = firebase.auth().currentUser
             const docRef = db.collection('users').doc(currentUser.uid);
             let userInfo = await docRef.get()
-            return {...userInfo.data(), uid: userInfo.id }
+            return { ...userInfo.data(), uid: userInfo.id }
         } catch (error) {
             console.log("Erro" + error)
         }
@@ -93,7 +93,7 @@ module.exports = {
         const consultas = []
 
         try {
-            await con.where('COD_USER', '==', user.uid).get()
+            await con.where(fieldToGet,op,queryParam).get()
                 .then(res => (res.forEach(a => {
                     consultas.push({
                         ...a.data(),
@@ -105,18 +105,83 @@ module.exports = {
         }
         return consultas
     },
-    async getRece(fieldToGet, op, queryP){
-        const db = firebase.firestore()
-        let infoRece
-        let infoMedicamentos
+   async getConsdois(fieldToGet, op, queryParam){
+        const con = firebase.firestore().collection('consultas');
+        const med = firebase.firestore().collection('medicos');
+        const user = firebase.auth().currentUser;
+        const consultas = []
+        const consultasTemp = []
+        
+        /**
+         *  if(res){
+                    for(let i=0;i<res.length;i++){
+                        await med.where('COD_MEDIC','==',res[i].COD_MEDIC).get()
+                        .then(medicRes => {
+                            consultas.push({
+                                ...res[i].data(),
+                                name:medicRes.data().name,
+                                espec:medicRes.data().espec
+                            })
+                        })
+                    }
+                }
+         */
+
         try {
-            infoRece = await db.collection("receita").where(fieldToGet,op,queryP).get()
+            await con.where(fieldToGet,op,queryParam).get()
+            .then(res =>(res.forEach(a => {
+                    consultasTemp.push({
+                        ...a.data(),
+                        uid:a.id
+                    })
+            })))
+            if(consultasTemp.length > 0){
+                for(let i=0;i<consultasTemp.length;i++){
+                    await med.doc(consultasTemp[i].COD_MEDIC).get()
+                    .then(res => {
+                        consultas.push({
+                            ...consultasTemp[i],
+                            name:res.data().name,
+                            espec:res.data().especialidade
+                        })
+                    })
+                }
+            }
         } catch (error) {
             console.log(error);
         }
 
-        if(!infoRece.exists)  return []
-        else return infoRece.data()
+        return consultas
+    },
+    async getRece(fieldToGet, op, queryP) {
+        const db = firebase.firestore()
+        let infoRece = []
+        let infoMedicamentos = []
+        try {
+            await db.collection("receita").where(fieldToGet, op, queryP).get().then(res => res.forEach(doc => {
+                infoRece.push({ ...doc.data(), id: doc.id })
+            }))
+
+            if (infoRece.length >= 0) {
+                for (let i = 0; i < infoRece.length; i++) {
+                    await db.collection("medicamento").where('COD_RECE', '==', infoRece[i].id).get(res => res.forEach(doc => {
+                        infoMedicamentos.push({ ...doc.data(), id: doc.id })
+                    }))
+                }
+            }
+
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
+        if (!infoRece.exists) return []
+        else return {
+            receitaInfo: infoRece,
+            medicamentoInfo: infoMedicamentos
+        }
 
     },
     async apagarConsulta(conId) {

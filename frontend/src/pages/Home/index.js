@@ -7,7 +7,7 @@ import BtnHome from '../Components/BtnHome';
 import Carousel from '../Components/Carousel';
 import { useNavigation } from '@react-navigation/native';
 import ContextUser from '../../context/UserContext';
-import { getCons, getRece, pegarDadosUser } from '../../middleware/userController';
+import { getCons, getConsdois, getRece, pegarDadosUser } from '../../middleware/userController';
 
 export default function Home() {
 
@@ -15,11 +15,10 @@ export default function Home() {
     const { state, setUserInfo, consultas, setConsultas, remedios, setRemedios } = useContext(ContextUser)
     const navigation = useNavigation();
 
-
     useEffect(() => {
         pegarDadosUser().then(user => setUserInfo(user))
-            .then(() => getCons().then(res => setConsultas(res)).catch(console.log))
-            .then(() => getRece('COD_USER', '==', state.uid))
+            .then(() => getConsdois('COD_USER', '==',state.uid).then(res => setConsultas(res)).catch(console.log))
+           // .then(() => getRece('COD_USER', '==', state.uid)).then(res => setRemedios(res)).catch(console.log) 
     }, [])
 
     function ListaConsultas() {
@@ -97,14 +96,14 @@ export default function Home() {
                         </TouchableOpacity>
                     </View>
                     {remedios.length > 0 ?
-                        <Carousel items={remedios} /> :
+                        <Carousel items={remedios.medicamentoInfo} /> :
                         <View style={{ justifyContent: 'center', alignItems: "center", marginTop: '10%' }} >
                             <Text style={{ color: mainTextColor, fontSize: 20 }} >
                                 Não há remedios ou indicações!
                                </Text>
                         </View>}
                 </View>
-                {consultas.length >= 1 ? <View style={styles.listArea}>
+                {consultas.length > 0 ? <View style={styles.listArea}>
                     <View style={styles.sheetGrab}>
                         <View style={styles.sheetGrabInner} />
                     </View>
