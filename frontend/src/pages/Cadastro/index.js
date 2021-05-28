@@ -63,7 +63,7 @@ export default function Cadastro(props) {
             lastName,
             sexo)
             .then(user => {
-                pegarDadosUser().then(setUserInfo)
+                pegarDadosUser().then(res => setUserInfo(res))
                 props.navigation.navigate('Home')
             })
     }

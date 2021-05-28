@@ -35,7 +35,7 @@ module.exports = {
 
         const cons = firebase.firestore().collection('consultas')
         const user = firebase.auth().currentUser.id
- 
+
 
 
         if (docId) {
@@ -144,6 +144,48 @@ module.exports = {
         }
         return { ...info.data() }
 
+    },
+    async getAvaData(u) {
+
+        var tempArray2 = [];
+
+        try {
+            await firebase.firestore().collection('unidade').doc(u).get()
+                .then(doc => {
+                    const iniExped = doc.get('iniExped');
+                    const fimExped = doc.get('fimExped');
+                    var tempArray = [];
+                    var exped;
+                    if (fimExped - iniExped < 0) {
+                        const value = fimExped - iniExped;
+                        exped = 24.0 + value + iniExped;
+                    } else {
+                        exped = fimExped - iniExped;
+                    }
+                    for (var indice = iniExped; indice < exped; indice += 0.25) {
+                        const timeInSeconds = indice * 3600;
+                        var timeHour = Math.floor(indice);
+                        var timeMinute = Math.floor(timeInSeconds / 60) - (timeHour * 60);
+                        if (timeHour >= 24) {
+                            timeHour = timeHour - 24;
+                        }
+                        if (timeHour.toString().length === 1) {
+                            timeHour = "0" + timeHour;
+                        }
+                        if (timeMinute === 0) {
+                            timeMinute = "00";
+                        }
+                        const timeToAdd = timeHour + ":" + timeMinute;
+                        tempArray = [...tempArray, timeToAdd];
+                        
+                        tempArray2.push(...tempArray)
+                    }
+                })
+        } catch (error) {
+            console.log(error);
+        }
+
+        return tempArray2
     }
 }
 

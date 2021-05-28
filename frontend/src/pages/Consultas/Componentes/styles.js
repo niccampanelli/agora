@@ -41,6 +41,7 @@ export default StyleSheet.create({
 
     blocoInfo: {
         flexDirection: 'row',
+        alignItems:'center',
         marginTop: "1%",
         padding: 10,
     },

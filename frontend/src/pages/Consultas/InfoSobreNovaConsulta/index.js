@@ -1,20 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
-import { Text, View, Image, Alert, Picker, Modal, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Alert, Picker, Modal, TouchableOpacity, Button } from 'react-native';
 import img from '../../../assets/ubslogo.png';
 import styles from "./styles";
 import { Feather } from '@expo/vector-icons';
 import { FlatList, ScrollView, TextInput, } from 'react-native-gesture-handler';
 import gstyles, { lightTextColor, mainAppColor, mainTextColor } from "../../../gstyles";
 import { useNavigation } from '@react-navigation/native'
-import { setCons, getMedicos, getEspecs, getMedicEspecs } from '../../../middleware/UnidController';
+import { setCons, getMedicos, getEspecs, getMedicEspecs, getAvaData } from '../../../middleware/UnidController';
 import ContextUser from '../../../context/UserContext';
-
+import DateTimePicker from '@react-native-community/datetimepicker';
+//import { format, compareAsc } from 'date-fns'
 
 
 
 export default function ({ route }) {
-    
+
 
     const { name, endereco, uidUnid } = route.params
     const idUnid = JSON.stringify(uidUnid)
@@ -30,17 +31,23 @@ export default function ({ route }) {
     const [medicEspec, setMedicEspec] = useState([])
     const [medicEspecFilter, setMedicEspecFilter] = useState([])
 
-    const [dia, setDia] = useState("12/01/2021")
-    const [hora, setHora] = useState('10:10')
+    const [dia, setDia] = useState(new Date())
+    const [hora, setHora] = useState(`a`)
     const navigation = useNavigation()
     const [modalVisible, setModalVisible] = useState(false);
+
+    //datetimepicker
+    const [date, setDate] = useState(`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`);
+    const [time,setTime] = useState([])
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
 
     const { state, uni } = useContext(ContextUser)
 
     const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', ...styles.InfoKeys }}>{props.name}</Text>
     const Info = (props) => <Text style={{ color: mainTextColor, fontSize: 18 }}>{props.info}</Text>
 
-    function fazerConsulta(id,name) {
+    function fazerConsulta(id, name) {
 
         if (state.sexo === undefined || state.sexo === null) {
             Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo não informado!')
@@ -60,12 +67,12 @@ export default function ({ route }) {
             state.uid,
             uidUnid,
             id,
-            dia,
+            new Date(dia),
             hora,
-            ).then(a => {
-                Alert.alert("AGORA", 'Consuta Marcada!')
-                navigation.replace("Home")
-            })
+        ).then(a => {
+            Alert.alert("AGORA", 'Consuta Marcada!')
+            navigation.replace("Home")
+        })
             .catch(err => {
                 Alert.alert('Não foi Possivel fazer a Consulta!', "Erro: " + err.message)
                 navigation.replace("Home")
@@ -88,8 +95,8 @@ export default function ({ route }) {
 
     useEffect(() => {
         getEspecs('COD_UNI', '==', uni).then(res => {
-           if(res.length <= 0)  setEspecialidadeSelected(['Não disponivel'])
-           if(res.length >= 1) setEspecialidadeSelected(res)
+            if (res.length <= 0) setEspecialidadeSelected(['Não disponivel'])
+            if (res.length >= 1) setEspecialidadeSelected(res)
         })
     }, [])
 
@@ -99,9 +106,15 @@ export default function ({ route }) {
                 setMedicEspec(res)
             })
     }, [])
+
+    useEffect(()=>{
+     getAvaData(uni).then(res => {
+            console.log(res[0]);
+            setTime(res)})
+    },[])
     function continuar(conId) {
         Alert.alert("AGORA",
-        `Deseja continuar com essa consulta?
+            `Deseja continuar com essa consulta?
         ${especialidade} com ${medicData.name} 
          no dia ${dia} as ${hora}`, [
             {
@@ -132,8 +145,8 @@ export default function ({ route }) {
                     onPress={() => {
                         setMedicData({ name: item.name, id: item.id })
                         setModalVisible(!modalVisible)
-                        fazerConsulta(item.id,item.name)
-                        
+                        fazerConsulta(item.id, item.name)
+
 
                     }} >
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} >
@@ -184,9 +197,33 @@ export default function ({ route }) {
     }
 
     function verificar() {
-        if(especialidadeSelected[0] === 'Não disponivel') Alert.alert("AGORA",'Não é possivel marcar consultas nesta unidade!')
+        if (especialidadeSelected[0] === 'Não disponivel') Alert.alert("AGORA", 'Não é possivel marcar consultas nesta unidade!')
         else setModalVisible(!modalVisible)
     }
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+       if(mode === 'time'){
+           setHora(`${currentDate.getHours()}:${currentDate.getMinutes()}`)
+       }
+        setDia(new Date(currentDate).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).toString())
+        setDate(`${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
+    };
+
 
     return (
         <View style={styles.container}>
@@ -233,27 +270,38 @@ export default function ({ route }) {
 
                 <View Picker style={styles.containerPicker}>
 
-                    <View PickerHora style={{ ...styles.picker, width: "50%" }}>
-                        <Picker
-                            selectedValue={dia}
-                            style={{ height: '100%', width: '100%' }}
-                            onValueChange={(itemValue, itemIndex) => setDia(itemValue)}
-                        >
-                            <Picker.Item label='13/01/2021' value='13/01/2021' />
-                            <Picker.Item label='14/02/2021' value='14/02/2021' />
-                            <Picker.Item label='15/06/2021' value='15/06/2021' />
-                        </Picker>
+                    <View style={{ width: '50%', borderColor: lightTextColor, borderRadius: 10, borderWidth: 1, alignItems: 'flex-start', justifyContent: 'center', }} >
+                        <View  >
+                            <TouchableOpacity onPress={showDatepicker}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '80%' }}>
+                                    <Text style={{ fontSize: 16, marginLeft: '5%' }} >{date}</Text>
+                                    <Feather name='calendar' size={22} color={mainAppColor} />
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+                        {show && (
+                            <DateTimePicker
+                                dateFormat="day month year"
+                                value={new Date()}
+                                mode={mode}
+                                minimumDate={new Date()}
+                                display="default"
+                                onChange={onChange}
+                            />
+                        )}
+
                     </View>
 
-                    <View PickerHora style={{ ...styles.picker, width: "35%" }}>
+                    <View PickerHora style={{ ...styles.picker, width: "40%" }}>
                         <Picker
                             selectedValue={hora}
                             style={{ height: '100%', width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setHora(itemValue)}
                         >
-                            <Picker.Item label='13:00' value='13:00' />
-                            <Picker.Item label='13:30' value='13:30' />
-                            <Picker.Item label='14:00' value='14:00' />
+                            {time ? time.map((e,i) => {
+                              return  <Picker.Item key={i} label={time[i]} value={time[i]}/>
+                            }):(<Picker.Item label='...' value={'...'}/>)}
                         </Picker>
                     </View>
 

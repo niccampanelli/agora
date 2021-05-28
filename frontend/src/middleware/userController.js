@@ -15,7 +15,7 @@ module.exports = {
             await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                 const currentUser = firebase.auth().currentUser
                 const db = firebase.firestore()
-                db.collection("users").doc(currentUser.id)
+                db.collection("users").doc(currentUser.uid)
                     .set({
                         email: email,
                         CPF: CPF,
@@ -76,15 +76,16 @@ module.exports = {
     },
 
     async pegarDadosUser() {
+        const db = firebase.firestore()
+        const currentUser = firebase.auth().currentUser
+        const docRef = db.collection('users').doc(currentUser.uid);
+        let userInfo = {}
         try {
-            const db = firebase.firestore()
-            const currentUser = firebase.auth().currentUser
-            const docRef = db.collection('users').doc(currentUser.uid);
-            let userInfo = await docRef.get()
-            return { ...userInfo.data(), uid: userInfo.id }
+            userInfo = await docRef.get()
         } catch (error) {
             console.log("Erro" + error)
         }
+        return { ...userInfo.data(), uid: userInfo.id }
     },
     async getCons(fieldToGet, op, queryParam) {
         const con = firebase.firestore().collection('consultas');
@@ -93,7 +94,7 @@ module.exports = {
         const consultas = []
 
         try {
-            await con.where(fieldToGet,op,queryParam).get()
+            await con.where('COD_USER', '==', user.uid).get()
                 .then(res => (res.forEach(a => {
                     consultas.push({
                         ...a.data(),
@@ -105,46 +106,31 @@ module.exports = {
         }
         return consultas
     },
-   async getConsdois(fieldToGet, op, queryParam){
+    async getConsdois() {
         const con = firebase.firestore().collection('consultas');
         const med = firebase.firestore().collection('medicos');
         const user = firebase.auth().currentUser;
         const consultas = []
         const consultasTemp = []
-        
-        /**
-         *  if(res){
-                    for(let i=0;i<res.length;i++){
-                        await med.where('COD_MEDIC','==',res[i].COD_MEDIC).get()
-                        .then(medicRes => {
-                            consultas.push({
-                                ...res[i].data(),
-                                name:medicRes.data().name,
-                                espec:medicRes.data().espec
-                            })
-                        })
-                    }
-                }
-         */
 
         try {
-            await con.where(fieldToGet,op,queryParam).get()
-            .then(res =>(res.forEach(a => {
+            await con.where('COD_USER', '==', user.uid).get()
+                .then(res => (res.forEach(a => {
                     consultasTemp.push({
                         ...a.data(),
-                        uid:a.id
+                        uid: a.id
                     })
-            })))
-            if(consultasTemp.length > 0){
-                for(let i=0;i<consultasTemp.length;i++){
+                })))
+            if (consultasTemp.length > 0) {
+                for (let i = 0; i < consultasTemp.length; i++) {
                     await med.doc(consultasTemp[i].COD_MEDIC).get()
-                    .then(res => {
-                        consultas.push({
-                            ...consultasTemp[i],
-                            name:res.data().name,
-                            espec:res.data().especialidade
+                        .then(res => {
+                            consultas.push({
+                                ...consultasTemp[i],
+                                name: res.data().name,
+                                espec: res.data().especialidade
+                            })
                         })
-                    })
                 }
             }
         } catch (error) {

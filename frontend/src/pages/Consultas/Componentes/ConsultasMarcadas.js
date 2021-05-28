@@ -12,6 +12,10 @@ export default function Marcadas({ route, navigation }) {
     const [html, setHTML] = useState();
     const [info, setInfo] = useState({});
     const { name, data, espec, hora, COD_UNI } = route.params
+    let dia = new Date(data.toMillis()).getDate()
+    let mes = new Date(data.toMillis()).getMonth()
+    let ano = new Date(data.toMillis()).getFullYear()
+     
     let local = {}
 
     useEffect(() => {
@@ -71,8 +75,8 @@ export default function Marcadas({ route, navigation }) {
      */
 
 
-    const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', color: mainTextColor, fontSize: 16 }}>{props.name}</Text>
-    const Info = (props) => <Text style={{ color: '#555', fontStyle: 'italic' }} >{props.info}</Text>
+    const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', color: mainTextColor, fontSize: 18 }}>{props.name}</Text>
+    const Info = (props) => <Text style={{ color: '#555',fontSize:16 }} >{props.info}</Text>
 
     return (
         <View style={{ flex: 1 }}>
@@ -108,7 +112,7 @@ export default function Marcadas({ route, navigation }) {
 
                 <View style={styles.blocoInfo}>
                     <InfoKeys name={'Dia Marcado: '} />
-                    <Info info={data} />
+                    <Info info={`${dia}/${mes}/${ano}`} />
                 </View>
 
                 <View style={styles.blocoInfo}>

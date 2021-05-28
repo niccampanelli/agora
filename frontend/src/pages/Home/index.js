@@ -17,8 +17,10 @@ export default function Home() {
 
     useEffect(() => {
         pegarDadosUser().then(user => setUserInfo(user))
-            .then(() => getConsdois('COD_USER', '==',state.uid).then(res => setConsultas(res)).catch(console.log))
-           // .then(() => getRece('COD_USER', '==', state.uid)).then(res => setRemedios(res)).catch(console.log) 
+            .then(() => getConsdois('COD_USER', '==', state.uid).then(res => {
+                setConsultas(res)
+            }).catch(console.log))
+        // .then(() => getRece('COD_USER', '==', state.uid)).then(res => setRemedios(res)).catch(console.log) 
     }, [])
 
     function ListaConsultas() {
@@ -36,6 +38,11 @@ export default function Home() {
         )
     }
     const FlatCons = ({ item }) => {
+
+        let dia = new Date(item.data.toMillis()).getDate()
+        let mes = new Date(item.data.toMillis()).getMonth()
+        let ano = new Date(item.data.toMillis()).getFullYear()
+
         return (
             <View key={item.uid} >
                 <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM', item)}>
@@ -46,9 +53,12 @@ export default function Home() {
                         <View style={gstyles.listButtonExtra}>
                             <View>
                                 <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{item.espec ? item.espec : ""}</Text>
-                                <Text style={gstyles.listButtonDesc}>{item.name ? item.name : ""}</Text>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '80%' }}>
+                                    <Text style={gstyles.listButtonDesc}>{item.name ? item.name : ""}</Text>
+                                    <Text style={gstyles.listButtonDesc}>{item.data ? `${dia}/${mes}/${ano}` : '...'}</Text>
+                                </View>
                             </View>
-                            <Text style={gstyles.listButtonDesc}>{item.data}</Text>
+
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -78,9 +88,10 @@ export default function Home() {
                     <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map')} />
                 </View>}
             <ScrollView
-                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
                 horizontal={false}
             >
+
                 <View style={styles.topButtons}>
                     <BtnHome nome={'Unidades de Saúde'} pressFunction={() => navigation.navigate('Map')} />
                 </View>
@@ -103,6 +114,7 @@ export default function Home() {
                                </Text>
                         </View>}
                 </View>
+
                 {consultas.length > 0 ? <View style={styles.listArea}>
                     <View style={styles.sheetGrab}>
                         <View style={styles.sheetGrabInner} />
@@ -114,12 +126,41 @@ export default function Home() {
                             <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
                         </TouchableOpacity>
                     </View>
-                    <ListaConsultas />
+                    {consultas.map((e, i) => {
+                        let dia = new Date(e.data.toMillis()).getDate()
+                        let mes = new Date(e.data.toMillis()).getMonth()
+                        let ano = new Date(e.data.toMillis()).getFullYear()
+
+                        return (<View key={i} >
+                            <TouchableOpacity style={gstyles.listTextButton} onPress={() => navigation.navigate('ConsultasM', e)}>
+                                <View style={gstyles.listButtonIcon}>
+                                    <Feather size={24} name={'calendar'} />
+                                </View>
+                                <View style={gstyles.listButtonTxt}>
+                                    <View style={gstyles.listButtonExtra}>
+                                        <View>
+                                            <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{e.espec ? e.espec : ""}</Text>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '80%' }}>
+                                                <Text style={gstyles.listButtonDesc}>{e.name ? e.name : ""}</Text>
+                                                <Text style={gstyles.listButtonDesc}>{e.data ? `${dia}/${mes}/${ano}` : '...'}</Text>
+                                            </View>
+                                        </View>
+
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>)
+                    })}
+                    <View style={{ ...styles.marcarBtn, position: 'relative', marginTop: "5%" }}>
+                    <BtnHome nome={'Marcar Consulta'} pressFunction={() => navigation.navigate('Map', { modalOpen: true })} />
+                </View>
                 </View>
 
                     : null}
-
             </ScrollView>
+
+
             {consultas.length >= 1 ?
                 null
                 :

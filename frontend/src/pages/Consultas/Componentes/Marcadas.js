@@ -47,6 +47,10 @@ export default function (props) {
       }
 
     function flat({ item }) {
+        let dia = new Date(item.data.toMillis()).getDate()
+        let mes = new Date(item.data.toMillis()).getMonth()
+        let ano = new Date(item.data.toMillis()).getFullYear()
+
         return (
             <Swipeable
                 overshootRight={false}
@@ -60,9 +64,9 @@ export default function (props) {
                     </Animated.View>
                 )}
             >
-                <View style={{ ...gstyles.listTextButton, marginHorizontal: '5%',borderBottomWidth:1,borderColor:lightTextColor}} onPress={() => {
+                <TouchableOpacity style={{ ...gstyles.listTextButton, marginHorizontal: '5%',borderBottomWidth:1,borderColor:lightTextColor}} onPress={() => {
                     setVisivel(!visivel)
-                    navigation.navigate('ConsultasM')
+                    navigation.navigate('ConsultasM',item)
                 }}>
                     <View style={gstyles.listButtonIcon}>
                         <Feather size={24} name={'calendar'} />
@@ -70,11 +74,11 @@ export default function (props) {
                     <View style={gstyles.listButtonTxt}>
                         <View style={gstyles.listButtonExtra}>
                             <Text style={gstyles.listButtonTitle}>{item.espec ? item.espec : '...'}</Text>
-                            <Text style={gstyles.listButtonDesc}>{item.data ? item.data : 'Um dia ai...'}</Text>
+                            <Text style={{...gstyles.listButtonDesc,alignSelf:'center'}}>{item.data ? `${dia}/${mes}/${ano}` : '...'}</Text>
                         </View>
-                        <Text style={gstyles.listButtonDesc}>{item.nomeMedico ? item.nomeMedico : 'Dr. Rafael'}</Text>
+                        <Text style={gstyles.listButtonDesc}>{item.name ? `Dr.${item.name}` : 'Dr. Rafael'}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </Swipeable>
         )
     }
