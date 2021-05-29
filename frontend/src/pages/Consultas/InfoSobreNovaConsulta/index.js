@@ -10,11 +10,14 @@ import { useNavigation } from '@react-navigation/native'
 import { setCons, getMedicos, getEspecs, getMedicEspecs, getAvaData } from '../../../middleware/UnidController';
 import ContextUser from '../../../context/UserContext';
 import DateTimePicker from '@react-native-community/datetimepicker';
-//import { format, compareAsc } from 'date-fns'
+
+
 
 
 
 export default function ({ route }) {
+
+    const [datet, setDatet] = useState(new Date())
 
 
     const { name, endereco, uidUnid } = route.params
@@ -37,8 +40,8 @@ export default function ({ route }) {
     const [modalVisible, setModalVisible] = useState(false);
 
     //datetimepicker
-    const [date, setDate] = useState(`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`);
-    const [time,setTime] = useState([])
+    const [date, setDate] = useState(`${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`);
+    const [time, setTime] = useState([])
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
@@ -107,11 +110,12 @@ export default function ({ route }) {
             })
     }, [])
 
-    useEffect(()=>{
-     getAvaData(uni).then(res => {
+    useEffect(() => {
+        getAvaData(uni).then(res => {
             console.log(res[0]);
-            setTime(res)})
-    },[])
+            setTime(res)
+        })
+    }, [])
     function continuar(conId) {
         Alert.alert("AGORA",
             `Deseja continuar com essa consulta?
@@ -204,11 +208,14 @@ export default function ({ route }) {
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-       if(mode === 'time'){
-           setHora(`${currentDate.getHours()}:${currentDate.getMinutes()}`)
-       }
+        if (mode === 'time') {
+            setHora(`${currentDate.getHours()}:${currentDate.getMinutes()}`)
+        }
+        //para testes... month é uma funçao indexada com 0 ent tem que colocar +1 para o mes ser o atual
+        //console.log(currentDate);
+       // console.log(`${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`);
         setDia(new Date(currentDate).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).toString())
-        setDate(`${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`);
+        setDate(`${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`);
     };
 
     const showMode = (currentMode) => {
@@ -237,7 +244,7 @@ export default function ({ route }) {
                 </TouchableOpacity>
             </View>
 
-            <ScrollView horizontal={false} contentContainerStyle={{ flex: 1, paddingBottom: 10, marginBottom: 5 }} >
+            <View contentContainerStyle={{ flex: 1, paddingBottom: 10, marginBottom: 5 }} >
 
                 <View InfoHosp >
 
@@ -282,12 +289,28 @@ export default function ({ route }) {
 
                         {show && (
                             <DateTimePicker
-                                dateFormat="day month year"
+                                /**
+                                 * dateFormat="day month year"
                                 value={new Date()}
                                 mode={mode}
                                 minimumDate={new Date()}
                                 display="default"
                                 onChange={onChange}
+                                 */
+
+                                defaultDate={new Date()}
+                                minimumDate={new Date()}
+                                maximumDate={new Date(2099, 12, 31)}
+
+                                modalTransparent={true}
+                                animationType={"fade"}
+                                androidMode={"default"}
+                                //placeHolderText={(new Date())}
+                                textStyle={{ color: "grey" }}
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                onChange={onChange}
+                                disabled={false}
+                                value={new Date()}
                             />
                         )}
 
@@ -299,9 +322,9 @@ export default function ({ route }) {
                             style={{ height: '100%', width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setHora(itemValue)}
                         >
-                            {time ? time.map((e,i) => {
-                              return  <Picker.Item key={i} label={time[i]} value={time[i]}/>
-                            }):(<Picker.Item label='...' value={'...'}/>)}
+                            {time ? time.map((e, i) => {
+                                return <Picker.Item key={i} label={time[i]} value={time[i]} />
+                            }) : (<Picker.Item label='...' value={'...'} />)}
                         </Picker>
                     </View>
 
@@ -347,7 +370,20 @@ export default function ({ route }) {
 
 
 
-            </ScrollView>
+            </View>
         </View>
     )
 }
+
+/**
+ * {show && (
+                            <DateTimePicker
+                                dateFormat="day month year"
+                                value={new Date()}
+                                mode={mode}
+                                minimumDate={new Date()}
+                                display="default"
+                                onChange={onChange}
+                            />
+                        )}
+ */

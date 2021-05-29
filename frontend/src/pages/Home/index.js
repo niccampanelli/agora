@@ -106,8 +106,12 @@ export default function Home() {
                             <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
                         </TouchableOpacity>
                     </View>
-                    {remedios.length > 0 ?
-                        <Carousel items={remedios.medicamentoInfo} /> :
+                    {remedios.length == 0 ?
+                        <Carousel items={[{
+                            label: 'Paracetamol',
+                            nome: 'Paracetamol',
+                            presc:'2 capsulas por dia'
+                        }]} /> :
                         <View style={{ justifyContent: 'center', alignItems: "center", marginTop: '10%' }} >
                             <Text style={{ color: mainTextColor, fontSize: 20 }} >
                                 Não há remedios ou indicações!
