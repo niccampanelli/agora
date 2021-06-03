@@ -68,9 +68,10 @@ export default function Cadastro(props) {
             })
     }
 
-    useEffect(() => {
-         observador(props)
+     useEffect(() => {
+     //    observador(props)
     }, [])
+    
 
     return (
         <View style={styles.container}>
@@ -152,7 +153,7 @@ export default function Cadastro(props) {
                     />
                     <View style={styles.sendArea}>
                         <View style={styles.buttonArea}>
-                            <BtnHome nome={'Continuar'} pressFunction={() => cadastro()} />
+                            <BtnHome nome={'Continuar'} pressFunction={() => navigator.navigate('Landing')} />
                         </View>
 
                         <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>

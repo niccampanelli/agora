@@ -60,13 +60,23 @@ module.exports = {
         }
     },
 
-    async observador(props) {
+    async observador(props,c,view) {
+        const resetAction = c.reset({
+            index: 1,
+            routes:[{ name:view}],
+          }); 
         try {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
+                    if(c){
+                          props.navigation.dispatch(resetAction)
+                    }
                     props.navigation.navigate('Home')
                 } else {
-                    console.log("deslogado")
+                    props.navigation.dispatch(c.reset({
+                        index: 1,
+                        routes:[{ name:'Cadastro'}],
+                      }))
                 }
             });
         } catch (error) {
@@ -77,8 +87,8 @@ module.exports = {
 
     async pegarDadosUser() {
         const db = firebase.firestore()
-        const currentUser = firebase.auth().currentUser
-        const docRef = db.collection('users').doc(currentUser.uid);
+        const currentUser = firebase.auth().currentUser.uid
+        const docRef = db.collection('users').doc(currentUser);
         let userInfo = {}
         try {
             userInfo = await docRef.get()

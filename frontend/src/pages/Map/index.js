@@ -9,8 +9,13 @@ import gstyles, {mainAppColor, mainTextColor, lightTextColor} from '../../gstyle
 import { useNavigation, useRoute } from '@react-navigation/core';
 import { pegarUnidade } from '../../middleware/UnidController';
 import ContextUser from '../../context/UserContext';
+import { CommonActions } from '@react-navigation/native';
 
 export default function Map(){
+    const resetAction = CommonActions.reset({
+        index: 1,
+        routes:[{ name: 'Home'}],
+      });
  
     const navigation = useNavigation();
     const route = useRoute();
@@ -24,51 +29,7 @@ export default function Map(){
        return irParaHosp({item})
    };
 
-    const [html, setHTML] = useState();
-
-    useEffect(() => {
-        (async () => {
-          let { status } = await Location.requestPermissionsAsync();
-          if (status !== 'granted') {
-            Alert.alert('Permission to access location was denied');
-            return;
-          }
-    
-          let location = await Location.getCurrentPositionAsync({});
-
-          const MapHTML = 
-                `
-                <!DOCTYPE html>
-                <html lang="pt-br">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
-                    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
-                    <link href='./styles.css' rel='stylesheet' />
-                    <title>Mapa de Unidades</title>
-                </head>
-                <body style='padding: 0; margin: 0;'>
-                    <div id='map' style='width: 100%; height: 98vh; padding: 0; margin: 0;'></div>
-                    <script>
-                        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FtcGFuZWxsaW5pY2MiLCJhIjoiY2ttOGR0MnZ5MTZ2MzJvcXM4cG1zczZvNCJ9.T7DbMzvz1uFk5TGQeYxh0A';
-                        var map = new mapboxgl.Map({
-                            container: 'map',
-                            style: 'mapbox://styles/mapbox/light-v10',
-                            center: [${location['coords'].longitude}, ${location['coords'].latitude}],
-                            zoom: 13,
-                        });
-
-                        var marker = new mapboxgl.Marker()
-                            .setLngLat([${location['coords'].longitude}, ${location['coords'].latitude}])
-                            .addTo(map);
-                    </script>
-                </body>
-                </html>
-                `
-          setHTML(MapHTML);
-        })();
-      }, []);
+   
       useEffect(()=>{
          pegarUnidade().then(setHosp)
       },[])
@@ -94,7 +55,7 @@ export default function Map(){
     <View style={styles.container}>
         
      
-            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.dispatch(resetAction)}>
                 <Feather size={42} color={lightTextColor} name="chevrons-down"/>
             </TouchableOpacity>
            
@@ -148,3 +109,53 @@ export default function Map(){
                         <Feather color={lightTextColor} size={45} name={"chevron-down"} />
                     </TouchableOpacity>
              */
+
+
+
+                    /**
+                     *  const [html, setHTML] = useState();
+
+    useEffect(() => {
+        (async () => {
+          let { status } = await Location.requestPermissionsAsync();
+          if (status !== 'granted') {
+            Alert.alert('Permission to access location was denied');
+            return;
+          }
+    
+          let location = await Location.getCurrentPositionAsync({});
+
+          const MapHTML = 
+                `
+                <!DOCTYPE html>
+                <html lang="pt-br">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+                    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+                    <link href='./styles.css' rel='stylesheet' />
+                    <title>Mapa de Unidades</title>
+                </head>
+                <body style='padding: 0; margin: 0;'>
+                    <div id='map' style='width: 100%; height: 98vh; padding: 0; margin: 0;'></div>
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FtcGFuZWxsaW5pY2MiLCJhIjoiY2ttOGR0MnZ5MTZ2MzJvcXM4cG1zczZvNCJ9.T7DbMzvz1uFk5TGQeYxh0A';
+                        var map = new mapboxgl.Map({
+                            container: 'map',
+                            style: 'mapbox://styles/mapbox/light-v10',
+                            center: [${location['coords'].longitude}, ${location['coords'].latitude}],
+                            zoom: 13,
+                        });
+
+                        var marker = new mapboxgl.Marker()
+                            .setLngLat([${location['coords'].longitude}, ${location['coords'].latitude}])
+                            .addTo(map);
+                    </script>
+                </body>
+                </html>
+                `
+          setHTML(MapHTML);
+        })();
+      }, []);
+                     */

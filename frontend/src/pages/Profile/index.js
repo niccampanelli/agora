@@ -6,17 +6,21 @@ import gstyles, { mainAppColor, mainTextColor, lightTextColor } from '../../gsty
 import { useNavigation } from '@react-navigation/native';
 import ConfigButton from '../Components/ConfigButton';
 import { logOut } from '../../middleware/userController';
+import { CommonActions } from '@react-navigation/native';
 
-import Swipeable from "react-native-gesture-handler/Swipeable";
 
 export default function Home() {
+    const resetAction = CommonActions.reset({
+        index: 1,
+        routes:[{ name: 'Home'}],
+      });
 
     const navigation = useNavigation();
 
     return (
         <View style={gstyles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.dispatch(resetAction)} style={styles.backbutton}><Feather color={lightTextColor} size={40} name={"chevron-left"} /></TouchableOpacity>
                 <Text style={styles.headerTitle}>Configurações</Text>
                 <Text style={styles.headerSubTitle}>Aqui você pode definir suas preferências em relação ao aplicativo. Toque em uma categoria</Text>
             </View>

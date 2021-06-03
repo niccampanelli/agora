@@ -10,7 +10,7 @@ import ContextUser from '../../../context/UserContext';
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
 import {apagarConsulta} from '../../../middleware/userController'
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native'; 
 
 export default function (props) {
 
@@ -24,7 +24,7 @@ export default function (props) {
     const resetAction = CommonActions.reset({
         index: 1,
         routes:[{ name: 'Home'}],
-      });
+      }); 
 
     function removerCon(conId) {
         Alert.alert("Remover", `Deseja cancelar essa consulta?`, [
