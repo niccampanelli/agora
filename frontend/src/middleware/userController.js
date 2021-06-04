@@ -69,10 +69,13 @@ module.exports = {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     if(c){
+                        console.log('veio1'+user.uid);
                           props.navigation.dispatch(resetAction)
                     }
+                    console.log('veio2'+user.uid);
                     props.navigation.navigate('Home')
                 } else {
+                    console.log('veio 3');
                     props.navigation.dispatch(c.reset({
                         index: 1,
                         routes:[{ name:'Cadastro'}],

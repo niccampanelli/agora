@@ -5,9 +5,11 @@ import {observador} from '../../middleware/userController'
 import img from '../../../assets/iconeAgora.jpg'
 import { CommonActions } from '@react-navigation/native'; 
 export default function Espera(props){
-    useEffect(()=>{
-        observador(props,CommonActions,'Home')
-    },[])
+    
+        useEffect(()=>{
+            observador(props,CommonActions,'Home')
+        },[])
+
     return(
         <View >
             <AppLoading/>

@@ -14,7 +14,7 @@ export default function Landing(props){
             <View style={styles.overlay}>
                 <Text style={style.title}>Bem-Vindo ao Agora!</Text>
                 <Text style={style.subTitle}>Aqui você pode controlar e visualizar suas consultas marcadas.</Text>
-                <TouchableOpacity style={styles.nextButton} onPress={() =>observador(props) }>
+                <TouchableOpacity style={styles.nextButton} onPress={() =>observador(props,CommonActions,'Home') }>
                     <Text style={styles.nextButtonText}>Continuar</Text>
                 </TouchableOpacity>
             </View>

@@ -64,7 +64,7 @@ export default function Cadastro(props) {
             sexo)
             .then(user => {
                 pegarDadosUser().then(res => setUserInfo(res))
-                props.navigation.navigate('Home')
+                props.navigation.navigate('Landing')
             })
     }
 
@@ -153,7 +153,7 @@ export default function Cadastro(props) {
                     />
                     <View style={styles.sendArea}>
                         <View style={styles.buttonArea}>
-                            <BtnHome nome={'Continuar'} pressFunction={() => navigator.navigate('Landing')} />
+                            <BtnHome nome={'Continuar'} pressFunction={() => cadastro()} />
                         </View>
 
                         <Text style={styles.hintText}>Se voce já está cadastrado no Agora:</Text>

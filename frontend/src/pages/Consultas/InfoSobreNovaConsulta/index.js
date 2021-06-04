@@ -64,7 +64,6 @@ export default function ({ route }) {
             Alert.alert('AGORA', 'Voce não pode escolher essa especialidade por conta do seu sexo!')
             return;
         }
-
         setCons(
             null,
             state.uid,
@@ -202,7 +201,8 @@ export default function ({ route }) {
 
     function verificar() {
         if (especialidadeSelected[0] === 'Não disponivel') Alert.alert("AGORA", 'Não é possivel marcar consultas nesta unidade!')
-        else setModalVisible(!modalVisible)
+       else setModalVisible(!modalVisible)
+      
     }
 
     const onChange = (event, selectedDate) => {

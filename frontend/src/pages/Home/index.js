@@ -106,12 +106,8 @@ export default function Home() {
                             <Feather color={mainTextColor} size={16} style={gstyles.seeMoreIcon} name='chevron-right' />
                         </TouchableOpacity>
                     </View>
-                    {remedios.length == 0 ?
-                        <Carousel items={[{
-                            label: 'Paracetamol',
-                            nome: 'Paracetamol',
-                            presc:'2 capsulas por dia'
-                        }]} /> :
+                    {remedios.medicamentoInfos == 0 ?
+                        <Carousel items={remedios.medicamentoInfos} /> :
                         <View style={{ justifyContent: 'center', alignItems: "center", marginTop: '10%' }} >
                             <Text style={{ color: mainTextColor, fontSize: 20 }} >
                                 Não há remedios ou indicações!
@@ -144,8 +140,8 @@ export default function Home() {
                                     <View style={gstyles.listButtonExtra}>
                                         <View>
                                             <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{e.espec ? e.espec : ""}</Text>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '80%' }}>
-                                                <Text style={gstyles.listButtonDesc}>{e.name ? e.name : ""}</Text>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '85%',borderWidth:1 }}>
+                                                <Text style={gstyles.listButtonDesc}>{e.name ? `Dr. `+e.name : ""}</Text>
                                                 <Text style={gstyles.listButtonDesc}>{e.data ? `${dia}/${mes}/${ano}` : '...'}</Text>
                                             </View>
                                         </View>
