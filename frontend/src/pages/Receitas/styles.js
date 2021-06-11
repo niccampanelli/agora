@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import {  mainAppColor, mainTextColor, lightTextColor } from '../../gstyles';
+import { mainAppColor, mainTextColor, lightTextColor } from '../../gstyles';
 
 export default StyleSheet.create({
-    
+
     subContainer: {
         paddingHorizontal: 20,
     },
@@ -78,10 +78,39 @@ export default StyleSheet.create({
         color: mainTextColor,
         fontWeight: 'bold'
     },
-    
+
     listButtonDesc: {
         fontSize: 16,
         color: lightTextColor,
     }
 
+    ,
+
+    header2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: 20,
+        margin: '5%'
+    },
+    btnVoltar: {
+        backgroundColor: mainAppColor,
+        width:'100%',
+        height:'10%',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row',
+        marginTop:'15%',
+        borderRadius:10
+    },
+
+    textBtn:{
+        color:mainTextColor,
+        fontSize:22,
+    }
+
 });
+
+/**
+ * { ...gstyles.listTextButton, marginTop: '15%', alignSelf: 'center', alignItems: 'center'}
+ */

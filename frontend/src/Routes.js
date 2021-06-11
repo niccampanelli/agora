@@ -17,6 +17,7 @@ import * as firebase from 'firebase';
 import Marcadas from './pages/Consultas/Componentes/Marcadas';
 import ContextUser from './context/UserContext';
 import AppLoading from 'expo-app-loading'
+import Espera from './pages/Espera';
 
 //
 
@@ -44,9 +45,10 @@ export default function Routes({ route }) {
                         gestureDirection: 'horizontal',
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                     }}
-                    initialRouteName='Cadastro'
+                    initialRouteName='Espera' 
                 >
                     <AppStack.Screen name='Login' component={Login} />
+                    <AppStack.Screen name='Espera' component={Espera} />
                     <AppStack.Screen name='Cadastro' component={Cadastro} />
                     <AppStack.Screen name='Map' component={Map} />
                     <AppStack.Screen name='Landing' component={Landing} />

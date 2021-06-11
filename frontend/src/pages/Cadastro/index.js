@@ -63,14 +63,15 @@ export default function Cadastro(props) {
             lastName,
             sexo)
             .then(user => {
-                pegarDadosUser().then(setUserInfo)
-                props.navigation.navigate('Home')
+                pegarDadosUser().then(res => setUserInfo(res))
+                props.navigation.navigate('Landing')
             })
     }
 
-    useEffect(() => {
-         observador(props)
+     useEffect(() => {
+     //    observador(props)
     }, [])
+    
 
     return (
         <View style={styles.container}>

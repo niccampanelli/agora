@@ -1,27 +1,32 @@
-import React,{useState,useEffect} from 'react'
-import { Text, View, TouchableOpacity, StatusBar } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Text, View, TouchableOpacity, StatusBar, ActivityIndicator, ScrollView, Modal } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
-import { lightTextColor, mainTextColor } from '../../../gstyles';
+import { lightTextColor, mainAppColor, mainTextColor } from '../../../gstyles';
 import { WebView } from 'react-native-webview';
+import { pegarLocal } from '../../../middleware/UnidController';
 
 
 export default function Marcadas({ route, navigation }) {
 
     const [html, setHTML] = useState();
+    const [info, setInfo] = useState({});
+    const [v, setV] = useState(0);
+    const [minimodal, setMiniModal] = useState(false);
+    const { name, data, espec, hora, COD_UNI, obs } = route.params
+
+    let dia = new Date(data.toMillis()).getDate()
+    let mes = new Date(data.toMillis()).getMonth()
+    let ano = new Date(data.toMillis()).getFullYear()
+
 
     useEffect(() => {
-        (async () => {
-          let { status } = await Location.requestPermissionsAsync();
-          if (status !== 'granted') {
-            Alert.alert('Permission to access location was denied');
-            return;
-          }
-    
-          let location = await Location.getCurrentPositionAsync({});
 
-          const MapHTML = 
-                `
+        async function a() {
+            await pegarLocal(COD_UNI).then(res => {
+
+                const MapHTML =
+                    `
                 <!DOCTYPE html>
                 <html lang="pt-br">
                 <head>
@@ -39,24 +44,60 @@ export default function Marcadas({ route, navigation }) {
                         var map = new mapboxgl.Map({
                             container: 'map',
                             style: 'mapbox://styles/mapbox/light-v10',
-                            center: [${location['coords'].longitude}, ${location['coords'].latitude}],
+                            center: [${info.lon}, ${info.lat}],
                             zoom: 13,
                         });
-
+        
                         var marker = new mapboxgl.Marker()
-                            .setLngLat([${location['coords'].longitude}, ${location['coords'].latitude}])
+                            .setLngLat([${info.lon}, ${info.lat}])
                             .addTo(map);
                     </script>
                 </body>
                 </html>
                 `
-          setHTML(MapHTML);
-        })();
-      }, []);
+                setHTML(MapHTML);
+                setInfo(res)
+                if (!html) setV(v + 1)
+            })
+                .catch(console.log)
+        }
+        a()
+    }, [v])
+ 
+
+    function MiniModal(text) {
+
+        function Header(){
+            return(
+                <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',top:0,position:'absolute',marginTop:'5%'}} >  
+                    <Text style={{color:lightTextColor, fontSize:22}}  >Observações</Text>
+                    <TouchableOpacity onPress={()=>setMiniModal(!minimodal)} >
+                    <Feather size={40} color={mainAppColor} name='chevron-down' />
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+
+        return (
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={minimodal}
+                onRequestClose={() => setMiniModal(!minimodal)}
+            >
+                <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                    <View style={styles.minimodal} >
+                        <Header/>
+                        <Text style={{color:lightTextColor}} >{obs == undefined || obs == ''  ? `${`Nenhuma Observação!`}` : obs  }</Text>
+                    </View>
+                </View>
+            </Modal>
+        )
+    }
 
 
-    const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', color: mainTextColor, fontSize: 16 }}>{props.name}</Text>
-    const Info = (props) => <Text style={{ color: '#555', fontStyle: 'italic' }} >{props.info}</Text>
+    const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', color: mainTextColor, fontSize: 18 }}>{props.name}</Text>
+    const Info = (props) => <Text style={{ color: '#555', fontSize: 16 }} >{props.info}</Text>
 
     return (
         <View style={{ flex: 1 }}>
@@ -74,31 +115,41 @@ export default function Marcadas({ route, navigation }) {
                 </View>
 
             </View>
+
             <View style={styles.info}>
 
-                <View style={styles.blocoInfo}>
-                    <InfoKeys name={"Especialidade:  "} />
-                    <Info info={'aa'} />
+                <View style={styles.webView}  >
+                    {html ? <WebView
+                        style={{ padding: 0 }}
+                        originWhitelist={'*'}
+                        source={{ html: html }}
+                    /> :
+                        <ActivityIndicator size={32} color={mainAppColor} />}
                 </View>
 
                 <View style={styles.blocoInfo}>
-                    <InfoKeys name={'Dia Marcado:  '} />
-                    <Info info={'12/12/1111'} />
+                    <InfoKeys name={"Especialidade: "} />
+                    <Info info={espec} />
                 </View>
 
                 <View style={styles.blocoInfo}>
-                    <InfoKeys name={'Hora Prevista:  '} />
-                    <Info info={'12:34'} />
+                    <InfoKeys name={'Dia Marcado: '} />
+                    <Info info={`${dia}/${mes}/${ano}`} />
+                </View>
+
+                <View style={styles.blocoInfo}>
+                    <InfoKeys name={'Hora Prevista: '} />
+                    <Info info={hora} />
                 </View>
 
                 <View style={styles.blocoInfo}>
                     <InfoKeys name={'Local:  '} />
-                    <Info info={'Rua MiauMiau, 123 São Paulo-SP'} />
+                    <Info info={info ? info.endereco : 'carregando...'} />
                 </View>
 
                 <View style={styles.blocoInfo}>
                     <InfoKeys name={'Hospital/Clinica:  '} />
-                    <Info info={'Xesquedele no desque saude'} />
+                    <Info info={info ? info.name : 'carregando...'} />
                 </View>
 
                 <View style={styles.blocoInfo}>
@@ -107,25 +158,18 @@ export default function Marcadas({ route, navigation }) {
                 </View>
 
                 <View style={styles.blocoInfo}>
-                    <InfoKeys name={'Nome:  '} />
-                    <Info info={'Doutor Rafael'} />
+                    <InfoKeys name={'Médico:  '} />
+                    <Info info={name} />
                 </View>
-                <View style={styles.webView}  >
-                <WebView
-            style={{padding:0}}
-            originWhitelist={'*'} 
-            source={{ html:  html }}
-        />
-                </View>
-            </View>
 
+
+            </View>
+            <View style={{ height: '5%', backgroundColor: mainAppColor, margin: '5%', borderRadius: 16, justifyContent: 'center', alignItems: 'center' }} >
+                <TouchableOpacity onPress={() => setMiniModal(!minimodal)}>
+                    <Text style={{ color: 'white', fontSize: 18 }} >Observações</Text>
+                </TouchableOpacity>
+            </View>
+            <MiniModal />
         </View>
     )
 }
-/*
-<View style={styles.blocoInfo}>
-</View>
-
-<InfoKeys name={''}/>
-<Info info={''}/>
-  */

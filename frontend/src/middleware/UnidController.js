@@ -31,15 +31,17 @@ module.exports = {
         }
 
     },
-    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora, espec, name) {
+    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora,obs) {
 
         const cons = firebase.firestore().collection('consultas')
         const user = firebase.auth().currentUser.id
 
+
+
         if (docId) {
             return await cons.doc(docId).set({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
         } else {
-            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora, espec, name });
+            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora,obs });
         }
     },
     async getMedicos(fieldToGet, operator, queryParam) {
@@ -92,7 +94,7 @@ module.exports = {
                     .then(res => {
                         auxarrEspec.push(res.data().especialidade)
                     })
-                   aux = auxarrEspec.filter((el,i)=>auxarrEspec.indexOf(el)===i)
+                aux = auxarrEspec.filter((el, i) => auxarrEspec.indexOf(el) === i)
             }
         } catch (err) {
             console.log(err)
@@ -117,7 +119,7 @@ module.exports = {
             })))
                 .catch(console.log)
 
-            for (let i = 0; i < arrayMedicos.length; i++) { 
+            for (let i = 0; i < arrayMedicos.length; i++) {
 
                 await medicRef.doc(arrayMedicos[i]).get()
                     .then(res => {
@@ -129,6 +131,61 @@ module.exports = {
         }
         return arrayMedicosEspec
 
+    },
+    async pegarLocal(u) {
+        const db = firebase.firestore()
+        let info
+        try {
+            info = await db.collection('unidade').doc(u).get()
+
+        } catch (error) {
+            console.log('Erro com: ' + error)
+            info = { message: true }
+        }
+        return { ...info.data() }
+
+    },
+    async getAvaData(u) {
+
+        var tempArray2 = [];
+
+        try {
+            await firebase.firestore().collection('unidade').doc(u).get()
+                .then(doc => {
+                    const iniExped = doc.get('iniExped');
+                    const fimExped = doc.get('fimExped');
+                    var tempArray = [];
+                    var exped;
+                    if (fimExped - iniExped < 0) {
+                        const value = fimExped - iniExped;
+                        exped = 24.0 + value + iniExped;
+                    } else {
+                        exped = fimExped - iniExped;
+                    }
+                    for (var indice = iniExped; indice < exped; indice += 0.25) {
+                        const timeInSeconds = indice * 3600;
+                        var timeHour = Math.floor(indice);
+                        var timeMinute = Math.floor(timeInSeconds / 60) - (timeHour * 60);
+                        if (timeHour >= 24) {
+                            timeHour = timeHour - 24;
+                        }
+                        if (timeHour.toString().length === 1) {
+                            timeHour = "0" + timeHour;
+                        }
+                        if (timeMinute === 0) {
+                            timeMinute = "00";
+                        }
+                        const timeToAdd = timeHour + ":" + timeMinute;
+                        tempArray = [...tempArray, timeToAdd];
+                        
+                        tempArray2.push(...tempArray)
+                    }
+                })
+        } catch (error) {
+            console.log(error);
+        }
+
+        return tempArray2
     }
 }
 

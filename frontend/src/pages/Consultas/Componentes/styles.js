@@ -8,12 +8,13 @@ export default StyleSheet.create({
         marginTop: "5%",
     },
     webView: {
-        borderWidth: 2,
+        borderWidth: 1,
+        borderColor: lightTextColor,
         borderRadius: 10,
         height: '40%',
         width: '100%',
         alignSelf: 'center',
-        marginTop: '5%',
+
     },
     headerTexto: {
         alignItems: 'flex-start',
@@ -28,17 +29,19 @@ export default StyleSheet.create({
     },
 
     info: {
-        elevation: 2,
+        borderWidth: 1,
+        borderColor: lightTextColor,
         shadowColor: mainAppColor,
         margin: "2%",
         flex: 1,
         borderRadius: 10,
         padding: "2%",
-        flexWrap: 'wrap'
+        flexWrap: 'nowrap'
     },
 
     blocoInfo: {
         flexDirection: 'row',
+        alignItems: 'center',
         marginTop: "1%",
         padding: 10,
     },
@@ -71,7 +74,7 @@ export default StyleSheet.create({
     modalCons: {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        flex:1
+        flex: 1
     },
     header: {
         flexDirection: 'row',
@@ -92,5 +95,24 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
 
+    },
+    minimodal: {
+        margin: 0,
+        width: '90%', height: '50%',
+        bottom: 0, position: 'absolute',
+        backgroundColor: "white",
+        borderTopEndRadius:20,
+        borderTopStartRadius:20,
+        padding: 35,
+        alignItems: "center",
+        justifyContent: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
     }
 })

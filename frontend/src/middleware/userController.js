@@ -9,7 +9,7 @@ import 'firebase/auth';
 module.exports = {
 
     // Função de cadastro de usuário
-    async cadastrar(email, password, CPF, firstName, lastName,sexo) {
+    async cadastrar(email, password, CPF, firstName, lastName, sexo) {
 
         try {
             await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
@@ -21,10 +21,10 @@ module.exports = {
                         CPF: CPF,
                         firstName: firstName,
                         lastName: lastName,
-                        sexo:sexo
+                        sexo: sexo
                     });
                 return;
-    
+
             }).catch((e) => {
                 return alert('Erro com cadastro!:' + e)
             });
@@ -46,22 +46,26 @@ module.exports = {
         }
     },
 
-    async deletar(){
-        try{
-            const user = await firebase.auth().currentUser;
-            return user.delete();
-        } catch(error){
-            console.error(error);
-        }
-    },
-
-    async observador(props) {
+    async observador(props,c,view) {
+        const resetAction = c.reset({
+            index: 1,
+            routes:[{ name:view}],
+          }); 
         try {
-            firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
+                    if(c){
+                        console.log('veio1'+user.uid);
+                          props.navigation.dispatch(resetAction)
+                    }
+                    console.log('veio2'+user.uid);
                     props.navigation.navigate('Home')
                 } else {
-                    console.log("deslogado")
+                    console.log('veio 3');
+                    props.navigation.dispatch(c.reset({
+                        index: 1,
+                        routes:[{ name:'Cadastro'}],
+                      }))
                 }
             });
         } catch (error) {
@@ -71,15 +75,16 @@ module.exports = {
     },
 
     async pegarDadosUser() {
+        const db = firebase.firestore()
+        const currentUser = firebase.auth().currentUser.uid
+        const docRef = db.collection('users').doc(currentUser);
+        let userInfo = {}
         try {
-            const db = firebase.firestore()
-            const currentUser = firebase.auth().currentUser
-            const docRef = db.collection('users').doc(currentUser.uid);
-            let userInfo = await docRef.get()
-            return {...userInfo.data(), uid: userInfo.id }
+            userInfo = await docRef.get()
         } catch (error) {
             console.log("Erro" + error)
         }
+        return { ...userInfo.data(), uid: userInfo.id }
     },
 
     setUserData(changed, email){
@@ -114,6 +119,70 @@ module.exports = {
             console.log(error.message)
         }
         return consultas
+    },
+    async getConsdois() {
+        const con = firebase.firestore().collection('consultas');
+        const med = firebase.firestore().collection('medicos');
+        const user = firebase.auth().currentUser;
+        const consultas = []
+        const consultasTemp = []
+
+        try {
+            await con.where('COD_USER', '==', user.uid).get()
+                .then(res => (res.forEach(a => {
+                    consultasTemp.push({
+                        ...a.data(),
+                        uid: a.id
+                    })
+                })))
+            if (consultasTemp.length > 0) {
+                for (let i = 0; i < consultasTemp.length; i++) {
+                    await med.doc(consultasTemp[i].COD_MEDIC).get()
+                        .then(res => {
+                            consultas.push({
+                                ...consultasTemp[i],
+                                name: res.data().name,
+                                espec: res.data().especialidade
+                            })
+                        })
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        return consultas
+    },
+    async getRece(fieldToGet, op, queryP) {
+        const db = firebase.firestore()
+        let infoRece = []
+        let infoMedicamentos = []
+        try {
+            await db.collection("receita").where(fieldToGet, op, queryP).get().then(res => res.forEach(doc => {
+                infoRece.push({ ...doc.data(), id: doc.id })
+            }))
+
+            if (infoRece.length >= 0) {
+                for (let i = 0; i < infoRece.length; i++) {
+                    await db.collection("medicamento").where('COD_RECE', '==', infoRece[i].id).get(res => res.forEach(doc => {
+                        infoMedicamentos.push({ ...doc.data(), id: doc.id })
+                    }))
+                }
+            }
+
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
+        if (!infoRece.exists) return []
+        else return {
+            receitaInfo: infoRece,
+            medicamentoInfo: infoMedicamentos
+        }
+
     },
     async apagarConsulta(conId) {
         try {
