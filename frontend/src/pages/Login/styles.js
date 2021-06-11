@@ -7,6 +7,7 @@ export default StyleSheet.create({
         flex:1,
         backgroundColor: layer0Color,
     },
+    
     loginCard: {
         position: 'relative',
         height: '100%',

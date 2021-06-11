@@ -1,6 +1,6 @@
-const firebase = require("firebase");
-const { Alert } = require("react-native");
-require("firebase/auth")
+import firebase from 'firebase';
+import { Alert } from 'react-native';
+import 'firebase/auth';
 
 
 
@@ -33,23 +33,9 @@ module.exports = {
         }
     },
 
-    async logar(email, password) {
-
-        try {
-            await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-                .then(() => {
-
-                    return firebase.auth().signInWithEmailAndPassword(email, password);
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorMessage)
-                })
-        } catch (error) {
-            Alert.alert('Não foi possivel fazer login!', 'Voltando a tela de login!')
-        }
-    },
+    logar(email, password) {
+        return firebase.auth().signInWithEmailAndPassword(email, password);
+    }, 
 
     async logOut(props) {
         try {
@@ -57,6 +43,15 @@ module.exports = {
             Alert.alert("Deslogado", 'Use Sempre e recomende o AGORA para outras pessoas!')
         } catch (err) {
             Alert.alert('Ocorreu um erro com: ', err.message);
+        }
+    },
+
+    async deletar(){
+        try{
+            const user = await firebase.auth().currentUser;
+            return user.delete();
+        } catch(error){
+            console.error(error);
         }
     },
 
@@ -86,6 +81,21 @@ module.exports = {
             console.log("Erro" + error)
         }
     },
+
+    setUserData(changed, email){
+        if(changed === 'email'){
+            return firebase.auth().currentUser.updateEmail(email);
+        }
+        else if(changed === 'password'){
+            return firebase.auth().sendPasswordResetEmail();
+        }
+        else if(changed === 'emailpassword'){
+            firebase.auth().currentUser.updateEmail(email).then(() => {
+                return firebase.auth().sendPasswordResetEmail();
+            });
+        }
+    },
+
     async getCons(fieldToGet, op, queryParam) {
         const con = firebase.firestore().collection('consultas');
         const user = firebase.auth().currentUser;
