@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native'
+import { Text, View, TouchableOpacity, StatusBar, ActivityIndicator, ScrollView, Modal } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { lightTextColor, mainAppColor, mainTextColor } from '../../../gstyles';
@@ -12,14 +12,12 @@ export default function Marcadas({ route, navigation }) {
     const [html, setHTML] = useState();
     const [info, setInfo] = useState({});
     const [v, setV] = useState(0);
-    const { name, data, espec, hora, COD_UNI } = route.params
+    const [minimodal, setMiniModal] = useState(false);
+    const { name, data, espec, hora, COD_UNI, obs } = route.params
 
     let dia = new Date(data.toMillis()).getDate()
     let mes = new Date(data.toMillis()).getMonth()
     let ano = new Date(data.toMillis()).getFullYear()
-
-    let local = {}
-
 
 
     useEffect(() => {
@@ -59,17 +57,43 @@ export default function Marcadas({ route, navigation }) {
                 `
                 setHTML(MapHTML);
                 setInfo(res)
-                if(!html) setV(v+1)
+                if (!html) setV(v + 1)
             })
                 .catch(console.log)
         }
         a()
-console.log(v);
-
     }, [v])
+ 
 
+    function MiniModal(text) {
 
+        function Header(){
+            return(
+                <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',top:0,position:'absolute',marginTop:'5%'}} >  
+                    <Text style={{color:lightTextColor, fontSize:22}}  >Observações</Text>
+                    <TouchableOpacity onPress={()=>setMiniModal(!minimodal)} >
+                    <Feather size={40} color={mainAppColor} name='chevron-down' />
+                    </TouchableOpacity>
+                </View>
+            )
+        }
 
+        return (
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={minimodal}
+                onRequestClose={() => setMiniModal(!minimodal)}
+            >
+                <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                    <View style={styles.minimodal} >
+                        <Header/>
+                        <Text style={{color:lightTextColor}} >{obs == undefined || obs == ''  ? `${`Nenhuma Observação!`}` : obs  }</Text>
+                    </View>
+                </View>
+            </Modal>
+        )
+    }
 
 
     const InfoKeys = (props) => <Text style={{ fontWeight: 'bold', color: mainTextColor, fontSize: 18 }}>{props.name}</Text>
@@ -137,15 +161,15 @@ console.log(v);
                     <InfoKeys name={'Médico:  '} />
                     <Info info={name} />
                 </View>
-            </View>
 
+
+            </View>
+            <View style={{ height: '5%', backgroundColor: mainAppColor, margin: '5%', borderRadius: 16, justifyContent: 'center', alignItems: 'center' }} >
+                <TouchableOpacity onPress={() => setMiniModal(!minimodal)}>
+                    <Text style={{ color: 'white', fontSize: 18 }} >Observações</Text>
+                </TouchableOpacity>
+            </View>
+            <MiniModal />
         </View>
     )
 }
-/*
-<View style={styles.blocoInfo}>
-</View>
-
-<InfoKeys name={''}/>
-<Info info={''}/>
-  */

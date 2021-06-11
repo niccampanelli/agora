@@ -140,7 +140,7 @@ export default function Home() {
                                     <View style={gstyles.listButtonExtra}>
                                         <View>
                                             <Text style={{ ...gstyles.listButtonTitle, width: "100%" }}>{e.espec ? e.espec : ""}</Text>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '85%',borderWidth:1 }}>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '85%'}}>
                                                 <Text style={gstyles.listButtonDesc}>{e.name ? `Dr. `+e.name : ""}</Text>
                                                 <Text style={gstyles.listButtonDesc}>{e.data ? `${dia}/${mes}/${ano}` : '...'}</Text>
                                             </View>

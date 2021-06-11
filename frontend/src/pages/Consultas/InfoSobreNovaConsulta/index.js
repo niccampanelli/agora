@@ -33,7 +33,7 @@ export default function ({ route }) {
     const [especialidadeSelected, setEspecialidadeSelected] = useState([])
     const [medicEspec, setMedicEspec] = useState([])
     const [medicEspecFilter, setMedicEspecFilter] = useState([])
-
+const [obs,setObs] = useState()
     const [dia, setDia] = useState(new Date())
     const [hora, setHora] = useState(`a`)
     const navigation = useNavigation()
@@ -71,6 +71,7 @@ export default function ({ route }) {
             id,
             new Date(dia),
             hora,
+            obs
         ).then(a => {
             Alert.alert("AGORA", 'Consuta Marcada!')
             navigation.replace("Home")
@@ -172,7 +173,6 @@ export default function ({ route }) {
                 transparent={false}
                 visible={modalVisible}
                 onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
                     setModalVisible(!modalVisible);
                 }}
             >
@@ -240,7 +240,7 @@ export default function ({ route }) {
             <ModalMedicos />
             <View style={{ zIndex: 1, position: 'absolute', top: "5%" }}>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <Feather color={lightTextColor} size={45} name={"chevron-left"} />
+                    <Feather color={mainAppColor} size={45} name={"chevron-left"} />
                 </TouchableOpacity>
             </View>
 
@@ -341,7 +341,9 @@ export default function ({ route }) {
                             multiline={true}
                             textAlign='left'
                             textAlignVertical='top'
-                            placeholder='Aperta em Marcar ai pls.'
+                            value={obs}
+                            onChangeText={text => setObs(text)}
+                            placeholder='Deseja acrescentar algo a essa consulta?'
                         />
 
                     </View>
@@ -374,16 +376,3 @@ export default function ({ route }) {
         </View>
     )
 }
-
-/**
- * {show && (
-                            <DateTimePicker
-                                dateFormat="day month year"
-                                value={new Date()}
-                                mode={mode}
-                                minimumDate={new Date()}
-                                display="default"
-                                onChange={onChange}
-                            />
-                        )}
- */

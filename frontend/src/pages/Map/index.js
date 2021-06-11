@@ -56,7 +56,7 @@ export default function Map(){
         
      
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.dispatch(resetAction)}>
-                <Feather size={42} color={lightTextColor} name="chevrons-down"/>
+                <Feather size={42} color={mainAppColor} name="chevron-down"/>
             </TouchableOpacity>
            
                 <View HeaderModal style={styles.headerModal}>

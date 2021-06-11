@@ -31,7 +31,7 @@ module.exports = {
         }
 
     },
-    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora) {
+    async setCons(docId, COD_USER, COD_UNI, COD_MEDIC, data, hora,obs) {
 
         const cons = firebase.firestore().collection('consultas')
         const user = firebase.auth().currentUser.id
@@ -41,7 +41,7 @@ module.exports = {
         if (docId) {
             return await cons.doc(docId).set({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
         } else {
-            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora });
+            return await cons.add({ COD_USER, COD_UNI, COD_MEDIC, data, hora,obs });
         }
     },
     async getMedicos(fieldToGet, operator, queryParam) {
